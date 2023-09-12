@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Tipo Habitacion</h2>
+
+<div class="input-group mb-3">
+    <input type="text" class="form-control"
+           id="txtnombretipohabitacion"
+           placeholder="Ingrese nombre tipo habitacion"
+          />
+    <button class="btn btn-primary" 
+            onclick="Buscar()"
+            type="button" id="btnnombretipohabitacion">Buscar</button>
+</div>
+<div id="divTabla" >
+
+</div>
+
+<script src="~/Scripts/generic.js"></script>
+<script src="~/Scripts/tipohabitacion.js"></script>
+
