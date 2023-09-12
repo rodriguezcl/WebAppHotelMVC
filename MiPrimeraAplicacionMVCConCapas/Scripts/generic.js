@@ -38,32 +38,41 @@ function pintar(objConfiguracion,objBusqueda) {
                  </div>
              `
             }
-            contenido += "<table class='table'>";
-            contenido += "<tr>";
-            for (var j = 0; j < objConfiguracion.cabeceras.length; j++) {
-                contenido += "<th>" + objConfiguracion.cabeceras[j]+"</th>"
-            }
 
-            contenido += "</tr>";
-            var fila;
-            var propiedadActual;
-            for (var i = 0; i < res.length; i++) {
-                fila = res[i]
-                contenido += "<tr>";
-                for (var j = 0; j < objConfiguracion.propiedades.length; j++) {
-                    propiedadActual = objConfiguracion.propiedades[j]
-                    contenido += "<td>" + fila[propiedadActual ] + "</td>";
-                }
-                ////contenido += "<td>" + fila.id + "</td>";  //fila["id"]
-                ////contenido += "<td>" + fila.nombre + "</td>";
-                ////contenido += "<td>" + fila.descripcion + "</td>";
-                contenido += "</tr>";
-            }
-            contenido += "</table>"
+            contenido += "<div id='divContenedor'>";
+            contenido += generarTabla(objConfiguracion, res);
+            contenido += "<div>";
             document.getElementById(objConfiguracion.id).innerHTML = contenido;
            
         })
 
+}
+
+function generarTabla(objConfiguracion,res) {
+    var contenido = "";
+    contenido += "<table class='table'>";
+    contenido += "<tr>";
+    for (var j = 0; j < objConfiguracion.cabeceras.length; j++) {
+        contenido += "<th>" + objConfiguracion.cabeceras[j] + "</th>"
+    }
+
+    contenido += "</tr>";
+    var fila;
+    var propiedadActual;
+    for (var i = 0; i < res.length; i++) {
+        fila = res[i]
+        contenido += "<tr>";
+        for (var j = 0; j < objConfiguracion.propiedades.length; j++) {
+            propiedadActual = objConfiguracion.propiedades[j]
+            contenido += "<td>" + fila[propiedadActual] + "</td>";
+        }
+        ////contenido += "<td>" + fila.id + "</td>";  //fila["id"]
+        ////contenido += "<td>" + fila.nombre + "</td>";
+        ////contenido += "<td>" + fila.descripcion + "</td>";
+        contenido += "</tr>";
+    }
+    contenido += "</table>"
+    return contenido;
 }
 
 function Buscar() {
@@ -71,10 +80,16 @@ function Buscar() {
     var objBus = objBusquedaGlobal;
     //Id del control
     var valor = get(objBus.idBus)
-    pintar({
-        url: `${objBus.url}/?${objBus.nomParametro}=` + valor,
-        id: objConf.id,
-        cabeceras: objConf.cabeceras,
-        propiedades: objConf.propiedades
-    }, objBus)
+    fetch(`${objBus.url}/?${objBus.nomParametro}=` + valor)
+        .then(res => res.json())
+        .then(res => {
+            var respuesta = generarTabla(objConf, res);
+            document.getElementById("divContenedor").innerHTML = respuesta;
+        })
+    //pintar({
+    //    url: `${objBus.url}/?${objBus.nomParametro}=` + valor,
+    //    id: objConf.id,
+    //    cabeceras: objConf.cabeceras,
+    //    propiedades: objConf.propiedades
+    //}, objBus)
 }
