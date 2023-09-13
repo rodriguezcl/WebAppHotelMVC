@@ -15,5 +15,11 @@ namespace Capa_Negocio
             ProductoDAL oProductoDAL = new ProductoDAL();
             return oProductoDAL.listarProductos();
         }
+
+        public List<ProductoCLS> filtrarProductos(string nombre)
+        {
+            ProductoDAL oProductoDAL = new ProductoDAL();
+            return oProductoDAL.filtrarProductos(nombre);
+        }
     }
 }
