@@ -21,5 +21,11 @@ namespace MiPrimeraAplicacionMVCConCapas.Controllers
             return Json(oMarcaBL.listarMarca(), JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult filtrarMarca(string nombremarca)
+        {
+            MarcaBL oMarcaBL = new MarcaBL();
+            return Json(oMarcaBL.filtrarMarca(nombremarca), JsonRequestBehavior.AllowGet);
+        }
+
     }
 }
