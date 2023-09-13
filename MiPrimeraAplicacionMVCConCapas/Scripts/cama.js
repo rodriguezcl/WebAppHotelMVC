@@ -13,6 +13,7 @@ function listarCama() {
         url: "Cama/filtrarCama",
         nomParametro: "nombrecama",
         type: "text",
+        btn: false,
         idBus: "txtnombrecama",
         placeholder: "Ingrese un valor"
            

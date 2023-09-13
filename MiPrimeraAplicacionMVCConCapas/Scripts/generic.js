@@ -17,7 +17,16 @@ function pintar(objConfiguracion,objBusqueda) {
         .then(res => {
             var contenido = "";
             if (objBusqueda!=undefined &&  objBusqueda.busqueda == true) {
-
+                if (objBusqueda.placeholder == undefined)
+                    objBusqueda.placeholder = "Ingrese un valor";
+                if (objBusqueda.id == undefined)
+                    objBusqueda.id = "txtbusqueda";
+                if (objBusqueda.type = undefined)
+                    objBusqueda.type = "text";
+                if (objConfiguracion.id == undefined)
+                    objConfiguracion.id = "divTabla";
+                if (objBusqueda.btn == undefined)
+                    objBusqueda.btn = true;
                 //Asignar los valores
                 objConfiguracionGlobal = objConfiguracion;
                 objBusquedaGlobal = objBusqueda;
@@ -28,15 +37,20 @@ function pintar(objConfiguracion,objBusqueda) {
                 contenido += `
                            <input type="${objBusqueda.type}" class="form-control"
                            id="${objBusqueda.idBus}"
-                       placeholder="${objBusqueda.placeholder}"
+                            ${objBusqueda.btn == true ? "" : "onkeyup='Buscar()'" }
+                            placeholder="${objBusqueda.placeholder}"
                                />`
-                contenido += `
+                if (objBusqueda.btn == true) {
+                    contenido += `
                   <button class="btn btn-primary" 
                      onclick="Buscar()"
                       type="button" >
-                    Buscar</button>
+                    Buscar</button>`
+                }
+                   
+                contenido += `
                  </div>
-             `
+                `
             }
 
             contenido += "<div id='divContenedor'>";
@@ -75,17 +89,37 @@ function generarTabla(objConfiguracion,res) {
     return contenido;
 }
 
+function fetchGet(url, callback) {
+    var raiz = document.getElementById("hdfOculto").value;
+    var urlAbsoluta = window.location.protocol + "//" +
+        window.location.host + raiz + url;
+    fetch(urlAbsoluta).then(res => res.json())
+        .then(res => {
+            callback(res)
+        })
+        .catch(err => {
+            console.log(err);
+        })
+}
+
 function Buscar() {
     var objConf = objConfiguracionGlobal;
     var objBus = objBusquedaGlobal;
     //Id del control
     var valor = get(objBus.idBus)
-    fetch(`${objBus.url}/?${objBus.nomParametro}=` + valor)
-        .then(res => res.json())
-        .then(res => {
-            var respuesta = generarTabla(objConf, res);
-            document.getElementById("divContenedor").innerHTML = respuesta;
-        })
+    fetchGet(`${objBus.url}/?${objBus.nomParametro}=` + valor, function (res){
+        var respuesta = generarTabla(objConf, res);
+        document.getElementById("divContenedor").innerHTML = respuesta;
+    })
+
+    //fetch(`${objBus.url}/?${objBus.nomParametro}=` + valor)
+    //    .then(res => res.json())
+    //    .then(res => {
+    //        var respuesta = generarTabla(objConf, res);
+    //        document.getElementById("divContenedor").innerHTML = respuesta;
+    //    })
+
+
     //pintar({
     //    url: `${objBus.url}/?${objBus.nomParametro}=` + valor,
     //    id: objConf.id,
