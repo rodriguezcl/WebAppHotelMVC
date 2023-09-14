@@ -77,7 +77,7 @@ public class CamaDAL:CadenaDAL
                 {
                     //Buena practica (Opcional)->Indicamos que es un procedure
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@nombrecama", nombrecama);
+                    cmd.Parameters.AddWithValue("@nombrecama", nombrecama.Trim());
                     SqlDataReader drd = cmd.ExecuteReader();
                     if (drd != null)
                     {

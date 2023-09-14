@@ -79,7 +79,7 @@ namespace Capa_Datos
                     {
                         //Buena practica (Opcional)->Indicamos que es un procedure
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@nombre", nombremarca);
+                        cmd.Parameters.AddWithValue("@nombre", nombremarca.Trim());
                         SqlDataReader drd = cmd.ExecuteReader();
                         if (drd != null)
                         {
