@@ -17,6 +17,12 @@ namespace Capa_Negocio
 
         }
 
+        public int guardarTipoHabitacion(TipoHabitacionCLS oTipoHabitacion)
+        {
+            TipoHabitacionDAL oTipoHabitacionDAL = new TipoHabitacionDAL();
+            return oTipoHabitacionDAL.guardarTipoHabitacion(oTipoHabitacion);
+        }
+
         public List<TipoHabitacionCLS> filtrarTipoHabitacion(string nombrehabitacion)
         {
             TipoHabitacionDAL oTipoHabitacionDAL = new TipoHabitacionDAL();

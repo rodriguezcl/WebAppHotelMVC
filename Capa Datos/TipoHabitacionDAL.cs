@@ -80,6 +80,39 @@ namespace Capa_Datos
 
         }
 
+        public int guardarTipoHabitacion (TipoHabitacionCLS oTipoHabitacion)
+        {
+            int respuesta = 0;
+            using (SqlConnection cn = new SqlConnection(cadena))
+            {
+                try
+                {
+                    cn.Open();
+
+                    using (SqlCommand cmd = new SqlCommand("uspGuardarTipohabitacion", cn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@id", oTipoHabitacion.id);
+                        cmd.Parameters.AddWithValue("@nombre", oTipoHabitacion.nombre);
+                        cmd.Parameters.AddWithValue("@descripcion", oTipoHabitacion.descripcion);
+                        respuesta = cmd.ExecuteNonQuery();
+                    }
+
+                    cn.Close();
+
+                }
+                catch (Exception ex)
+                {
+                    respuesta = 0;
+                    cn.Close();
+                }
+
+            }
+
+            return respuesta;
+
+        }
+
 
         public List<TipoHabitacionCLS> filtrarTipoHabitacion(string nombrehabitacion)
         {

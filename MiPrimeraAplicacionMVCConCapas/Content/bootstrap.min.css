@@ -342,12 +342,6 @@ textarea {
     resize: vertical
 }
 
-fieldset {
-    min-width: 0;
-    padding: 0;
-    margin: 0;
-    border: 0
-}
 
 legend {
     float: left;
@@ -2894,11 +2888,6 @@ textarea.form-control-lg {
 .btn-check:focus + .btn, .btn:focus {
     outline: 0;
     box-shadow: 0 0 0 .25rem rgba(13,110,253,.25)
-}
-
-.btn.disabled, .btn:disabled, fieldset:disabled .btn {
-    pointer-events: none;
-    opacity: .65
 }
 
 .btn-primary {
