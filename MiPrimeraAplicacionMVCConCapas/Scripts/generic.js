@@ -2,6 +2,14 @@
     return document.getElementById(id).value;
 }
 
+function set(id, valor) {
+    document.getElementById(id).value = valor;
+}
+
+function setByName(id, valor) {
+    document.getElementsByName(id)[0].value = valor;
+}
+
 var objConfiguracionGlobal;
 var objBusquedaGlobal;
 function pintar(objConfiguracion, objBusqueda) {
@@ -100,6 +108,25 @@ function fetchGet(url, callback) {
         .catch(err => {
             console.log(err);
         })
+}
+
+function fetchPostText(url, frm, callback) {
+    var raiz = document.getElementById("hdfOculto").value;
+    var urlAbsoluta = window.location.protocol + "//" +
+        window.location.host + raiz + url;
+
+    fetch(url, {
+        method: "POST",
+        body: frm
+    })
+        .then(res => res.text())
+        .then(res => {
+            callback(res)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+
 }
 
 function Buscar() {
