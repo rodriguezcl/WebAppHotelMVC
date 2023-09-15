@@ -106,6 +106,7 @@
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <Content Include="Scripts\marca.js" />
     <Content Include="Scripts\producto.js" />
+    <Content Include="Scripts\sweetalert.js" />
     <Content Include="Scripts\tipohabitacion.js" />
     <Content Include="Web.config" />
   </ItemGroup>

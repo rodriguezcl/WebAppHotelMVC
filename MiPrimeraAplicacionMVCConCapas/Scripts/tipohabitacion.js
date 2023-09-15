@@ -6,7 +6,9 @@ function listarTipoHabitacion() {
     pintar({
         url: "TipoHabitacion/lista", id: "divTabla",
         cabeceras: ["Id", "Nombre", "Descripcion"],
-        propiedades: ["id", "nombre", "descripcion"]
+        propiedades: ["id", "nombre", "descripcion"],
+        editar: true,
+        eliminar: true
     })
 }
 
@@ -24,9 +26,17 @@ function Buscar() {
 }
 
 function Limpiar() {
-    setByName("id", "")
-    setByName("nombre", "")
-    setByName("descripcion", "")
+    //setByName("id", "")
+    //setByName("nombre", "")
+    //setByName("descripcion", "")
+
+    //var elementos = document.querySelectorAll("#frmTipoHabitacion [name]")
+    //for (var i = 0; i < elementos.length; i++) {
+    //    elementos[i].value = "";
+    //}
+
+    LimpiarDatos("frmTipoHabitacion")
+    Correcto("Funcionó mi alerta")
 }
 
 function GuardarDatos() {
