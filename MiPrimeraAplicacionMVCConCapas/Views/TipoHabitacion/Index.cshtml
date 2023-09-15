@@ -9,7 +9,7 @@
 
     <legend>Datos de Tipo Habtiacion</legend>
 
-    <form id="frmTipoHabitacion">
+    <form id="frmTipoHabitacion" method="post">
         <div class="mb-3">
             <label>Id Tipo Habitación</label>
             <input type="text" class="form-control" name="id" value="0" readonly />
@@ -24,25 +24,26 @@
             <label>Descripción</label>
             <input type="text" class="form-control" name="descripcion" />
         </div>
-
-        <button class="btn btn-primary">Aceptar</button>
-        <button class="btn btn-danger">Limpiar</button>
-
     </form>
-    
+
+    <button class="btn btn-primary" onclick="GuardarDatos()">Aceptar</button>
+    <button class="btn btn-danger">Limpiar</button>
 
 </fieldset>
+
+
 
 <div class="container input-group mb-3">
     <input type="text" class="form-control"
            id="txtnombretipohabitacion"
-           placeholder="Ingrese nombre tipo habitacion"
-          />
-    <button class="btn btn-primary" 
+           placeholder="Ingrese nombre tipo habitacion" />
+    <button class="btn btn-primary"
             onclick="Buscar()"
-            type="button" id="btnnombretipohabitacion">Buscar</button>
+            type="button" id="btnnombretipohabitacion">
+        Buscar
+    </button>
 </div>
-<div class="container" id="divTabla" >
+<div class="container" id="divTabla">
 
 </div>
 

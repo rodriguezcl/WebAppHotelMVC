@@ -10,7 +10,7 @@
 </head>
 <body>
 
-    
+
     <div class="nav-side-menu">
         <div class="tasi">
             <div class="brand">@*<img src="//tecrubeliyim.com/wp-content/uploads/logoS.png" width="150">*@<!-- /Web-Doktoru --></div>
@@ -24,8 +24,8 @@
                        new { area = "" }, new { @class = "nav-link js-scroll-trigger" })
 
                         @*<a href="#giris" class="nav-link js-scroll-trigger">
-            Giriş
-        </a>*@
+                                Giriş
+                            </a>*@
                     </li>
                     <li>
                         @Html.ActionLink("Cama", "Index", "Cama",
@@ -43,7 +43,7 @@
                     </li>
                     <li>
                         <a href="#ayrintilar">
-                           Ayrıntılar
+                            Ayrıntılar
                         </a>
                     </li>
                     <li>
@@ -63,11 +63,11 @@
             </div>
         </div>
     </div></div>
-    <div  style="margin-left:230px"  >
+    <div style="margin-left:230px">
         @RenderBody()
     </div>
-  
-    <input  type="hidden" id="hdfOculto" value="@Url.Content("~")" />
+
+    <input type="hidden" id="hdfOculto" value="@Url.Content("~")" />
 
     @*<div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">

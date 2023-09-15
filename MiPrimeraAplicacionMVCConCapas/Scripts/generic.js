@@ -4,19 +4,19 @@
 
 var objConfiguracionGlobal;
 var objBusquedaGlobal;
-function pintar(objConfiguracion,objBusqueda) {
+function pintar(objConfiguracion, objBusqueda) {
 
     //URL Absolute 
     var raiz = document.getElementById("hdfOculto").value;
     var urlAbsoluta = window.location.protocol + "//" +
         window.location.host + raiz + objConfiguracion.url;
-   // alert(urlAbsoluta)
+    // alert(urlAbsoluta)
     //Controles//accion
     fetch(urlAbsoluta)
         .then(res => res.json())
         .then(res => {
             var contenido = "";
-            if (objBusqueda!=undefined &&  objBusqueda.busqueda == true) {
+            if (objBusqueda != undefined && objBusqueda.busqueda == true) {
                 if (objBusqueda.placeholder == undefined)
                     objBusqueda.placeholder = "Ingrese un valor";
                 if (objBusqueda.id == undefined)
@@ -37,7 +37,7 @@ function pintar(objConfiguracion,objBusqueda) {
                 contenido += `
                            <input type="${objBusqueda.type}" class="form-control"
                            id="${objBusqueda.idBus}"
-                            ${objBusqueda.btn == true ? "" : "onkeyup='Buscar()'" }
+                            ${objBusqueda.btn == true ? "" : "onkeyup='Buscar()'"}
                             placeholder="${objBusqueda.placeholder}"
                                />`
                 if (objBusqueda.btn == true) {
@@ -47,7 +47,7 @@ function pintar(objConfiguracion,objBusqueda) {
                       type="button" >
                     Buscar</button>`
                 }
-                   
+
                 contenido += `
                  </div>
                 `
@@ -57,12 +57,12 @@ function pintar(objConfiguracion,objBusqueda) {
             contenido += generarTabla(objConfiguracion, res);
             contenido += "<div>";
             document.getElementById(objConfiguracion.id).innerHTML = contenido;
-           
+
         })
 
 }
 
-function generarTabla(objConfiguracion,res) {
+function generarTabla(objConfiguracion, res) {
     var contenido = "";
     contenido += "<table class='table'>";
     contenido += "<tr>";
@@ -107,7 +107,7 @@ function Buscar() {
     var objBus = objBusquedaGlobal;
     //Id del control
     var valor = get(objBus.idBus)
-    fetchGet(`${objBus.url}/?${objBus.nomParametro}=` + valor, function (res){
+    fetchGet(`${objBus.url}/?${objBus.nomParametro}=` + valor, function (res) {
         var respuesta = generarTabla(objConf, res);
         document.getElementById("divContenedor").innerHTML = respuesta;
     })
