@@ -10,7 +10,7 @@ using System.Data;
 using System.Configuration;
 namespace Capa_Datos
 {
-    public class TipoHabitacionDAL:CadenaDAL
+    public class TipoHabitacionDAL : CadenaDAL
     {
         /*
     public List<TipoHabitacionCLS> listarTipoHabitacion()
@@ -34,8 +34,8 @@ namespace Capa_Datos
         public List<TipoHabitacionCLS> listarTipoHabitacion()
         {
             List<TipoHabitacionCLS> lista = null;
-          //  string cadena = ConfigurationManager.ConnectionStrings["cn"].ConnectionString; 
-            using (SqlConnection cn=new SqlConnection(cadena))
+            //  string cadena = ConfigurationManager.ConnectionStrings["cn"].ConnectionString; 
+            using (SqlConnection cn = new SqlConnection(cadena))
             {
                 try
                 {
@@ -46,7 +46,7 @@ namespace Capa_Datos
                     {
                         //Buena practica (Opcional)->Indicamos que es un procedure
                         cmd.CommandType = CommandType.StoredProcedure;
-                        SqlDataReader drd= cmd.ExecuteReader();
+                        SqlDataReader drd = cmd.ExecuteReader();
                         if (drd != null)
                         {
                             lista = new List<TipoHabitacionCLS>();
@@ -65,22 +65,69 @@ namespace Capa_Datos
                         }
 
                     }
-                       
+
                     //Cierro una vez de traer la data
-                   cn.Close(); 
+                    cn.Close();
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     cn.Close();
                 }
-               
+
             }
             return lista;
 
 
         }
 
-        public int guardarTipoHabitacion (TipoHabitacionCLS oTipoHabitacion)
+        public TipoHabitacionCLS recuperarTipoHabitacion(int id)
+        {
+            TipoHabitacionCLS oTipoHabitacionCLS = null;
+            //  string cadena = ConfigurationManager.ConnectionStrings["cn"].ConnectionString; 
+            using (SqlConnection cn = new SqlConnection(cadena))
+            {
+                try
+                {
+                    //Abro la conexion
+                    cn.Open();
+                    //Llame al procedure
+                    using (SqlCommand cmd = new SqlCommand("uspRecuperarTipoHabitacion", cn))
+                    {
+                        //Buena practica (Opcional)->Indicamos que es un procedure
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@id", id);
+                        SqlDataReader drd = cmd.ExecuteReader();
+                        if (drd != null)
+                        {
+                            int posId = drd.GetOrdinal("IIDTIPOHABILITACION");
+                            int posNombre = drd.GetOrdinal("NOMBRE");
+                            int posDescripcion = drd.GetOrdinal("DESCRIPCION");
+                            while (drd.Read())
+                            {
+                                oTipoHabitacionCLS = new TipoHabitacionCLS();
+                                oTipoHabitacionCLS.id = drd.GetInt32(posId);
+                                oTipoHabitacionCLS.nombre = drd.GetString(posNombre);
+                                oTipoHabitacionCLS.descripcion = drd.GetString(posDescripcion);
+                            }
+                        }
+
+                    }
+
+                    //Cierro una vez de traer la data
+                    cn.Close();
+                }
+                catch (Exception ex)
+                {
+                    cn.Close();
+                }
+
+            }
+            return oTipoHabitacionCLS;
+
+
+        }
+
+        public int guardarTipoHabitacion(TipoHabitacionCLS oTipoHabitacion)
         {
             int respuesta = 0;
             using (SqlConnection cn = new SqlConnection(cadena))

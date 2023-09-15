@@ -35,8 +35,8 @@ function Limpiar() {
     //    elementos[i].value = "";
     //}
 
-    LimpiarDatos("frmTipoHabitacion")
-    Correcto("Funcionó mi alerta")
+    LimpiarDatos("frmTipoHabitacion", ["id"])
+//    Correcto("Funcionó mi alerta")
 }
 
 function GuardarDatos() {

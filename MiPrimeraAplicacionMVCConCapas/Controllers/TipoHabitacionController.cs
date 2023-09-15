@@ -34,6 +34,12 @@ namespace MiPrimeraAplicacionMVCConCapas.Controllers
             return obj.guardarTipoHabitacion(oTipoHabitacionCLS);
         }
 
+        public JsonResult recuperarTipoHabitacion(int id)
+        {
+            TipoHabitacionBL obj = new TipoHabitacionBL();
+            return Json(obj.recuperarTipoHabitacion(id), JsonRequestBehavior.AllowGet);
+        }
+
 
 
 
