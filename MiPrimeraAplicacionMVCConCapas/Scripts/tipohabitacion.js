@@ -4,11 +4,13 @@
 
 function listarTipoHabitacion() {
     pintar({
-        url: "TipoHabitacion/lista", id: "divTabla",
+        url: "TipoHabitacion/lista",
+        id: "divTabla",
         cabeceras: ["Id", "Nombre", "Descripcion"],
         propiedades: ["id", "nombre", "descripcion"],
         editar: true,
-        eliminar: true
+        eliminar: true,
+        propiedadId: "id"
     })
 }
 
@@ -21,7 +23,10 @@ function Buscar() {
         url: "TipoHabitacion/filtrarTipohabitacionPorNombre/?nombrehabitacion=" + nombretipohabitacion,
         id: "divTabla",
         cabeceras: ["Id", "Nombre", "Descripcion"],
-        propiedades: ["id", "nombre", "descripcion"]
+        propiedades: ["id", "nombre", "descripcion"],
+        editar: true,
+        eliminar: true,
+        propiedadId: "id"
     })
 }
 
@@ -36,7 +41,7 @@ function Limpiar() {
     //}
 
     LimpiarDatos("frmTipoHabitacion", ["id"])
-//    Correcto("Funcionó mi alerta")
+    Correcto("Funcionó mi alerta")
 }
 
 function GuardarDatos() {
@@ -60,4 +65,14 @@ function GuardarDatos() {
     //        }
     //    });
 
+}
+
+function Editar(id) {
+    //fetchGet("TipoHabitacion/recuperarTipoHabitacion/?id=" + id, function (res){
+    //    setByName("id",res.id)
+    //    setByName("nombre", res.nombre)
+    //    setByName("descripcion",res.descripcion)
+    //})
+
+    recuperarGenerico("TipoHabitacion/recuperarTipoHabitacion/?id=" + id, "frmTipoHabitacion");
 }
