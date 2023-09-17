@@ -38,5 +38,11 @@ namespace Capa_Negocio
 
         }
 
+        public int eliminarTipoHabitacion(int id)
+        {
+            TipoHabitacionDAL oTipoHabitacionDAL = new TipoHabitacionDAL();
+            return oTipoHabitacionDAL.eliminarTipoHabitacion(id);
+        }
+
     }
 }

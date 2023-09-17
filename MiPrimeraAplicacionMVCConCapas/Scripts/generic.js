@@ -28,7 +28,8 @@ function Confirmacion(texto = "¿Desea guardar los cambios?", title = "Confirmac
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
+        confirmButtonText: 'Si',
+        cancelButtonText: 'No'
     }).then((result) => {
         if (result.isConfirmed) {
             callback();
@@ -174,6 +175,19 @@ function fetchGet(url, callback) {
     var urlAbsoluta = window.location.protocol + "//" +
         window.location.host + raiz + url;
     fetch(urlAbsoluta).then(res => res.json())
+        .then(res => {
+            callback(res)
+        })
+        .catch(err => {
+            console.log(err);
+        })
+}
+
+function fetchGetText(url, callback) {
+    var raiz = document.getElementById("hdfOculto").value;
+    var urlAbsoluta = window.location.protocol + "//" +
+        window.location.host + raiz + url;
+    fetch(urlAbsoluta).then(res => res.text())
         .then(res => {
             callback(res)
         })

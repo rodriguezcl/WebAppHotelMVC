@@ -160,6 +160,37 @@ namespace Capa_Datos
 
         }
 
+        public int eliminarTipoHabitacion(int id)
+        {
+            int respuesta = 0;
+            using (SqlConnection cn = new SqlConnection(cadena))
+            {
+                try
+                {
+                    cn.Open();
+
+                    using (SqlCommand cmd = new SqlCommand("uspEliminarTipoHabitacion", cn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@id", id);
+                        respuesta = cmd.ExecuteNonQuery();
+                    }
+
+                    cn.Close();
+
+                }
+                catch (Exception ex)
+                {
+                    respuesta = 0;
+                    cn.Close();
+                }
+
+            }
+
+            return respuesta;
+
+        }
+
 
         public List<TipoHabitacionCLS> filtrarTipoHabitacion(string nombrehabitacion)
         {
