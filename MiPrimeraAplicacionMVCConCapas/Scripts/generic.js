@@ -288,6 +288,23 @@ function construirFormulario(objFormulario) {
         contenido += "<div class='row'>";
         for (var j = 0; j < numeroarrayelemento; j++) {
             var hijosArray = arrayelemento[j];
+            if (hijosArray.class == undefined) {
+                hijosArray.class = "mb-3"
+            }
+            if (hijosArray.type == undefined) {
+                hijosArray.type = "text"
+            }
+            if (hijosArray.readonly == undefined) {
+                hijosArray.readonly = false;
+            }
+            if (hijosArray.value == undefined) {
+                hijosArray.value = "";
+            }
+            if (hijosArray.label == undefined) {
+                hijosArray.label = hijosArray.name;
+            }
+
+
             var typeElemento = hijosArray.type;
             contenido += `<div class="${hijosArray.class}">`
             contenido += `<label>${hijosArray.label}</label>`

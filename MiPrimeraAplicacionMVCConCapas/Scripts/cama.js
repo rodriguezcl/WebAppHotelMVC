@@ -23,10 +23,10 @@ function listarCama() {
         formulario: [
             [
                 { class: "mb-3 col-md-6", type: "text", label: "Id Cama", name: "id", value: 0, readonly: true },
-                { class: "mb-3 col-md-6", type: "text", label: "Nombre Cama", name: "nombre", value: "", readonly: false }
+                { class: "mb-3 col-md-6", type: "text", label: "Nombre Cama", name: "nombre"}
             ],
             [
-                { class: "md-12", type: "text", label: "Descripción Cama", name: "descripcion", value: "", readonly: false }
+                { class: "md-12", type: "text", label: "Descripción Cama", name: "descripcion"}
             ]
         ]
     }
