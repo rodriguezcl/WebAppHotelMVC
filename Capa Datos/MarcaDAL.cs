@@ -114,5 +114,116 @@ namespace Capa_Datos
 
         }
 
+        public MarcaCLS recuperarMarca(int id)
+        {
+            MarcaCLS oMarcaCLS = null;
+            //  string cadena = ConfigurationManager.ConnectionStrings["cn"].ConnectionString; 
+            using (SqlConnection cn = new SqlConnection(cadena))
+            {
+                try
+                {
+                    //Abro la conexion
+                    cn.Open();
+                    //Llame al procedure
+                    using (SqlCommand cmd = new SqlCommand("uspRecuperarMarca", cn))
+                    {
+                        //Buena practica (Opcional)->Indicamos que es un procedure
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@id", id);
+                        SqlDataReader drd = cmd.ExecuteReader();
+                        if (drd != null)
+                        {
+                            int posId = drd.GetOrdinal("IIDMARCA");
+                            int posNombre = drd.GetOrdinal("NOMBREMARCA");
+                            int posDescripcion = drd.GetOrdinal("DESCRIPCION");
+                            while (drd.Read())
+                            {
+                                oMarcaCLS = new MarcaCLS();
+                                oMarcaCLS.iidMarca = drd.IsDBNull(posId) ? 0 : drd.GetInt32(posId);
+                                oMarcaCLS.nombreMarca = drd.IsDBNull(posNombre) ? "" : drd.GetString(posNombre);
+                                oMarcaCLS.descripcionMarca = drd.IsDBNull(posDescripcion) ? "" : drd.GetString(posDescripcion);
+                            }
+                        }
+
+                    }
+
+                    //Cierro una vez de traer la data
+                    cn.Close();
+                }
+                catch (Exception ex)
+                {
+                    cn.Close();
+                }
+
+            }
+            return oMarcaCLS;
+
+
+        }
+
+        public int guardarMarca(MarcaCLS oMarca)
+        {
+            int respuesta = 0;
+            using (SqlConnection cn = new SqlConnection(cadena))
+            {
+                try
+                {
+                    cn.Open();
+
+                    using (SqlCommand cmd = new SqlCommand("uspGuardarMarca", cn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@id", oMarca.iidMarca);
+                        cmd.Parameters.AddWithValue("@nombre", oMarca.nombreMarca);
+                        cmd.Parameters.AddWithValue("@descripcion", oMarca.descripcionMarca);
+                        respuesta = cmd.ExecuteNonQuery();
+                    }
+
+                    cn.Close();
+
+                }
+                catch (Exception ex)
+                {
+                    respuesta = 0;
+                    cn.Close();
+                }
+
+            }
+
+            return respuesta;
+
+        }
+
+        public int eliminarMarca(int id)
+        {
+            int respuesta = 0;
+            using (SqlConnection cn = new SqlConnection(cadena))
+            {
+                try
+                {
+                    cn.Open();
+
+                    using (SqlCommand cmd = new SqlCommand("uspEliminarMarca", cn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@id", id);
+                        respuesta = cmd.ExecuteNonQuery();
+                    }
+
+                    cn.Close();
+
+                }
+                catch (Exception ex)
+                {
+                    respuesta = 0;
+                    cn.Close();
+                }
+
+            }
+
+            return respuesta;
+
+        }
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using Capa_Negocio;
+﻿using Capa_Entidad;
+using Capa_Negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,24 @@ namespace MiPrimeraAplicacionMVCConCapas.Controllers
         {
             MarcaBL oMarcaBL = new MarcaBL();
             return Json(oMarcaBL.filtrarMarca(nombremarca), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult recuperarMarca(int id)
+        {
+            MarcaBL obj = new MarcaBL();
+            return Json(obj.recuperarMarca(id), JsonRequestBehavior.AllowGet);
+        }
+
+        public int guardarMarca(MarcaCLS oMarcaCLS)
+        {
+            MarcaBL obj = new MarcaBL();
+            return obj.guardarMarca(oMarcaCLS);
+        }
+
+        public int eliminarMarca(int id)
+        {
+            MarcaBL obj = new MarcaBL();
+            return obj.eliminarMarca(id);
         }
 
     }

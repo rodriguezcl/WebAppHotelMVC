@@ -47,6 +47,7 @@ function setByName(id, valor) {
 
 var objConfiguracionGlobal;
 var objBusquedaGlobal;
+
 function pintar(objConfiguracion, objBusqueda) {
 
     //URL Absolute 

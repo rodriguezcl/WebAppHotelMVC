@@ -16,8 +16,12 @@ namespace Capa_Negocio
             return oTipoHabitacionDAL.listarTipoHabitacion();
 
         }
+        public List<TipoHabitacionCLS> filtrarTipoHabitacion(string nombrehabitacion)
+        {
+            TipoHabitacionDAL oTipoHabitacionDAL = new TipoHabitacionDAL();
+            return oTipoHabitacionDAL.filtrarTipoHabitacion(nombrehabitacion);
 
-       
+        }
 
         public int guardarTipoHabitacion(TipoHabitacionCLS oTipoHabitacion)
         {
@@ -31,12 +35,6 @@ namespace Capa_Negocio
             return oTipoHabitacionDAL.recuperarTipoHabitacion(id);
         }
 
-        public List<TipoHabitacionCLS> filtrarTipoHabitacion(string nombrehabitacion)
-        {
-            TipoHabitacionDAL oTipoHabitacionDAL = new TipoHabitacionDAL();
-            return oTipoHabitacionDAL.filtrarTipoHabitacion(nombrehabitacion);
-
-        }
 
         public int eliminarTipoHabitacion(int id)
         {

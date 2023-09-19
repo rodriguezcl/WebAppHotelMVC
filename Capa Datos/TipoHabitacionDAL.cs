@@ -80,6 +80,56 @@ namespace Capa_Datos
 
         }
 
+        public List<TipoHabitacionCLS> filtrarTipoHabitacion(string nombrehabitacion)
+        {
+            List<TipoHabitacionCLS> lista = null;
+            //  string cadena = ConfigurationManager.ConnectionStrings["cn"].ConnectionString; 
+            using (SqlConnection cn = new SqlConnection(cadena))
+            {
+                try
+                {
+                    //Abro la conexion
+                    cn.Open();
+                    //Llame al procedure
+                    using (SqlCommand cmd = new SqlCommand("uspFiltarTipoHabitacion", cn))
+                    {
+                        //Buena practica (Opcional)->Indicamos que es un procedure
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@nombrehabitacion", nombrehabitacion.Trim());
+                        SqlDataReader drd = cmd.ExecuteReader();
+                        if (drd != null)
+                        {
+                            lista = new List<TipoHabitacionCLS>();
+                            TipoHabitacionCLS oTipoHabitacionCLS;
+                            int posId = drd.GetOrdinal("IIDTIPOHABILITACION");
+                            int posNombre = drd.GetOrdinal("NOMBRE");
+                            int posDescripcion = drd.GetOrdinal("DESCRIPCION");
+                            while (drd.Read())
+                            {
+                                oTipoHabitacionCLS = new TipoHabitacionCLS();
+                                oTipoHabitacionCLS.id = drd.GetInt32(posId);
+                                oTipoHabitacionCLS.nombre = drd.GetString(posNombre);
+                                oTipoHabitacionCLS.descripcion = drd.GetString(posDescripcion);
+                                lista.Add(oTipoHabitacionCLS);
+                            }
+                        }
+
+                    }
+
+                    //Cierro una vez de traer la data
+                    cn.Close();
+                }
+                catch (Exception ex)
+                {
+                    cn.Close();
+                }
+
+            }
+            return lista;
+
+
+        }
+
         public TipoHabitacionCLS recuperarTipoHabitacion(int id)
         {
             TipoHabitacionCLS oTipoHabitacionCLS = null;
@@ -192,55 +242,7 @@ namespace Capa_Datos
         }
 
 
-        public List<TipoHabitacionCLS> filtrarTipoHabitacion(string nombrehabitacion)
-        {
-            List<TipoHabitacionCLS> lista = null;
-            //  string cadena = ConfigurationManager.ConnectionStrings["cn"].ConnectionString; 
-            using (SqlConnection cn = new SqlConnection(cadena))
-            {
-                try
-                {
-                    //Abro la conexion
-                    cn.Open();
-                    //Llame al procedure
-                    using (SqlCommand cmd = new SqlCommand("uspFiltarTipoHabitacion", cn))
-                    {
-                        //Buena practica (Opcional)->Indicamos que es un procedure
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@nombrehabitacion", nombrehabitacion.Trim());
-                        SqlDataReader drd = cmd.ExecuteReader();
-                        if (drd != null)
-                        {
-                            lista = new List<TipoHabitacionCLS>();
-                            TipoHabitacionCLS oTipoHabitacionCLS;
-                            int posId = drd.GetOrdinal("IIDTIPOHABILITACION");
-                            int posNombre = drd.GetOrdinal("NOMBRE");
-                            int posDescripcion = drd.GetOrdinal("DESCRIPCION");
-                            while (drd.Read())
-                            {
-                                oTipoHabitacionCLS = new TipoHabitacionCLS();
-                                oTipoHabitacionCLS.id = drd.GetInt32(posId);
-                                oTipoHabitacionCLS.nombre = drd.GetString(posNombre);
-                                oTipoHabitacionCLS.descripcion = drd.GetString(posDescripcion);
-                                lista.Add(oTipoHabitacionCLS);
-                            }
-                        }
-
-                    }
-
-                    //Cierro una vez de traer la data
-                    cn.Close();
-                }
-                catch (Exception ex)
-                {
-                    cn.Close();
-                }
-
-            }
-            return lista;
-
-
-        }
+       
 
     }
 }
