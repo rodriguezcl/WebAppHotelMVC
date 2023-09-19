@@ -7,18 +7,21 @@
 
 <fieldset class="container mb-4">
 
-    <legend>Datos de Tipo Habtiacion</legend>
+    <legend>Datos de Tipo Habitación</legend>
 
     <form id="frmTipoHabitacion" method="post">
-        <div class="mb-3">
-            <label>Id Tipo Habitación</label>
-            <input type="text" class="form-control" name="id" value="0" readonly />
+        <div class="row">
+            <div class="mb-3 col-md-6">
+                <label>Id Tipo Habitación</label>
+                <input type="text" class="form-control" name="id" value="0" readonly />
+            </div>
+
+            <div class="mb-3 col-md-6">
+                <label>Nombre Tipo Habitación</label>
+                <input type="text" class="form-control" name="nombre" />
+            </div>
         </div>
 
-        <div class="mb-3">
-            <label>Nombre Tipo Habitación</label>
-            <input type="text" class="form-control" name="nombre" />
-        </div>
 
         <div class="mb-3">
             <label>Descripción</label>

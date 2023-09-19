@@ -48,7 +48,7 @@ function setByName(id, valor) {
 var objConfiguracionGlobal;
 var objBusquedaGlobal;
 
-function pintar(objConfiguracion, objBusqueda) {
+function pintar(objConfiguracion, objBusqueda, objFormulario) {
 
     //URL Absolute 
     var raiz = document.getElementById("hdfOculto").value;
@@ -60,6 +60,23 @@ function pintar(objConfiguracion, objBusqueda) {
         .then(res => res.json())
         .then(res => {
             var contenido = "";
+            if (objFormulario != undefined) {
+                var type = objFormulario.type;
+                if (type == "fieldset") {
+                    contenido += "<fieldset>";
+                    if (objFormulario.legend != undefined) {
+                        contenido += "<legend>" + objFormulario.legend + "</legend>"
+                    }
+
+                    contenido += construirFormulario(objFormulario)
+                    contenido += `
+                         <button class="btn btn-primary" onclick="GuardarDatos()">Aceptar</button>
+                         <button class="btn btn-danger" onclick="Limpiar()">Limpiar</button>
+                       `
+                    contenido += "</fieldset>";
+                }
+
+            }
             if (objBusqueda != undefined && objBusqueda.busqueda == true) {
                 if (objBusqueda.placeholder == undefined)
                     objBusqueda.placeholder = "Ingrese un valor";
@@ -80,6 +97,7 @@ function pintar(objConfiguracion, objBusqueda) {
                 //Asignar los valores
                 objConfiguracionGlobal = objConfiguracion;
                 objBusquedaGlobal = objBusqueda;
+
 
                 contenido += `
                  <div class="input-group mb-3">`
@@ -113,7 +131,7 @@ function pintar(objConfiguracion, objBusqueda) {
 }
 
 function LimpiarDatos(idFormulario, excepciones = []) {
-    
+
     var elementos = document.querySelectorAll("#" + idFormulario + " [name]")
     for (var i = 0; i < elementos.length; i++) {
         //Si esta incluido en el array de excepciones --> no se hace nada
@@ -249,9 +267,39 @@ function recuperarGenerico(url, idFormulario, excepciones = []) {
 
     fetchGet(url, function (res) {
         for (var i = 0; i < elementos.length; i++) {
-        nombreName = elementos[i].name
+            nombreName = elementos[i].name
             if (!excepciones.includes(nombreName))
                 setByName(nombreName, res[nombreName])
         }
     });
+}
+
+function construirFormulario(objFormulario) {
+    var type = objFormulario.type;
+    var elementos = objFormulario.formulario;
+    var contenido = "<div class='mt-3 mb-3'>";
+
+    //FILAS
+    var arrayelemento;
+    var numeroarrayelemento;
+    for (var i = 0; i < elementos.length; i++) {
+        arrayelemento = elementos[i];
+        numeroarrayelemento = arrayelemento.length;
+        contenido += "<div class='row'>";
+        for (var j = 0; j < numeroarrayelemento; j++) {
+            var hijosArray = arrayelemento[j];
+            var typeElemento = hijosArray.type;
+            contenido += `<div class="${hijosArray.class}">`
+            contenido += `<label>${hijosArray.label}</label>`
+            if (typeElemento == "text") {
+                contenido += `<input type="text" class="form-control" name="${hijosArray.name}" value="${hijosArray.value}" ${hijosArray.readonly == true ? "readonly" : ""} />`
+            }
+
+            contenido += `</div>`
+        }
+        contenido += `</div>`
+    }
+
+    contenido += "</div>"
+    return contenido;
 }
