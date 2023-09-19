@@ -50,8 +50,6 @@ namespace Capa_Datos
                         }
 
                     }
-
-                    //Cierro una vez de traer la data
                     cn.Close();
                 }
                 catch (Exception ex)
