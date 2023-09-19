@@ -303,13 +303,24 @@ function construirFormulario(objFormulario) {
             if (hijosArray.label == undefined) {
                 hijosArray.label = hijosArray.name;
             }
+            if (hijosArray.rows == undefined) {
+                hijosArray.rows = "4";
+            }
+            if (hijosArray.cols == undefined) {
+                hijosArray.cols = "50";
+            }
 
 
             var typeElemento = hijosArray.type;
             contenido += `<div class="${hijosArray.class}">`
             contenido += `<label>${hijosArray.label}</label>`
-            if (typeElemento == "text") {
-                contenido += `<input type="text" class="form-control" name="${hijosArray.name}" value="${hijosArray.value}" ${hijosArray.readonly == true ? "readonly" : ""} />`
+            if (typeElemento == "text" || typeElemento == "number" || typeElemento == "date") {
+                contenido += `<input type="${typeElemento}" class="form-control" name="${hijosArray.name}" value="${hijosArray.value}" ${hijosArray.readonly == true ? "readonly" : ""} />`
+            }
+            else if (typeElemento == "textarea") {
+                contenido += `<textarea name="${hijosArray.name}" class="form-control" rows="${hijosArray.rows}" cols="${hijosArray.cols}">
+                ${hijosArray.value}
+                </textarea>`
             }
 
             contenido += `</div>`
