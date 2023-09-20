@@ -27,9 +27,10 @@ namespace MiPrimeraAplicacionMVCConCapas.Controllers
             return 0;
         }
 
-        public CamaCLS recuperarCama(int idcamita)
+        public JsonResult recuperarCama(int idcamita)
         {
-            return null;
+            CamaBL oCamaBL = new CamaBL();
+            return Json(oCamaBL.recuperarCamaPorId(idcamita), JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult listarCama()

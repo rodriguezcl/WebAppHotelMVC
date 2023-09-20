@@ -405,19 +405,21 @@ function GuardarGenerico(idformulario, urlguardar) {
 function EditarGenerico(id, idFormulario) {
     //var idFormulario = "frmCama";
     //var idformulario = objConfiguracionGlobal;
-    alert(idFormulario);
+    /*alert(idFormulario);*/
     var url = objConfiguracionGlobal.urlRecuperar;
     var nombreparametro = objConfiguracionGlobal.parametroRecuperar;
     recuperarGenerico(`${url}/?${nombreparametro}=` + id, idFormulario);
 }
 
-function EliminarGenerico(id,idformulario,nombreparametro) {
+function EliminarGenerico(id) {
+    var url = objConfiguracionGlobal.urlEliminar;
+    var nombreparametro = objConfiguracionGlobal.parametroEliminar;
     Confirmacion("Desea eliminar el tipo habitacion?", "Confirmar eliminaciòn", function (res) {
 
-        fetchGetText("TipoHabitacion/eliminarTipoHabitacion/?id=" + id, function (rpta) {
+        fetchGetText(`${url}/?${nombreparametro}=` + id, function (rpta) {
             if (rpta == "1") {
                 Correcto("Se elimino correctamente");
-                listarTipoHabitacion();
+            //    listarTipoHabitacion();
             }
         })
     })

@@ -33,7 +33,7 @@ function listarCama() {
                     {
                     class: "mb-3 col-md-5",
                     label: "Id Cama",
-                    name: "id",
+                    name: "idcama",
                     value: 0,
                     readonly: true
                     },

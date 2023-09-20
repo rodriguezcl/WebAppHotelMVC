@@ -30,5 +30,11 @@ namespace Capa_Negocio
             return oCama.filtrarCama(nombrecama);
         }
 
+        public CamaCLS recuperarCamaPorId(int id)
+        {
+            CamaDAL oCama = new CamaDAL();
+            return oCama.recuperarCamaPorId(id);
+        }
+
     }
 }
