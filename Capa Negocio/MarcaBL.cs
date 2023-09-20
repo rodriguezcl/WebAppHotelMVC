@@ -11,6 +11,12 @@ namespace Capa_Negocio
    public class MarcaBL
     {
 
+        public List<MarcaCLS> filtrarMarca(string nombremarca)
+        {
+            MarcaDAL oMarcaDAL = new MarcaDAL();
+            return oMarcaDAL.filtrarMarca(nombremarca);
+        }
+
         public List<MarcaCLS> listarMarca()
         {
             MarcaDAL oMarcaDAL = new MarcaDAL();
@@ -18,30 +24,25 @@ namespace Capa_Negocio
 
         }
 
-        public List<MarcaCLS> filtrarMarca(string nombremarca)
+        public MarcaCLS recuperarMarca(int iidmarca)
         {
             MarcaDAL oMarcaDAL = new MarcaDAL();
-            return oMarcaDAL.filtrarMarca(nombremarca);
-
+            return oMarcaDAL.recuperarMarca(iidmarca);
         }
 
-        public MarcaCLS recuperarMarca(int id)
+        public int guardarMarca(MarcaCLS oMarcaCLS)
         {
             MarcaDAL oMarcaDAL = new MarcaDAL();
-            return oMarcaDAL.recuperarMarca(id);
+            return oMarcaDAL.guardarMarca(oMarcaCLS);
         }
 
-        public int guardarMarca(MarcaCLS oMarca)
+        public int eliminarMarca(int iidmarca)
         {
             MarcaDAL oMarcaDAL = new MarcaDAL();
-            return oMarcaDAL.guardarMarca(oMarca);
+            return oMarcaDAL.eliminarMarca(iidmarca);
         }
 
-        public int eliminarMarca(int id)
-        {
-            MarcaDAL oMarcaDAL = new MarcaDAL();
-            return oMarcaDAL.eliminarMarca(id);
-        }
+
 
     }
 }

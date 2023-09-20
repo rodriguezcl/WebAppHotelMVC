@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Capa_Entidad
 {
-    public class ProductoCLS
+   public class ProductoCLS
     {
-        public int idproducto { get; set; }
+        public int iidproducto { get; set; }
         public string nombreproducto { get; set; }
         public string nombremarca { get; set; }
         public decimal precioventa { get; set; }

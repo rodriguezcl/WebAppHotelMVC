@@ -3,53 +3,53 @@
     ViewBag.Title = "Index";
 }
 
-<h2 class="container">Tipo Habitacion</h2>
+<h2>Tipo Habitacion</h2>
 
 <fieldset class="container mb-4">
-
-    <legend>Datos de Tipo Habitación</legend>
-
+    <legend>Datos de Tipo Habitaciòn</legend>
     <form id="frmTipoHabitacion" method="post">
         <div class="row">
-            <div class="mb-3 col-md-6">
-                <label>Id Tipo Habitación</label>
-                <input type="text" class="form-control" name="id" value="0" readonly />
+            <div class="mb-3 col-md-5">
+
+                <label>Id Tipo Habitaciòn</label>
+                <input type="text" class="form-control"
+                       name="id" value="0" readonly />
             </div>
 
-            <div class="mb-3 col-md-6">
-                <label>Nombre Tipo Habitación</label>
-                <input type="text" class="form-control" name="nombre" />
+            <div class="mb-3 col-md-7" >
+                <label>Nombre Habitaciòn</label>
+                <input type="text" class="form-control"
+                       name="nombre" />
+            </div>
+
+        </div>
+        <div class="row">
+            <div class=" mb-3">
+                <label>Descripciòn</label>
+                <input type="text" class="form-control"
+                       name="descripcion" />
             </div>
         </div>
+       
 
-
-        <div class="mb-3">
-            <label>Descripción</label>
-            <input type="text" class="form-control" name="descripcion" />
-        </div>
     </form>
-
     <button class="btn btn-primary" onclick="GuardarDatos()">Aceptar</button>
     <button class="btn btn-danger" onclick="Limpiar()">Limpiar</button>
-
 </fieldset>
 
 
-
-<div class="container input-group mb-3">
+<div class="input-group mb-3">
     <input type="text" class="form-control"
            id="txtnombretipohabitacion"
-           placeholder="Ingrese nombre tipo habitacion" />
-    <button class="btn btn-primary"
+           placeholder="Ingrese nombre tipo habitacion"
+          />
+    <button class="btn btn-primary" 
             onclick="Buscar()"
-            type="button" id="btnnombretipohabitacion">
-        Buscar
-    </button>
+            type="button" id="btnnombretipohabitacion">Buscar</button>
 </div>
-<div class="container" id="divTabla">
+<div id="divTabla" >
 
 </div>
-
 <script src="~/Scripts/sweetalert.js"></script>
 <script src="~/Scripts/generic.js"></script>
 <script src="~/Scripts/tipohabitacion.js"></script>

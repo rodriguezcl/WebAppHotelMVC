@@ -24,7 +24,9 @@ namespace MiPrimeraAplicacionMVCConCapas.Controllers
         public JsonResult filtrarProductoPorNombre(string nombreproducto)
         {
             ProductoBL obj = new ProductoBL();
-            return Json(obj.filtrarProductos(nombreproducto), JsonRequestBehavior.AllowGet);
+            return Json(obj.filtrarProductos(nombreproducto),
+                JsonRequestBehavior.AllowGet);
         }
+
     }
 }

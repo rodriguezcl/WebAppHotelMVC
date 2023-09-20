@@ -16,17 +16,18 @@ namespace Capa_Negocio
             return oTipoHabitacionDAL.listarTipoHabitacion();
 
         }
-        public List<TipoHabitacionCLS> filtrarTipoHabitacion(string nombrehabitacion)
-        {
-            TipoHabitacionDAL oTipoHabitacionDAL = new TipoHabitacionDAL();
-            return oTipoHabitacionDAL.filtrarTipoHabitacion(nombrehabitacion);
-
-        }
 
         public int guardarTipoHabitacion(TipoHabitacionCLS oTipoHabitacion)
         {
             TipoHabitacionDAL oTipoHabitacionDAL = new TipoHabitacionDAL();
             return oTipoHabitacionDAL.guardarTipoHabitacion(oTipoHabitacion);
+
+        }
+
+        public int eliminarTipoHabitacion(int iidtipohabitacion)
+        {
+            TipoHabitacionDAL oTipoHabitacionDAL = new TipoHabitacionDAL();
+            return oTipoHabitacionDAL.eliminarTipoHabitacion(iidtipohabitacion);
         }
 
         public TipoHabitacionCLS recuperarTipoHabitacion(int id)
@@ -35,11 +36,11 @@ namespace Capa_Negocio
             return oTipoHabitacionDAL.recuperarTipoHabitacion(id);
         }
 
-
-        public int eliminarTipoHabitacion(int id)
+        public List<TipoHabitacionCLS> filtrarTipoHabitacion(string nombrehabitacion)
         {
             TipoHabitacionDAL oTipoHabitacionDAL = new TipoHabitacionDAL();
-            return oTipoHabitacionDAL.eliminarTipoHabitacion(id);
+            return oTipoHabitacionDAL.filtrarTipoHabitacion(nombrehabitacion);
+
         }
 
     }

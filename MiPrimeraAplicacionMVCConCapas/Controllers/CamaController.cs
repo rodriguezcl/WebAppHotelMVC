@@ -18,7 +18,8 @@ namespace MiPrimeraAplicacionMVCConCapas.Controllers
 
         public int guardarCama(CamaCLS oCamaCLS)
         {
-            return 0;
+            CamaBL oCamaBL = new CamaBL();
+            return oCamaBL.guardarCama(oCamaCLS);
         }
 
         public int eliminarCama(int idcama)
@@ -34,13 +35,14 @@ namespace MiPrimeraAplicacionMVCConCapas.Controllers
         public JsonResult listarCama()
         {
             CamaBL oCamaBL = new CamaBL();
-            return Json(oCamaBL.listarCama(), JsonRequestBehavior.AllowGet);
+            return Json(oCamaBL.listarCama(),JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult filtrarCama(string nombrecama)
+        //Simular que ya lo cree
+        public JsonResult filtrarCama(string nombre)
         {
             CamaBL oCamaBL = new CamaBL();
-            return Json(oCamaBL.filtrarCama(nombrecama), JsonRequestBehavior.AllowGet);
+            return Json(oCamaBL.filtrarCama(nombre), JsonRequestBehavior.AllowGet);
         }
     }
 }

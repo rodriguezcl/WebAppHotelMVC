@@ -3,17 +3,19 @@
     ViewBag.Title = "Index";
 }
 
-<h2 class="container">Productos</h2>
+<h2>Productos</h2>
 
-<div class="container mb-3">
+<div class="input-group mb-3">
     <input type="text" class="form-control"
            id="txtnombreproducto"
-           onkeyup="Busqueda()"
+           onkeyup="Buscar()"
            placeholder="Ingrese nombre producto" />
 </div>
-<div class="container" id="divTabla">
+<div id="divTabla">
 
 </div>
+
+
 
 
 <script src="~/Scripts/generic.js"></script>

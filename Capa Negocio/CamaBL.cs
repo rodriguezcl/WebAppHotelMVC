@@ -18,11 +18,16 @@ namespace Capa_Negocio
 
         }
 
+        public int guardarCama(CamaCLS oCamaCLS)
+        {
+            CamaDAL oCama = new CamaDAL();
+            return oCama.guardarCama(oCamaCLS);
+        }
+
         public List<CamaCLS> filtrarCama(string nombrecama)
         {
-            CamaDAL oCamaDAL = new CamaDAL();
-            return oCamaDAL.filtrarCama(nombrecama);
-
+            CamaDAL oCama = new CamaDAL();
+            return oCama.filtrarCama(nombrecama);
         }
 
     }

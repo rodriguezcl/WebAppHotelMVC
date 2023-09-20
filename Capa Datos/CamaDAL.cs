@@ -62,6 +62,44 @@ public class CamaDAL:CadenaDAL
 
         }
 
+
+
+    public int guardarCama(CamaCLS oCamaCLS)
+    {
+        int rpta = 0;
+        //  string cadena = ConfigurationManager.ConnectionStrings["cn"].ConnectionString; 
+        using (SqlConnection cn = new SqlConnection(cadena))
+        {
+            try
+            {
+                //Abro la conexion
+                cn.Open();
+                //Llame al procedure
+                using (SqlCommand cmd = new SqlCommand("uspGuardarCama", cn))
+                {
+                    //Buena practica (Opcional)->Indicamos que es un procedure
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@id", oCamaCLS.idcama);
+                    cmd.Parameters.AddWithValue("@nombre", oCamaCLS.nombre);
+                    cmd.Parameters.AddWithValue("@descripcion", oCamaCLS.descripcion);
+                    rpta = cmd.ExecuteNonQuery();
+                }
+
+                //Cierro una vez de traer la data
+                cn.Close();
+            }
+            catch (Exception ex)
+            {
+                cn.Close();
+            }
+
+        }
+        return rpta;
+
+
+    }
+
+
     public List<CamaCLS> filtrarCama(string nombrecama)
     {
         List<CamaCLS> lista = null;
@@ -77,7 +115,7 @@ public class CamaDAL:CadenaDAL
                 {
                     //Buena practica (Opcional)->Indicamos que es un procedure
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@nombrecama", nombrecama.Trim());
+                    cmd.Parameters.AddWithValue("@nombrecama", nombrecama);
                     SqlDataReader drd = cmd.ExecuteReader();
                     if (drd != null)
                     {
@@ -89,9 +127,12 @@ public class CamaDAL:CadenaDAL
                         while (drd.Read())
                         {
                             oCamaCLS = new CamaCLS();
-                            oCamaCLS.idcama = drd.GetInt32(posId);
-                            oCamaCLS.nombre = drd.GetString(posNombre);
-                            oCamaCLS.descripcion = drd.GetString(posDescripcion);
+                            oCamaCLS.idcama = drd.IsDBNull(posId) ? 0 :
+                                drd.GetInt32(posId);
+                            oCamaCLS.nombre = drd.IsDBNull(posNombre) ? ""
+                                : drd.GetString(posNombre);
+                            oCamaCLS.descripcion = drd.IsDBNull(posDescripcion) ? ""
+                                : drd.GetString(posDescripcion);
                             lista.Add(oCamaCLS);
                         }
                     }
@@ -111,5 +152,6 @@ public class CamaDAL:CadenaDAL
 
 
     }
+
 }
 

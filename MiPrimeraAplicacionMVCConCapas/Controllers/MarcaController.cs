@@ -28,23 +28,28 @@ namespace MiPrimeraAplicacionMVCConCapas.Controllers
             return Json(oMarcaBL.filtrarMarca(nombremarca), JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult recuperarMarca(int id)
+
+        public JsonResult recuperarMarca(int iidmarca)
         {
-            MarcaBL obj = new MarcaBL();
-            return Json(obj.recuperarMarca(id), JsonRequestBehavior.AllowGet);
+            MarcaBL oMarcaBL = new MarcaBL();
+            return Json(oMarcaBL.recuperarMarca(iidmarca),
+                JsonRequestBehavior.AllowGet);
+        }
+
+
+        public int eliminarMarca(int iidmarca)
+        {
+            MarcaBL oMarcaBL = new MarcaBL();
+            return oMarcaBL.eliminarMarca(iidmarca);
         }
 
         public int guardarMarca(MarcaCLS oMarcaCLS)
         {
-            MarcaBL obj = new MarcaBL();
-            return obj.guardarMarca(oMarcaCLS);
+            MarcaBL oMarcaBL = new MarcaBL();
+            return oMarcaBL.guardarMarca(oMarcaCLS);
         }
 
-        public int eliminarMarca(int id)
-        {
-            MarcaBL obj = new MarcaBL();
-            return obj.eliminarMarca(id);
-        }
+
 
     }
 }
