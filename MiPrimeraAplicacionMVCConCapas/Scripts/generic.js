@@ -70,6 +70,8 @@ function pintar(objConfiguracion, objBusqueda, objFormulario) {
                     objFormulario.formularioGenerico = true;
                 if (objFormulario.callbackGuardar == undefined)
                     objFormulario.callbackGuardar = "GuardarDatos";
+                if (objFormulario.id == undefined)
+                    objFormulario.id = "frmCama";
 
                 var type = objFormulario.type;
                 if (type == "fieldset") {
@@ -80,7 +82,7 @@ function pintar(objConfiguracion, objBusqueda, objFormulario) {
 
                     contenido += construirFormulario(objFormulario)
                     contenido += `
-                      ${objFormulario.guardar == true ? `<button class="btn btn-primary" onclick=${objFormulario.formularioGenerico == undefined || objFormulario.formularioGenerico == false ? `${objFormulario.callbackGuardar}()` : 'GuardarGenerico()' }>Aceptar</button>` : ''}
+                      ${objFormulario.guardar == true ? `<button class="btn btn-primary" onclick=${objFormulario.formularioGenerico == undefined || objFormulario.formularioGenerico == false ? `${objFormulario.callbackGuardar}()` : `GuardarGenerico('${objFormulario.id}','${objFormulario.urlGuardar}')` }>Aceptar</button>` : ''}
                       ${objFormulario.limpiar == true ? `<button class="btn btn-danger" onclick="Limpiar()">Limpiar</button>` : ''}
                        `
                     contenido += "</fieldset>";
@@ -357,4 +359,24 @@ function construirFormulario(objFormulario) {
 
     contenido += "</div>"
     return contenido;
+}
+
+function GuardarGenerico(idFormulario, urlGuardar) {
+    var frmGenerico = document.getElementById(idFormulario);
+    var frm = new FormData(frmGenerico);
+
+    fetchPostText(urlGuardar, frm, function (res) {
+        if (res == "1") {
+
+            var objConf = objConfiguracionGlobal;
+            var objBus = objBusquedaGlobal;
+            //Id del control
+            var valor = get(objBus.idBus)
+            fetchGet(`${objBus.url}/?${objBus.nomParametro}=` + valor, function (res) {
+                var respuesta = generarTabla(objConf, res);
+                document.getElementById("divContenedor").innerHTML = respuesta;
+            })
+            LimpiarDatos(idFormulario);
+        }
+    })
 }

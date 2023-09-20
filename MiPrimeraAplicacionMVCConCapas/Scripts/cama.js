@@ -9,9 +9,13 @@ function listarCama() {
         cabeceras: ["Id Cama", "Nombre", "Descripcion"],
         propiedades: ["idcama", "nombre", "descripcion"],
         editar: true,
+        callbackEditar: "EditarCama",
         eliminar: true,
         callbackEliminar: "EliminarCama",
-        callbackEditar: "EditarCama",
+        urlEliminar: "Cama/eliminarCama",
+        parametroEliminar: "idcama",
+        urlRecuperar: "Cama/recuperarCama",
+        parametroRecuperar: "idcamita",
         propiedadId: "idcama"
     }, {
         busqueda: true,
@@ -24,8 +28,9 @@ function listarCama() {
     }, {
         id: "frmCama",
         type: "fieldset",
-        formularioGenerico: false,
-        callbackGuardar: "GuardarCama",
+        /*formularioGenerico: false,*/
+        /*callbackGuardar: "GuardarCama",*/
+        urlGuardar: "Cama/guardarCama",
         legend: "Datos de la Cama",
         formulario: [
             [

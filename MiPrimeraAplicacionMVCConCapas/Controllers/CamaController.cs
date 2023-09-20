@@ -16,6 +16,21 @@ namespace MiPrimeraAplicacionMVCConCapas.Controllers
             return View();
         }
 
+        public int guardarCama(CamaCLS oCamaCLS)
+        {
+            return 0;
+        }
+
+        public int eliminarCama(int idcama)
+        {
+            return 0;
+        }
+
+        public CamaCLS recuperarCama(int idcamita)
+        {
+            return null;
+        }
+
         public JsonResult listarCama()
         {
             CamaBL oCamaBL = new CamaBL();
