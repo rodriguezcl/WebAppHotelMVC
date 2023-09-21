@@ -22,11 +22,6 @@ namespace MiPrimeraAplicacionMVCConCapas.Controllers
             return oCamaBL.guardarCama(oCamaCLS);
         }
 
-        public int eliminarCama(int idcama)
-        {
-            return 0;
-        }
-
         public JsonResult recuperarCama(int idcamita)
         {
             CamaBL oCamaBL = new CamaBL();
@@ -44,6 +39,12 @@ namespace MiPrimeraAplicacionMVCConCapas.Controllers
         {
             CamaBL oCamaBL = new CamaBL();
             return Json(oCamaBL.filtrarCama(nombre), JsonRequestBehavior.AllowGet);
+        }
+
+        public int eliminarCama(int idcama)
+        {
+            CamaBL oCamaBL = new CamaBL();
+            return oCamaBL.eliminarCama(idcama);
         }
     }
 }

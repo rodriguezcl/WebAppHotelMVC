@@ -203,6 +203,37 @@ public class CamaDAL : CadenaDAL
 
     }
 
+    public int eliminarCama(int iidcama)
+    {
+        //error
+        int rpta = 0;
+        using (SqlConnection cn = new SqlConnection(cadena))
+        {
+            try
+            {
+                //Abro la conexion
+                cn.Open();
+                using (SqlCommand cmd = new SqlCommand("uspEliminarCama", cn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@id", iidcama);
+
+                    rpta = cmd.ExecuteNonQuery();
+                    cn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                rpta = 0;
+                cn.Close();
+            }
+
+        }
+
+        return rpta;
+
+    }
+
 
 }
 

@@ -12,7 +12,7 @@ function Error(texto ="Ocurrio un error") {
 
 function Correcto(texto="Se realizo correctamente") {
     Swal.fire({
-        position: 'top-end',
+        position: 'center',
         icon: 'success',
         title: texto,
         showConfirmButton: false,
@@ -93,7 +93,8 @@ function pintar(objConfiguracion, objBusqueda,objFormulario) {
                         ''}    
                         ${objFormulario.limpiar == true ? 
                         `<button class="btn btn-danger"
-                                  onclick="Limpiar()">
+                                  onclick="${(objFormulario.formulariogenerico == undefined
+                            || objFormulario.formulariogenerico == false) ? `Limpiar()` : `LimpiarGenerico('${objFormulario==undefined ? "" : objFormulario.id}')`}">
                                    Limpiar</button>`
                         : ''} 
                        `
@@ -414,14 +415,25 @@ function EditarGenerico(id, idFormulario) {
 function EliminarGenerico(id) {
     var url = objConfiguracionGlobal.urlEliminar;
     var nombreparametro = objConfiguracionGlobal.parametroEliminar;
-    Confirmacion("Desea eliminar el tipo habitacion?", "Confirmar eliminaciòn", function (res) {
+    var objConf = objConfiguracionGlobal;
+    var objBus = objBusquedaGlobal;
+    var valor = get(objBus.id)
+    Confirmacion("Desea eliminar el tipo habitación?", "Confirmar eliminación", function (res) {
 
         fetchGetText(`${url}/?${nombreparametro}=` + id, function (rpta) {
             if (rpta == "1") {
-                Correcto("Se elimino correctamente");
+                Correcto("Se eliminó correctamente");
+                fetchGet(`${objBus.url}/?${objBus.nombreparametro}=` + valor, function (res) {
+                    var rpta = generarTabla(objConf, res);
+                    document.getElementById("divContenedor").innerHTML = rpta;
+                })
             //    listarTipoHabitacion();
             }
         })
     })
+}
+
+function LimpiarGenerico(idFormulario) {
+    LimpiarDatos(idFormulario);
 }
 
