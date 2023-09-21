@@ -78,7 +78,8 @@ function Editar(id) {
         setN("descripcion",res.descripcion)
     })
     */
-    recuperarGenerico("TipoHabitacion/recuperarTipoHabitacion/?id=" + id, "frmTipoHabitacion");
+    recuperarGenerico("TipoHabitacion/recuperarTipoHabitacion/?id=" + id,
+        "frmTipoHabitacion");
 
 }
 

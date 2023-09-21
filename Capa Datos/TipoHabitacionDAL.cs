@@ -12,25 +12,6 @@ namespace Capa_Datos
 {
     public class TipoHabitacionDAL:CadenaDAL
     {
-        /*
-    public List<TipoHabitacionCLS> listarTipoHabitacion()
-    {
-        List<TipoHabitacionCLS> lista = new List<TipoHabitacionCLS>();
-        lista.Add(new TipoHabitacionCLS
-        {
-            id = 1,
-            nombre = "Simple",
-            descripcion = "Solo para uno"
-        });
-        lista.Add(new TipoHabitacionCLS
-        {
-            id = 2,
-            nombre = "Doble",
-            descripcion = "Hecho para casados"
-        });
-
-        return lista;
-    }*/
         public List<TipoHabitacionCLS> listarTipoHabitacion()
         {
             List<TipoHabitacionCLS> lista = null;
@@ -79,8 +60,6 @@ namespace Capa_Datos
 
 
         }
-
-
 
         public TipoHabitacionCLS recuperarTipoHabitacion(int id)
         {
@@ -131,7 +110,6 @@ namespace Capa_Datos
 
         }
 
-
         public int guardarTipoHabitacion(TipoHabitacionCLS oTipoHabitacion)
         {
             //error
@@ -164,8 +142,6 @@ namespace Capa_Datos
 
        }
 
-
-
         public int  eliminarTipoHabitacion(int iidtipohabitacion)
         {
             //error
@@ -196,12 +172,6 @@ namespace Capa_Datos
             return rpta;
 
         }
-
-
-
-
-
-
 
         public List<TipoHabitacionCLS> filtrarTipoHabitacion(string nombrehabitacion)
         {

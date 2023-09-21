@@ -34,7 +34,6 @@ namespace MiPrimeraAplicacionMVCConCapas.Controllers
             return Json(oCamaBL.listarCama(),JsonRequestBehavior.AllowGet);
         }
 
-        //Simular que ya lo cree
         public JsonResult filtrarCama(string nombre)
         {
             CamaBL oCamaBL = new CamaBL();
