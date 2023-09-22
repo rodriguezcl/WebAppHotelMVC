@@ -21,7 +21,17 @@ namespace Capa_Negocio
         {
             ProductoDAL oProductoDAL = new ProductoDAL();
             return oProductoDAL.listarProductos();
+        }
 
+        public ProductoMarcaCLS listarProductoMarca()
+        {
+            ProductoDAL oProductoDAL = new ProductoDAL();
+            MarcaDAL oMarcaDAL = new MarcaDAL();
+            ProductoMarcaCLS oProductoMarcaCLS = new ProductoMarcaCLS();
+            oProductoMarcaCLS.listaProducto = oProductoDAL.listarProductos();
+            oProductoMarcaCLS.listaMarca = oMarcaDAL.listarMarca();
+
+            return oProductoMarcaCLS;
         }
 
         }
