@@ -56,7 +56,7 @@ function Eliminar(id) {
 
         fetchGetText("TipoHabitacion/eliminarTipoHabitacion/?id=" + id, function (rpta) {
             if (rpta == "1") {
-                Correcto("Se elimino correctamente");
+                Correcto("Se eliminó correctamente");
                 listarTipoHabitacion();
             }
         })
