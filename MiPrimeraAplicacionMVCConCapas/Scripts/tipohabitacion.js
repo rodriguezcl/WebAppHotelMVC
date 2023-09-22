@@ -5,7 +5,7 @@
 function listarTipoHabitacion() {
     pintar({
         url: "TipoHabitacion/lista", id: "divTabla",
-        cabeceras: ["Id", "Nombre", "Descripcion"],
+        cabeceras: ["Id", "Nombre", "Descripción"],
         propiedades: ["id", "nombre", "descripcion"],
         editar: true,
         eliminar: true,
@@ -21,7 +21,7 @@ function Buscar() {
     pintar({
         url: "TipoHabitacion/filtrarTipohabitacionPorNombre/?nombrehabitacion=" + nombretipohabitacion ,
         id: "divTabla",
-        cabeceras: ["Id", "Nombre", "Descripcion"],
+        cabeceras: ["Id", "Nombre", "Descripción"],
         propiedades: ["id", "nombre", "descripcion"],
         editar: true,
         eliminar: true,

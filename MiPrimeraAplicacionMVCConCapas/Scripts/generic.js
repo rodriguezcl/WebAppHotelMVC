@@ -76,7 +76,7 @@ function pintar(objConfiguracion, objBusqueda, objFormulario) {
                     objFormulario.id = "frmFormulario"
                 var type = objFormulario.type;
                 if (type == "fieldset") {
-                    contenido += "<fieldset>";
+                    contenido += "<fieldset class='container'>";
                     if (objFormulario.legend != undefined) {
                         contenido += "<legend>" + objFormulario.legend + "</legend>"
                     }
@@ -137,7 +137,7 @@ function pintar(objConfiguracion, objBusqueda, objFormulario) {
                 objBusquedaGlobal = objBusqueda;
 
                 contenido += `
-                 <div class="input-group mb-3">`
+                 <div class="container input-group mt-3 mb-3">`
 
                 contenido += `
                            <input type="${objBusqueda.type}" class="form-control"
@@ -176,7 +176,7 @@ function LimpiarDatos(idFormulario, excepciones = []) {
 
 function generarTabla(objConfiguracion, res, objFormulario) {
     var contenido = "";
-    contenido += "<table class='table'>";
+    contenido += "<table class='container table'>";
     contenido += "<tr>";
     for (var j = 0; j < objConfiguracion.cabeceras.length; j++) {
         contenido += "<th>" + objConfiguracion.cabeceras[j] + "</th>"
