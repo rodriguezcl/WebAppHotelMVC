@@ -1,5 +1,12 @@
 ﻿window.onload = function () {
     listarProductos();
+    llenarComboMarca();
+}
+
+function llenarComboMarca() {
+    fetchGet("Marca/listarMarca", function (data){
+        llenarCombo(data, "cboMarca", "nombreMarca", "iidMarca")
+    })
 }
 
 function listarProductos() {

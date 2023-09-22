@@ -423,3 +423,18 @@ function EliminarGenerico(id) {
 function LimpiarGenerico(idFormulario) {
     LimpiarDatos(idFormulario)
 }
+
+function llenarCombo(data, id, propiedadMostrar, propiedadId) {
+    var contenido = ""
+    var elemento;
+    contenido += "<option value=''>--Seleccione--</option>"
+
+    for (var j = 0; j < data.length; j++) {
+        elemento = data[j];
+        contenido +=
+        "<option value='" + elemento[propiedadId] + "'>" + elemento[propiedadMostrar] + "</option>"
+    }
+
+    contenido += "";
+    document.getElementById(id).innerHTML = contenido;
+}
