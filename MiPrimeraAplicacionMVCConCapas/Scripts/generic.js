@@ -2,7 +2,7 @@
     return document.getElementById(id).value;
 }
 
-function Error(texto = "Ocurrio un error") {
+function Error(texto = "Ocurrió un error") {
     Swal.fire({
         icon: 'error',
         title: 'Error',
@@ -10,9 +10,9 @@ function Error(texto = "Ocurrio un error") {
     })
 }
 
-function Correcto(texto = "Se realizo correctamente") {
+function Correcto(texto = "Se realizó correctamente") {
     Swal.fire({
-        position: 'top-end',
+        position: 'center',
         icon: 'success',
         title: texto,
         showConfirmButton: false,
@@ -20,7 +20,7 @@ function Correcto(texto = "Se realizo correctamente") {
     })
 }
 
-function Confirmacion(texto = "Desea guardar los cambios?", title = "Confirmacion",
+function Confirmacion(texto = "¿Desea guardar los cambios?", title = "Confirmación",
     callback) {
     return Swal.fire({
         title: title,
@@ -393,8 +393,7 @@ function EditarGenerico(id, idFormulario) {
 
     var url = objConfiguracionGlobal.urlRecuperar;
     var nombreparametro = objConfiguracionGlobal.parametroRecuperar
-    recuperarGenerico(`${url}/?${nombreparametro}=` + id,
-        idFormulario);
+    recuperarGenerico(`${url}/?${nombreparametro}=` + id, idFormulario);
 }
 
 function EliminarGenerico(id) {
@@ -404,13 +403,13 @@ function EliminarGenerico(id) {
     var objBus = objBusquedaGlobal;
     var valor = get(objBus.id)
 
-    Confirmacion("Desea eliminar el tipo habitacion?", "Confirmar eliminaciòn",
+    Confirmacion("¿Desea eliminar?", "Confirmar eliminación",
         function (res) {
 
             fetchGetText(`${url}/?${nombreparametro}=` + id,
                 function (rpta) {
                     if (rpta == "1") {
-                        Correcto("Se elimino correctamente");
+                        Correcto("Se eliminó correctamente");
                         fetchGet(`${objBus.url}/?${objBus.nombreparametro}=` + valor, function (res) {
                             var rpta = generarTabla(objConf, res, objFormularioGlobal);
                             document.getElementById("divContenedor").innerHTML = rpta;
