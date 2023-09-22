@@ -42,3 +42,14 @@ C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Negocio\obj\Debug\C
 C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Negocio\obj\Debug\Capa Negocio.csproj.CopyComplete
 C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Negocio\obj\Debug\Capa Negocio.dll
 C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Negocio\obj\Debug\Capa Negocio.pdb
+D:\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Negocio\bin\Debug\Capa Negocio.dll
+D:\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Negocio\bin\Debug\Capa Negocio.pdb
+D:\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Negocio\bin\Debug\Capa Datos.dll
+D:\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Negocio\bin\Debug\Capa Entidad.dll
+D:\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Negocio\bin\Debug\Capa Datos.pdb
+D:\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Negocio\bin\Debug\Capa Entidad.pdb
+D:\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Negocio\obj\Debug\Capa Negocio.csproj.AssemblyReference.cache
+D:\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Negocio\obj\Debug\Capa Negocio.csproj.CoreCompileInputs.cache
+D:\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Negocio\obj\Debug\Capa Negocio.csproj.CopyComplete
+D:\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Negocio\obj\Debug\Capa Negocio.dll
+D:\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Negocio\obj\Debug\Capa Negocio.pdb

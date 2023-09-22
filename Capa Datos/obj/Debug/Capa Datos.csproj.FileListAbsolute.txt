@@ -34,3 +34,12 @@ C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Datos\obj\Debug\Cap
 C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Datos\obj\Debug\Capa Datos.csproj.CopyComplete
 C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Datos\obj\Debug\Capa Datos.dll
 C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Datos\obj\Debug\Capa Datos.pdb
+D:\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Datos\bin\Debug\Capa Datos.dll
+D:\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Datos\bin\Debug\Capa Datos.pdb
+D:\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Datos\bin\Debug\Capa Entidad.dll
+D:\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Datos\bin\Debug\Capa Entidad.pdb
+D:\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Datos\obj\Debug\Capa Datos.csproj.AssemblyReference.cache
+D:\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Datos\obj\Debug\Capa Datos.csproj.CoreCompileInputs.cache
+D:\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Datos\obj\Debug\Capa Datos.csproj.CopyComplete
+D:\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Datos\obj\Debug\Capa Datos.dll
+D:\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Datos\obj\Debug\Capa Datos.pdb
