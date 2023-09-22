@@ -34,5 +34,11 @@ namespace MiPrimeraAplicacionMVCConCapas.Controllers
             return Json(obj.listarProductoMarca(), JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult filtrarProductoPorMarca(int iidmarca)
+        {
+            ProductoBL obj = new ProductoBL();
+            return Json(obj.filtrarProductoPorMarca(iidmarca), JsonRequestBehavior.AllowGet);
+        }
+
     }
 }

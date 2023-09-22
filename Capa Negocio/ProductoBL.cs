@@ -34,5 +34,12 @@ namespace Capa_Negocio
             return oProductoMarcaCLS;
         }
 
+        public List<ProductoCLS> filtrarProductoPorMarca(int iidmarca)
+        {
+            ProductoDAL oProductoDAL = new ProductoDAL();
+            return oProductoDAL.filtrarProductoPorMarca(iidmarca);
+        }
+
+
         }
 }
