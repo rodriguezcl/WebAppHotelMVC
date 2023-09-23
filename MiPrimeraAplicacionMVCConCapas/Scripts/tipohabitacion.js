@@ -13,9 +13,6 @@ function listarTipoHabitacion() {
         propiedadId: "id"
     }
     pintar(objetoConf);
-
-    
-
 }
 
 function Buscar() {

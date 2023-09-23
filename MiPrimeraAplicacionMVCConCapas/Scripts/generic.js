@@ -175,6 +175,11 @@ function LimpiarDatos(idFormulario, excepciones = []) {
 
 
 function generarTabla(objConfiguracion, res, objFormulario) {
+    var listaPintar = res;
+    if (objConfiguracion != null && objConfiguracion.name != undefined) {
+        var nombrePropiedad = objConfiguracion.name;
+        listaPintar = res[nombrePropiedad];
+    }
     var contenido = "";
     contenido += "<table class='container table'>";
     contenido += "<tr>";
@@ -188,8 +193,8 @@ function generarTabla(objConfiguracion, res, objFormulario) {
     contenido += "</tr>";
     var fila;
     var propiedadActual;
-    for (var i = 0; i < res.length; i++) {
-        fila = res[i]
+    for (var i = 0; i < listaPintar.length; i++) {
+        fila = listaPintar[i]
         contenido += "<tr>";
         for (var j = 0; j < objConfiguracion.propiedades.length; j++) {
             propiedadActual = objConfiguracion.propiedades[j]
