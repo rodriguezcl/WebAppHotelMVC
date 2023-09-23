@@ -11,7 +11,7 @@
 </head>
 <body>
 
-    
+
     <div class="nav-side-menu">
         <div class="tasi">
             <div class="brand">@*<img src="//tecrubeliyim.com/wp-content/uploads/logoS.png" width="150">*@<!-- /Web-Doktoru --></div>
@@ -25,8 +25,8 @@
                        new { area = "" }, new { @class = "nav-link js-scroll-trigger" })
 
                         @*<a href="#giris" class="nav-link js-scroll-trigger">
-            Giriş
-        </a>*@
+                                Giriş
+                            </a>*@
                     </li>
                     <li>
                         @Html.ActionLink("Cama", "Index", "Cama",
@@ -42,16 +42,15 @@
                         @Html.ActionLink("Producto", "Index", "Producto",
 new { area = "" }, new { @class = "nav-link js-scroll-trigger" })
                     </li>
-                    @*<li>
-                        <a href="#ayrintilar">
-                           Ayrıntılar
-                        </a>
-                    </li>
                     <li>
-                        <a href="#digerleri">
-                            Devam edin...
-                        </a>
-                    </li>*@
+                        @Html.ActionLink("Persona", "Index", "Persona",
+                     new { area = "" }, new { @class = "nav-link js-scroll-trigger" })
+                    </li>
+                    @*<li>
+                            <a href="#digerleri">
+                                Devam edin...
+                            </a>
+                        </li>*@
                     <!--li data-toggle="collapse" data-target="#new" class="collapsed">
                               <a href="#"><i class="fa fa-car fa-lg"></i> New <span class="arrow"></span></a>
                             </li>
@@ -64,11 +63,11 @@ new { area = "" }, new { @class = "nav-link js-scroll-trigger" })
             </div>
         </div>
     </div></div>
-    <div  style="margin-left:230px"  >
+    <div style="margin-left:230px">
         @RenderBody()
     </div>
-  
-    <input  type="hidden" id="hdfOculto" value="@Url.Content("~")" />
+
+    <input type="hidden" id="hdfOculto" value="@Url.Content("~")" />
 
     @*<div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
