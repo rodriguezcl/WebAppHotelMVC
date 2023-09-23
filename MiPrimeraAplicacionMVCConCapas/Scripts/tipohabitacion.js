@@ -2,15 +2,17 @@
     listarTipoHabitacion();
 }
 
+var objetoConf;
 function listarTipoHabitacion() {
-    pintar({
+    objetoConf = {
         url: "TipoHabitacion/lista", id: "divTabla",
         cabeceras: ["Id", "Nombre", "Descripción"],
         propiedades: ["id", "nombre", "descripcion"],
         editar: true,
         eliminar: true,
-        propiedadId:"id"
-    })
+        propiedadId: "id"
+    }
+    pintar(objetoConf);
 
     
 
@@ -18,15 +20,8 @@ function listarTipoHabitacion() {
 
 function Buscar() {
     var nombretipohabitacion = get("txtnombretipohabitacion")
-    pintar({
-        url: "TipoHabitacion/filtrarTipohabitacionPorNombre/?nombrehabitacion=" + nombretipohabitacion ,
-        id: "divTabla",
-        cabeceras: ["Id", "Nombre", "Descripción"],
-        propiedades: ["id", "nombre", "descripcion"],
-        editar: true,
-        eliminar: true,
-        propiedadId: "id"
-    })
+    objetoConf.url = "TipoHabitacion/filtrarTipohabitacionPorNombre/?nombrehabitacion=" + nombretipohabitacion;
+    pintar(objetoConf);
 }
 
 function Limpiar() {
