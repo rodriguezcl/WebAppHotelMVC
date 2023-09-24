@@ -136,15 +136,32 @@ function pintar(objConfiguracion, objBusqueda, objFormulario) {
 
                 objBusquedaGlobal = objBusqueda;
 
+                var type = objBusqueda.type;
+
                 contenido += `
                  <div class="container input-group mt-3 mb-3">`
 
-                contenido += `
+                if (type == "text") {
+                    contenido += `
                            <input type="${objBusqueda.type}" class="form-control"
                            id="${objBusqueda.id}"
                          ${objBusqueda.button == true ? "" : "onkeyup='Buscar()'"}  
                        placeholder="${objBusqueda.placeholder}"
                                />`
+                }
+
+                else if (type == "combobox") {
+                    contenido += `
+                                 <select class="form-control"
+
+                                 ${objBusqueda.button == true ? "" : "onchange='Buscar()'"}
+
+                                id="${objBusqueda.id}"> </select>
+
+                                `
+                }
+
+                
                 if (objBusqueda.button == true) {
                     contenido += `
                   <button class="btn btn-primary" 
@@ -156,12 +173,25 @@ function pintar(objConfiguracion, objBusqueda, objFormulario) {
                 contenido += ` </div>`
             }
             contenido += "<div id='divContenedor'>";
-            contenido += generarTabla(objConfiguracion, res, objFormulario);
+            contenido += generarTabla(objConfiguracion, res, objFormulario, true);
             contenido += "</div>";
             document.getElementById(objConfiguracion.id).innerHTML = contenido;
+            llenarComboBusqueda(res);
 
         })
 
+}
+
+function llenarComboBusqueda(res) {
+    if (objBusquedaGlobal.type == "combobox") {
+        var id = objBusquedaGlobal.id;
+        var propiedadMostrar = objBusquedaGlobal.displaymember;
+        var propiedadId = objBusquedaGlobal.valuemember;
+        var name = objBusquedaGlobal.name;
+        var data = res[name]
+        llenarCombo(data, id, propiedadMostrar, propiedadId);
+    }
+   
 }
 
 function LimpiarDatos(idFormulario, excepciones = []) {
@@ -174,9 +204,9 @@ function LimpiarDatos(idFormulario, excepciones = []) {
 }
 
 
-function generarTabla(objConfiguracion, res, objFormulario) {
+function generarTabla(objConfiguracion, res, objFormulario, primeravez=false) {
     var listaPintar = res;
-    if (objConfiguracion != null && objConfiguracion.name != undefined) {
+    if (objConfiguracion != null && objConfiguracion.name != undefined && primeravez==true) {
         var nombrePropiedad = objConfiguracion.name;
         listaPintar = res[nombrePropiedad];
     }

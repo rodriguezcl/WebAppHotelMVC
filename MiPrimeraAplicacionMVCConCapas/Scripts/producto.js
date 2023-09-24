@@ -1,6 +1,6 @@
 ﻿window.onload = function () {
     listarProductos();
-    llenarComboMarca();
+   /* llenarComboMarca();*/
 }
 
 function llenarComboMarca() {
@@ -17,7 +17,20 @@ function listarProductos() {
         name: "listaProducto",
         propiedades: ["iidproducto", "nombreproducto", "nombremarca",
             "precioventa", "stock", "denominacion"]
-    })
+    },
+        {
+            busqueda: true,
+            url: "Producto/filtrarProductoPorMarca",
+            nombreparametro: "iidmarca",
+            type: "combobox",
+            name: "listaMarca",
+            displaymember: "nombreMarca",
+            valuemember: "iidMarca",
+            button: true,
+            id: "cboMarca"
+
+        }
+    )
 }
 
 //function Buscar() {
