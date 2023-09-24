@@ -14,7 +14,7 @@ function listarProductos() {
         url: "Producto/listarProductoMarca", id: "divTabla",
         cabeceras: ["Id Producto", "Nombre", "Nombre Marca", "Precio",
             "Stock", "Denominacion"],
-        name= "listaProducto",
+        name: "listaProducto",
         propiedades: ["iidproducto", "nombreproducto", "nombremarca",
             "precioventa", "stock", "denominacion"]
     })
