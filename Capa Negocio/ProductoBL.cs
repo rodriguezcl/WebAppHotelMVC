@@ -40,6 +40,23 @@ namespace Capa_Negocio
             return oProductoDAL.filtrarProductoPorMarca(iidmarca);
         }
 
+        public ProductoCategoriaCLS listarProductoCategoria()
+        {
+            ProductoDAL oProductoDAL = new ProductoDAL();
+            CategoriaDAL oCategoriaDAL = new CategoriaDAL();
+            ProductoCategoriaCLS oProductoCategoriaCLS = new ProductoCategoriaCLS();
+            oProductoCategoriaCLS.listaProducto = oProductoDAL.listarProductos();
+            oProductoCategoriaCLS.listaCategoria = oCategoriaDAL.listarCategoria();
 
+            return oProductoCategoriaCLS;
         }
+
+        public List<ProductoCLS> filtrarProductoPorCategoria(int iidcategoria)
+        {
+            ProductoDAL oProductoDAL = new ProductoDAL();
+            return oProductoDAL.filtrarProductoPorCategoria(iidcategoria);
+        }
+
+
+    }
 }

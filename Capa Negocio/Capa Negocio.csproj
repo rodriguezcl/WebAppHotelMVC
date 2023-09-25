@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CamaBL.cs" />
+    <Compile Include="CategoriaBL.cs" />
     <Compile Include="MarcaBL.cs" />
     <Compile Include="PersonaBL.cs" />
     <Compile Include="ProductoBL.cs" />

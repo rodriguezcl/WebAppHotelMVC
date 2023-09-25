@@ -3,15 +3,45 @@
    /* llenarComboMarca();*/
 }
 
-function llenarComboMarca() {
-    fetchGet("Marca/listarMarca", function (data) {
-        llenarCombo(data, "cboMarca", "nombreMarca", "iidMarca")
+//function llenarComboMarca() {
+//    fetchGet("Marca/listarMarca", function (data) {
+//        llenarCombo(data, "cboMarca", "nombreMarca", "iidMarca")
+//    })
+//}
+
+function llenarComboCategoria() {
+    fetchGet("Categoria/listarCategoria", function (data) {
+        llenarCombo(data, "cboCategoria", "nombreCategoria", "iidCategoria")
     })
 }
 
+//function listarProductos() {
+//    pintar({
+//        url: "Producto/listarProductoMarca", id: "divTabla",
+//        cabeceras: ["Id Producto", "Nombre", "Nombre Marca", "Precio",
+//            "Stock", "Denominacion"],
+//        name: "listaProducto",
+//        propiedades: ["iidproducto", "nombreproducto", "nombremarca",
+//            "precioventa", "stock", "denominacion"]
+//    },
+//        {
+//            busqueda: true,
+//            url: "Producto/filtrarProductoPorMarca",
+//            nombreparametro: "iidmarca",
+//            type: "combobox",
+//            name: "listaMarca",
+//            displaymember: "nombreMarca",
+//            valuemember: "iidMarca",
+//            button: true,
+//            id: "cboMarca"
+
+//        }
+//    )
+//}
+
 function listarProductos() {
     pintar({
-        url: "Producto/listarProductoMarca", id: "divTabla",
+        url: "Producto/listarProductoCategoria", id: "divTabla",
         cabeceras: ["Id Producto", "Nombre", "Nombre Marca", "Precio",
             "Stock", "Denominacion"],
         name: "listaProducto",
@@ -20,14 +50,14 @@ function listarProductos() {
     },
         {
             busqueda: true,
-            url: "Producto/filtrarProductoPorMarca",
-            nombreparametro: "iidmarca",
+            url: "Producto/filtrarProductoPorCategoria",
+            nombreparametro: "iidcategoria",
             type: "combobox",
-            name: "listaMarca",
-            displaymember: "nombreMarca",
-            valuemember: "iidMarca",
+            name: "listaCategoria",
+            displaymember: "nombreCategoria",
+            valuemember: "iidCategoria",
             button: true,
-            id: "cboMarca"
+            id: "cboCategoria"
 
         }
     )
@@ -45,10 +75,20 @@ function listarProductos() {
 //    })
 //}
 
-function BuscarProductoMarca() {
-    var iidmarca = get("cboMarca")
+//function BuscarProductoMarca() {
+//    var iidmarca = get("cboMarca")
+//    pintar({
+//        url: "Producto/filtrarProductoPorMarca/?iidmarca=" + iidmarca,
+//        id: "divTabla",
+//        cabeceras: ["Id Producto", "Nombre", "Nombre Marca", "Precio", "Stock", "Denominacion"],
+//        propiedades: ["iidproducto", "nombreproducto", "nombremarca", "precioventa", "stock", "denominacion"]
+//    })
+//}
+
+function BuscarProductoCategoria() {
+    var iidcategoria = get("cboCategoria")
     pintar({
-        url: "Producto/filtrarProductoPorMarca/?iidmarca=" + iidmarca,
+        url: "Producto/filtrarProductoPorCategoria/?iidcategoria=" + iidcategoria,
         id: "divTabla",
         cabeceras: ["Id Producto", "Nombre", "Nombre Marca", "Precio", "Stock", "Denominacion"],
         propiedades: ["iidproducto", "nombreproducto", "nombremarca", "precioventa", "stock", "denominacion"]
