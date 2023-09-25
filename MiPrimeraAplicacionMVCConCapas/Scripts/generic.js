@@ -116,6 +116,8 @@ function pintar(objConfiguracion, objBusqueda, objFormulario) {
                     objConfiguracion.callbackEliminar = "Eliminar";
                 if (objConfiguracion.callbackEditar == undefined)
                     objConfiguracion.callbackEditar = "Editar";
+                if (objConfiguracion.popup == undefined)
+                    objConfiguracion.popup = false;
 
                 objConfiguracionGlobal = objConfiguracion;
             }
@@ -176,7 +178,9 @@ function pintar(objConfiguracion, objBusqueda, objFormulario) {
             contenido += generarTabla(objConfiguracion, res, objFormulario, true);
             contenido += "</div>";
             document.getElementById(objConfiguracion.id).innerHTML = contenido;
+            if (objFormulario != null) {
             llenarComboBusqueda(res);
+            }
 
         })
 
@@ -221,7 +225,7 @@ function generarTabla(objConfiguracion, res, objFormulario, primeravez=false) {
         contenido += "<th>Operaciones</th>";
     }
     contenido += "</tr>";
-    var fila;
+    var fila; 
     var propiedadActual;
     for (var i = 0; i < listaPintar.length; i++) {
         fila = listaPintar[i]
@@ -234,7 +238,9 @@ function generarTabla(objConfiguracion, res, objFormulario, primeravez=false) {
         if (objConfiguracion.editar == true || objConfiguracion.eliminar == true) {
             contenido += "<td>";
             if (objConfiguracion.editar == true) {
-                contenido += ` <i class="btn btn-primary" 
+                contenido += ` <i
+             ${objConfiguracion.popup == true ? 'data-bs-toggle="modal" data-bs-target="#staticBackdrop"' : "" }
+               class="btn btn-primary"
                onclick='${(objFormulario != undefined &&
                         objFormulario.formulariogenerico != undefined &&
                         objFormulario.formulariogenerico == true) ? "EditarGenerico"

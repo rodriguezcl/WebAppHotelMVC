@@ -5,6 +5,8 @@
 
 function listarTipoUsuario() {
     pintar({
+        popup: true,
+        idpopup: "staticBackdrop",
         url: "Persona/listarPersona", id: "divTabla",
         cabeceras: ["Id", "Nombre Completo", "Sexo", "Tipo Usuario"],
         propiedades: ["iidpersona", "nombreCompleto", "nombreSexo", "nombreTipoUsuario"],
