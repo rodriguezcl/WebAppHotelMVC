@@ -103,6 +103,27 @@ function pintar(objConfiguracion, objBusqueda, objFormulario) {
                     contenido += "</fieldset>";
                 }
 
+                else if (type == "popup") {
+                    contenido += `
+                    <div class="modal fade" id="${objConfiguracion.idpopup}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="staticBackdropLabel"></h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">`;
+                    contenido += construirFormulario(objFormulario);
+                    contenido += `</div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                    <button type="button" class="btn btn-primary">Guardar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>`
+                }
+
             }
 
             if (objConfiguracion != undefined) {
@@ -178,7 +199,7 @@ function pintar(objConfiguracion, objBusqueda, objFormulario) {
             contenido += generarTabla(objConfiguracion, res, objFormulario, true);
             contenido += "</div>";
             document.getElementById(objConfiguracion.id).innerHTML = contenido;
-            if (objFormulario != null) {
+            if (objBusqueda != null) {
             llenarComboBusqueda(res);
             }
 
@@ -239,7 +260,7 @@ function generarTabla(objConfiguracion, res, objFormulario, primeravez=false) {
             contenido += "<td>";
             if (objConfiguracion.editar == true) {
                 contenido += ` <i
-             ${objConfiguracion.popup == true ? 'data-bs-toggle="modal" data-bs-target="#staticBackdrop"' : "" }
+             ${objConfiguracion.popup == true ? `data-bs-toggle="modal" data-bs-target="#${objConfiguracion.idpopup}"` : "" }
                class="btn btn-primary"
                onclick='${(objFormulario != undefined &&
                         objFormulario.formulariogenerico != undefined &&

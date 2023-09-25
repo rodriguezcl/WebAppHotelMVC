@@ -41,12 +41,22 @@ function llenarComboCategoria() {
 
 function listarProductos() {
     pintar({
+        popup: true,
+        idpopup: "staticBackdrop",
         url: "Producto/listarProductoCategoria", id: "divTabla",
         cabeceras: ["Id Producto", "Nombre", "Nombre Marca", "Precio",
             "Stock", "Denominacion"],
         name: "listaProducto",
         propiedades: ["iidproducto", "nombreproducto", "nombremarca",
-            "precioventa", "stock", "denominacion"]
+            "precioventa", "stock", "denominacion"],
+        editar: true,
+        eliminar: true,
+        // Para modificar
+        urlEliminar: "Cama/eliminarCama",
+        parametroEliminar: "idcama",
+        urlRecuperar: "Cama/recuperarCama",
+        parametroRecuperar: "idcamita",
+        propiedadId: "iidproducto"
     },
         {
             busqueda: true,
@@ -59,6 +69,37 @@ function listarProductos() {
             button: true,
             id: "cboCategoria"
 
+        },
+        {
+            type: "popup",
+            formulario: [
+                [
+                    {
+                        class: "mb-3 col-md-5",
+                        label: "Id Cama",
+                        name: "idcama",
+                        value: 0,
+                        readonly: true
+                    },
+                    {
+                        class: "mb-3 col-md-7",
+                        label: "Nombre cama",
+                        name: "nombre"
+                    }
+
+                ],
+                [
+                    {
+                        class: "col-md-12",
+                        type: "textarea",
+                        label: "Descripcion Cama",
+                        name: "descripcion",
+                        rows: "5",
+                        cols: "20"
+
+                    }
+                ]
+            ]
         }
     )
 }
