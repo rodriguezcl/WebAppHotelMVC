@@ -12,5 +12,14 @@ namespace Capa_Entidad
         public string nombreCompleto { get; set; }
         public string nombreSexo { get; set; }
         public string nombreTipoUsuario { get; set; }
+
+        //Propiedades adicionales
+
+        public string nombre { get; set; }
+        public string apellidopaterno { get; set; }
+        public string apellidomaterno { get; set; }
+        public string telefono { get; set; }
+
+        public int iidtipousuario { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Capa_Negocio;
+﻿using Capa_Entidad;
+using Capa_Negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,11 @@ namespace MiPrimeraAplicacionMVCConCapas.Controllers
         {
             PersonaBL oPersonaBL = new PersonaBL();
             return Json(oPersonaBL.filtrarPersona(iidtipousuario), JsonRequestBehavior.AllowGet);
+        }
+
+        public int GuardarPersona(PersonaCLS oPersona)
+        {
+            return 1;
         }
     }
 }

@@ -1,9 +1,9 @@
 ﻿window.onload = function () {
-    listarTipoUsuario();
+    listarPersona();
     listarCombo();
 }
 
-function listarTipoUsuario() {
+function listarPersona() {
     pintar({
         popup: true,
         idpopup: "staticBackdrop",
@@ -19,6 +19,7 @@ function listarTipoUsuario() {
 function listarCombo() {
     fetchGet("TipoUsuario/listarTipoUsuario", function (data) {
         llenarCombo(data, "cboTipoUsuario", "nombre", "iidtipousuario")
+        llenarCombo(data, "cboTipoUsuarioForm", "nombre", "iidtipousuario")
     })
 }
 
@@ -31,5 +32,16 @@ function filtrarPersonaTipoUsuario() {
         editar: true,
         eliminar: true,
         propiedadId: "iidpersona"
+    })
+}
+
+function guardarPersona() {
+    var frmPersona = document.getElementById("frmPersona");
+    var frm = new FormData(frmPersona);
+    fetchPostText("Persona/guardarPersona", frm, function (res) {
+        if (res == "1") {
+            listarTipoHabitacion();
+            Limpiar();
+        }
     })
 }
