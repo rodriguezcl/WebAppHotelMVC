@@ -28,7 +28,7 @@ namespace MiPrimeraAplicacionMVCConCapas.Controllers
             return Json(oPersonaBL.filtrarPersona(iidtipousuario), JsonRequestBehavior.AllowGet);
         }
 
-        public int GuardarPersona(PersonaCLS oPersona)
+        public int guardarPersona(PersonaCLS oPersona)
         {
             return 1;
         }

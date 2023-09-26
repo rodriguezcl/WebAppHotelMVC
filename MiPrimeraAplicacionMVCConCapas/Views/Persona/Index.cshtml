@@ -34,36 +34,49 @@
             </div>
             <div class="modal-body">
                 <form id="frmPersona" method="post">
-                    <div class="mt-3 mb-3">
-                        <label>Id Persona</label>
-                        <input readonly type="text" name="iidpersona" value="" class="form-control" />
+                    <div class="row">
+                        <div class="mt-3 mb-3 col-md-6">
+                            <label>Id Persona</label>
+                            <input readonly type="text" name="iidpersona" value="" class="form-control" />
+                        </div>
+                        <div class="mt-3 mb-3 col-md-6">
+                            <label>Nombre</label>
+                            <input type="text" name="nombre" value="" class="form-control" />
+                        </div>
                     </div>
-                    <div class="mt-3 mb-3">
-                        <label>Nombre</label>
-                        <input type="text" name="nombre" value="" class="form-control" />
+                    <div class="row">
+                        <div class="mt-3 mb-3 col-md-6">
+                            <label>Apellido Paterno</label>
+                            <input type="text" name="apellidopaterno" value="" class="form-control" />
+                        </div>
+                        <div class="mt-3 mb-3 col-md-6">
+                            <label>Apellido Materno</label>
+                            <input type="text" name="apellidomaterno" value="" class="form-control" />
+                        </div>
                     </div>
-                    <div class="mt-3 mb-3">
-                        <label>Apellido Paterno</label>
-                        <input type="text" name="apellidopaterno" value="" class="form-control" />
+                    <div class="row">
+                        <div class="mt-3 mb-3 col-md-6">
+                            <label>Telefono Fijo</label>
+                            <input type="number" name="telefono" value="" class="form-control" />
+                        </div>
+                        <div class="mt-3 mb-3 col-md-6">
+                            <label>Tipo Usuario</label>
+                            <select name="iidtipousuario" id="cboTipoUsuarioForm" class="form-control">
+                            </select>
+                        </div>
+                        <div class="row">
+                            <div>
+                                <input type="radio" checked name="iidsexo" value="1"/> <label>Masculino</label>
+                                <input type="radio" name="iidsexo" value="2"/> <label>Femenino</label>
+                            </div>
+                            
+                        </div>
                     </div>
-                    <div class="mt-3 mb-3">
-                        <label>Apellido Materno</label>
-                        <input type="text" name="apellidomaterno" value="" class="form-control" />
-                    </div>
-                    <div class="mt-3 mb-3">
-                        <label>Telefono Fijo</label>
-                        <input type="number" name="telefono" value="" class="form-control" />
-                    </div>
-                    <div class="mt-3 mb-3">
-                        <label>Tipo Usuario</label>
-                        <select  name="iidtipousuario" id="cboTipoUsuarioForm" class="form-control" >
-                           
-                        </select>
-                    </div>
+
                     @*<div class="mt-3 mb-3">
-                        <label>Telefono Fijo</label>
-                        <input type="number" name="telefono" value="" class="form-control" />
-                    </div>*@
+                            <label>Telefono Fijo</label>
+                            <input type="number" name="telefono" value="" class="form-control" />
+                        </div>*@
                 </form>
             </div>
             <div class="modal-footer">

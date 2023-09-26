@@ -21,5 +21,7 @@ namespace Capa_Entidad
         public string telefono { get; set; }
 
         public int iidtipousuario { get; set; }
+
+        public int iidsexo { get; set; }
     }
 }
