@@ -184,7 +184,7 @@ function pintar(objConfiguracion, objBusqueda, objFormulario) {
                                 `
                 }
 
-                
+
                 if (objBusqueda.button == true) {
                     contenido += `
                   <button class="btn btn-primary" 
@@ -200,7 +200,7 @@ function pintar(objConfiguracion, objBusqueda, objFormulario) {
             contenido += "</div>";
             document.getElementById(objConfiguracion.id).innerHTML = contenido;
             if (objBusqueda != null) {
-            llenarComboBusqueda(res);
+                llenarComboBusqueda(res);
             }
 
         })
@@ -216,7 +216,7 @@ function llenarComboBusqueda(res) {
         var data = res[name]
         llenarCombo(data, id, propiedadMostrar, propiedadId);
     }
-   
+
 }
 
 function LimpiarDatos(idFormulario, excepciones = []) {
@@ -229,9 +229,9 @@ function LimpiarDatos(idFormulario, excepciones = []) {
 }
 
 
-function generarTabla(objConfiguracion, res, objFormulario, primeravez=false) {
+function generarTabla(objConfiguracion, res, objFormulario, primeravez = false) {
     var listaPintar = res;
-    if (objConfiguracion != null && objConfiguracion.name != undefined && primeravez==true) {
+    if (objConfiguracion != null && objConfiguracion.name != undefined && primeravez == true) {
         var nombrePropiedad = objConfiguracion.name;
         listaPintar = res[nombrePropiedad];
     }
@@ -246,7 +246,7 @@ function generarTabla(objConfiguracion, res, objFormulario, primeravez=false) {
         contenido += "<th>Operaciones</th>";
     }
     contenido += "</tr>";
-    var fila; 
+    var fila;
     var propiedadActual;
     for (var i = 0; i < listaPintar.length; i++) {
         fila = listaPintar[i]
@@ -260,7 +260,7 @@ function generarTabla(objConfiguracion, res, objFormulario, primeravez=false) {
             contenido += "<td>";
             if (objConfiguracion.editar == true) {
                 contenido += ` <i
-             ${objConfiguracion.popup == true ? `data-bs-toggle="modal" data-bs-target="#${objConfiguracion.idpopup}"` : "" }
+             ${objConfiguracion.popup == true ? `data-bs-toggle="modal" data-bs-target="#${objConfiguracion.idpopup}"` : ""}
                class="btn btn-primary"
                onclick='${(objFormulario != undefined &&
                         objFormulario.formulariogenerico != undefined &&
@@ -351,7 +351,7 @@ function Buscar() {
 }
 
 
-function recuperarGenerico(url, idFormulario, excepciones = []) {
+function recuperarGenerico(url, idFormulario, excepciones = [], adicional=false) {
     var elementos = document.querySelectorAll("#" + idFormulario + " [name]")
     var nombreName;
     fetchGet(url, function (res) {
@@ -359,6 +359,9 @@ function recuperarGenerico(url, idFormulario, excepciones = []) {
             nombreName = elementos[i].name
             if (!excepciones.includes(elementos[i].name))
                 setN(nombreName, res[nombreName])
+        }
+        if (adicional==true) {
+            recuperarEspecifico(res);
         }
     });
 
@@ -494,7 +497,7 @@ function llenarCombo(data, id, propiedadMostrar, propiedadId) {
     for (var j = 0; j < data.length; j++) {
         elemento = data[j];
         contenido +=
-        "<option value='" + elemento[propiedadId] + "'>" + elemento[propiedadMostrar] + "</option>"
+            "<option value='" + elemento[propiedadId] + "'>" + elemento[propiedadMostrar] + "</option>"
     }
 
     contenido += "";

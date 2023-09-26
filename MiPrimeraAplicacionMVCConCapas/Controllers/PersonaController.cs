@@ -28,6 +28,12 @@ namespace MiPrimeraAplicacionMVCConCapas.Controllers
             return Json(oPersonaBL.filtrarPersona(iidtipousuario), JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult recuperarPersona(int iidpersona)
+        {
+            PersonaBL oPersonaBL = new PersonaBL();
+            return Json(oPersonaBL.recuperarPersona(iidpersona), JsonRequestBehavior.AllowGet);
+        }
+
         public int guardarPersona(PersonaCLS oPersona)
         {
             return 1;

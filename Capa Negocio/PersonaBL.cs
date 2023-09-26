@@ -22,6 +22,12 @@ namespace Capa_Negocio
             return oPersonaDAL.filtrarPersona(iidtipousuario);
         }
 
+        public PersonaCLS recuperarPersona(int iidpersona)
+        {
+            PersonaDAL oPersonaDAL = new PersonaDAL();
+            return oPersonaDAL.recuperarPersona(iidpersona);
+        }
+
 
     }
 }
