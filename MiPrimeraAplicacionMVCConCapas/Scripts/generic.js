@@ -66,6 +66,26 @@ function pintar(objConfiguracion, objBusqueda, objFormulario) {
         .then(res => {
             var contenido = "";
             //Configuracion del formulario
+
+            if (objConfiguracion != undefined) {
+                if (objConfiguracion.editar == undefined)
+                    objConfiguracion.editar = false;
+                if (objConfiguracion.eliminar == undefined)
+                    objConfiguracion.eliminar = false;
+                if (objConfiguracion.propiedadId == undefined)
+                    objConfiguracion.propiedadId = "id";
+                if (objConfiguracion.callbackEliminar == undefined)
+                    objConfiguracion.callbackEliminar = "Eliminar";
+                if (objConfiguracion.callbackEditar == undefined)
+                    objConfiguracion.callbackEditar = "Editar";
+                if (objConfiguracion.popup == undefined)
+                    objConfiguracion.popup = false;
+                if (objConfiguracion.sizepopup == undefined)
+                    objConfiguracion.sizepopup = "";
+
+                objConfiguracionGlobal = objConfiguracion; 
+            }
+
             if (objFormulario != undefined) {
                 objFormularioGlobal = objFormulario;
                 if (objFormulario.guardar == undefined)
@@ -109,8 +129,11 @@ function pintar(objConfiguracion, objBusqueda, objFormulario) {
 
                 else if (type == "popup") {
                     contenido += `
+                     <button type="button"  onclick="EditarGenerico(0,'${objFormulario.id}')" class="mb-3 btn btn-primary" data-bs-toggle="modal" data-bs-target="#${objConfiguracion.idpopup}">Nuevo</button>
+`
+                    contenido += `
                     <div class="modal fade" id="${objConfiguracion.idpopup}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                        <div class="modal-dialog">
+                        <div class="modal-dialog ${objConfiguracion.sizepopup}">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="staticBackdropLabel"></h5>
@@ -130,22 +153,7 @@ function pintar(objConfiguracion, objBusqueda, objFormulario) {
 
             }
 
-            if (objConfiguracion != undefined) {
-                if (objConfiguracion.editar == undefined)
-                    objConfiguracion.editar = false;
-                if (objConfiguracion.eliminar == undefined)
-                    objConfiguracion.eliminar = false;
-                if (objConfiguracion.propiedadId == undefined)
-                    objConfiguracion.propiedadId = "id";
-                if (objConfiguracion.callbackEliminar == undefined)
-                    objConfiguracion.callbackEliminar = "Eliminar";
-                if (objConfiguracion.callbackEditar == undefined)
-                    objConfiguracion.callbackEditar = "Editar";
-                if (objConfiguracion.popup == undefined)
-                    objConfiguracion.popup = false;
-
-                objConfiguracionGlobal = objConfiguracion;
-            }
+            
 
             if (objBusqueda != undefined && objBusqueda.busqueda == true) {
                 if (objBusqueda.placeholder == undefined)
@@ -262,10 +270,13 @@ function generarTabla(objConfiguracion, res, objFormulario, primeravez = false) 
 
         if (objConfiguracion.editar == true || objConfiguracion.eliminar == true) {
             contenido += "<td>";
+
             if (objConfiguracion.editar == true) {
+
                 contenido += ` <i
-             ${objConfiguracion.popup == true ? `data-bs-toggle="modal" data-bs-target="#${objConfiguracion.idpopup}"` : ""}
-               class="btn btn-primary"
+             ${objConfiguracion.popup == true ?
+                        `data-bs-toggle="modal" data-bs-target="#${objConfiguracion.idpopup}"` : ""}    
+              class="btn btn-primary" 
                onclick='${(objFormulario != undefined &&
                         objFormulario.formulariogenerico != undefined &&
                         objFormulario.formulariogenerico == true) ? "EditarGenerico"
@@ -277,6 +288,10 @@ function generarTabla(objConfiguracion, res, objFormulario, primeravez = false) 
                 </svg></i>`
             }
 
+
+
+
+            //----------------------------------------------------
             if (objConfiguracion.eliminar == true) {
                 contenido += `<i class="btn btn-danger" 
                 onclick='${(objFormulario != undefined &&
@@ -355,7 +370,7 @@ function Buscar() {
 }
 
 
-function recuperarGenerico(url, idFormulario, excepciones = [], adicional=false) {
+function recuperarGenerico(url, idFormulario, excepciones = [], adicional = false) {
     var elementos = document.querySelectorAll("#" + idFormulario + " [name]")
     var nombreName;
     fetchGet(url, function (res) {
@@ -363,13 +378,13 @@ function recuperarGenerico(url, idFormulario, excepciones = [], adicional=false)
             nombreName = elementos[i].name
             if (!excepciones.includes(elementos[i].name))
                 if (elementos[i].type.toUpperCase() == "RADIO") {
-                    setChecked("[type='radio'][value='" + res[nombreName]+"']")
+                    setChecked("[type='radio'][value='" + res[nombreName] + "']")
                 }
                 else {
-                setN(nombreName, res[nombreName])
+                    setN(nombreName, res[nombreName])
                 }
         }
-        if (adicional==true) {
+        if (adicional == true) {
             recuperarEspecifico(res);
         }
     });

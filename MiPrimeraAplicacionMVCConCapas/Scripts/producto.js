@@ -42,7 +42,8 @@ function llenarComboCategoria() {
 function listarProductos() {
     pintar({
         popup: true,
-        idpopup: "staticBackdrop",
+        idpopup: "staticBackdrop1",
+        sizepopup: "modal-lg",
         url: "Producto/listarProductoCategoria", id: "divTabla",
         cabeceras: ["Id Producto", "Nombre", "Nombre Marca", "Precio",
             "Stock", "Denominacion"],
@@ -72,6 +73,7 @@ function listarProductos() {
         },
         {
             type: "popup",
+            id: "frmProducto",
             formulario: [
                 [
                     {
