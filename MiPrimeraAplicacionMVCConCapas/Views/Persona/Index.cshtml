@@ -8,7 +8,7 @@
 
 
 <div class="container">
-    <button type="button" class="mb-3 btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    <button type="button"  onclick="Editar(0)" class="mb-3 btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
         Nuevo
     </button>
 
@@ -80,7 +80,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-secondary" id="btnCerrar" data-bs-dismiss="modal">Cerrar</button>
                 <button type="button" class="btn btn-primary" onclick="guardarPersona()">Guardar</button>
             </div>
         </div>

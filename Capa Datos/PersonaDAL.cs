@@ -185,5 +185,44 @@ namespace Capa_Datos
 
 
         }
+
+        public int guardarPersona(PersonaCLS oPersonaCLS)
+        {
+            int rpta = 0;
+            //  string cadena = ConfigurationManager.ConnectionStrings["cn"].ConnectionString; 
+            using (SqlConnection cn = new SqlConnection(cadena))
+            {
+                try
+                {
+                    //Abro la conexion
+                    cn.Open();
+                    //Llame al procedure
+                    using (SqlCommand cmd = new SqlCommand("uspGuardarPersona", cn))
+                    {
+                        //Buena practica (Opcional)->Indicamos que es un procedure
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@iidpersona", oPersonaCLS.iidpersona);
+                        cmd.Parameters.AddWithValue("@nombre", oPersonaCLS.nombre);
+                        cmd.Parameters.AddWithValue("@appaterno", oPersonaCLS.apellidopaterno);
+                        cmd.Parameters.AddWithValue("@apmaterno", oPersonaCLS.apellidomaterno);
+                        cmd.Parameters.AddWithValue("@telefonofijo", oPersonaCLS.telefono);
+                        cmd.Parameters.AddWithValue("@iidsexo", oPersonaCLS.iidtipousuario);
+                        cmd.Parameters.AddWithValue("@iidtipousuario", oPersonaCLS.iidsexo);
+                        rpta = cmd.ExecuteNonQuery();
+                    }
+
+                    //Cierro una vez de traer la data
+                    cn.Close();
+                }
+                catch (Exception ex)
+                {
+                    cn.Close();
+                }
+
+            }
+            return rpta;
+
+
+        }
     }
 }

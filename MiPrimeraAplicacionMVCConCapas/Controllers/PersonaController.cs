@@ -36,7 +36,8 @@ namespace MiPrimeraAplicacionMVCConCapas.Controllers
 
         public int guardarPersona(PersonaCLS oPersona)
         {
-            return 1;
+            PersonaBL oPersonaBL = new PersonaBL();
+            return oPersonaBL.guardarPersona(oPersona);
         }
     }
 }

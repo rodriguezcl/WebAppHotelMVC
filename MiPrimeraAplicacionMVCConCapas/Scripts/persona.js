@@ -40,15 +40,28 @@ function guardarPersona() {
     var frm = new FormData(frmPersona);
     fetchPostText("Persona/guardarPersona", frm, function (res) {
         if (res == "1") {
-            listarTipoHabitacion();
+            document.getElementById("btnCerrar").click
+            listarPersona();
             Limpiar();
         }
     })
 }
 
+function Limpiar() {
+    LimpiarDatos("frmPersona", ["iidsexo"])
+}
+
 function Editar(id) {
-    recuperarGenerico("Persona/recuperarPersona/?iidpersona=" + id,
-        "frmPersona",[],false);
+    Limpiar();
+    //Nuevo
+    if (id == 0) {
+        document.getElementById("staticBackdropLabel").innerHTML = "Nueva Persona"
+    }
+    //Editar
+    else {
+        document.getElementById("staticBackdropLabel").innerHTML = "Editar Persona"
+        recuperarGenerico("Persona/recuperarPersona/?iidpersona=" + id, "frmPersona", [], false);
+    }
 }
 
 //function recuperarEspecifico(res) {

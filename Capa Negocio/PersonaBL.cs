@@ -28,6 +28,12 @@ namespace Capa_Negocio
             return oPersonaDAL.recuperarPersona(iidpersona);
         }
 
+        public int guardarPersona(PersonaCLS oPersonaCLS)
+        {
+            PersonaDAL oPersonaDAL = new PersonaDAL();
+            return oPersonaDAL.guardarPersona(oPersonaCLS);
+        }
+
 
     }
 }
