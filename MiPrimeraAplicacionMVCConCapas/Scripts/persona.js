@@ -48,17 +48,17 @@ function guardarPersona() {
 
 function Editar(id) {
     recuperarGenerico("Persona/recuperarPersona/?iidpersona=" + id,
-        "frmPersona",[],true);
+        "frmPersona",[],false);
 }
 
-function recuperarEspecifico(res) {
-    var iidsexo = res.iidsexo;
-    //Masculino
-    if (iidsexo == 1) {
-        document.getElementById("rbMas").checked = true;
-    }
-    //Femenino
-    else {
-        document.getElementById("rbFem").checked = true;
-    }
-}
+//function recuperarEspecifico(res) {
+//    var iidsexo = res.iidsexo;
+//    //Masculino
+//    if (iidsexo == 1) {
+//        document.getElementById("rbMas").checked = true;
+//    }
+//    //Femenino
+//    else {
+//        document.getElementById("rbFem").checked = true;
+//    }
+//}

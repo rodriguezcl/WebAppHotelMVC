@@ -46,6 +46,10 @@ function setN(id, valor) {
     document.getElementsByName(id)[0].value = valor;
 }
 
+function setChecked(selector) {
+    document.querySelector(selector).checked = true;
+}
+
 
 var objConfiguracionGlobal;
 var objBusquedaGlobal;
@@ -358,7 +362,12 @@ function recuperarGenerico(url, idFormulario, excepciones = [], adicional=false)
         for (var i = 0; i < elementos.length; i++) {
             nombreName = elementos[i].name
             if (!excepciones.includes(elementos[i].name))
+                if (elementos[i].type.toUpperCase() == "RADIO") {
+                    setChecked("[type='radio'][value='" + res[nombreName]+"']")
+                }
+                else {
                 setN(nombreName, res[nombreName])
+                }
         }
         if (adicional==true) {
             recuperarEspecifico(res);
