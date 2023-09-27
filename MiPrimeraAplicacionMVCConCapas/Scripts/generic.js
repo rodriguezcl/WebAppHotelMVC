@@ -215,6 +215,15 @@ function pintar(objConfiguracion, objBusqueda, objFormulario) {
                 llenarComboBusqueda(res);
             }
 
+            //Aqui llenamos los combos
+            if (combosLlenar.length > 0) {
+                var item;
+                for (var i = 0; i < combosLlenar.length; i++) {
+                    item = combosLlenar[i];
+                    llenarCombo(res[item.name], item.id, item.propiedadMostrar, item.propiedadId);
+                }
+            }
+
         })
 
 }
@@ -392,6 +401,7 @@ function recuperarGenerico(url, idFormulario, excepciones = [], adicional = fals
 
 }
 
+var combosLlenar = [];
 
 function construirFormulario(objFormulario) {
     var type = objFormulario.type;
@@ -430,6 +440,15 @@ function construirFormulario(objFormulario) {
             if (hijosArray.rows == undefined) {
                 hijosArray.rows = "10";
             }
+            if (hijosArray.id == undefined) {
+                hijosArray.id = "cboPrueba";
+            }
+            if (hijosArray.propiedadMostrar == undefined) {
+                hijosArray.propiedadMostrar = "nombre";
+            }
+            if (hijosArray.propiedadId == undefined) {
+                hijosArray.propiedadId = "id";
+            }
             var typelemento = hijosArray.type;
             contenido += `<div class="${hijosArray.class}">`
             contenido += `<label>${hijosArray.label}</label>`
@@ -437,12 +456,19 @@ function construirFormulario(objFormulario) {
                 contenido += `  <input type="${typelemento}" class="form-control"
                        name="${hijosArray.name}" value="${hijosArray.value}"
                    ${hijosArray.readonly == true ? "readonly" : ""}  />`
-            } else if (typelemento == "textarea") {
-                contenido += `<textarea name="${hijosArray.name}" 
-                     class="form-control"
-                     rows="${hijosArray.rows}" cols="${hijosArray.cols}"
-                       >${hijosArray.value}</textarea>`
+            }
 
+            else if (typelemento=="textarea"){
+                contenido += `  <textarea name="${hijosArray.name}" class="form-control"
+                       rows="${hijosArray.rows}" cols="${hijosArray.cols}">
+                   ${hijosArray.value}  </textarea>`
+            }
+
+            else if (typelemento == "combobox") {
+                contenido += `
+                            <select name="${hijosArray.name}" id="${hijosArray.id}" class="form-control"></select>
+                            `
+                combosLlenar.push(hijosArray)
             }
             contenido += `</div>`
 

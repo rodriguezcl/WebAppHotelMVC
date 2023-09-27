@@ -11,5 +11,7 @@ namespace Capa_Entidad
         public List <MarcaCLS> listaMarca { get; set; }
 
         public List <ProductoCLS> listaProducto { get; set; }
+
+        public List<CategoriaCLS> listaCategoria { get; set; }
     }
 }

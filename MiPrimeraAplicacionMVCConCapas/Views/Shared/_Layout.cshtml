@@ -46,11 +46,10 @@ new { area = "" }, new { @class = "nav-link js-scroll-trigger" })
                         @Html.ActionLink("Persona", "Index", "Persona",
                      new { area = "" }, new { @class = "nav-link js-scroll-trigger" })
                     </li>
-                    @*<li>
-                            <a href="#digerleri">
-                                Devam edin...
-                            </a>
-                        </li>*@
+                    <li>
+                        @Html.ActionLink("Categoria", "Index", "Categoria",
+                 new { area = "" }, new { @class = "nav-link js-scroll-trigger" })
+                    </li>
                     <!--li data-toggle="collapse" data-target="#new" class="collapsed">
                               <a href="#"><i class="fa fa-car fa-lg"></i> New <span class="arrow"></span></a>
                             </li>

@@ -45,7 +45,6 @@
     <Compile Include="CategoriaCLS.cs" />
     <Compile Include="MarcaCLS.cs" />
     <Compile Include="PersonaCLS.cs" />
-    <Compile Include="ProductoCategoriaCLS.cs" />
     <Compile Include="ProductoCLS.cs" />
     <Compile Include="ProductoMarcaCLS.cs" />
     <Compile Include="TipoHabitacionCLS.cs" />
