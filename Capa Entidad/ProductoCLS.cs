@@ -14,6 +14,8 @@ namespace Capa_Entidad
         public decimal precioventa { get; set; }
         public int stock { get; set; }
         public string denominacion { get; set; }
+        public int iidmarca { get; set; }
+        public int iidcategoria { get; set; }
 
     }
 }

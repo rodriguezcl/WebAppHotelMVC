@@ -37,7 +37,7 @@ function listarProductos() {
             type: "combobox",
             name: "listaCategoria",
             displaymember: "nombreCategoria",
-            valuemember: "iidCategoria",
+            valuemember: "iidcategoria",
             button: true,
             id: "cboCategoria"
 
@@ -66,7 +66,8 @@ function listarProductos() {
                         class: "col-md-12",
                         type: "combobox",
                         label: "Marca",
-                        name: "listaMarca",
+                        datasource: "listaMarca",
+                        name: "iidmarca",
                         id: "cboMarca",
                         propiedadMostrar: "nombreMarca",
                         propiedadId: "iidMarca"

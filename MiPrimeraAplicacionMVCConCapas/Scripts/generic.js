@@ -220,7 +220,7 @@ function pintar(objConfiguracion, objBusqueda, objFormulario) {
                 var item;
                 for (var i = 0; i < combosLlenar.length; i++) {
                     item = combosLlenar[i];
-                    llenarCombo(res[item.name], item.id, item.propiedadMostrar, item.propiedadId);
+                    llenarCombo(res[item.datasource], item.id, item.propiedadMostrar, item.propiedadId);
                 }
             }
 
