@@ -44,18 +44,19 @@ function listarProductos() {
         },
         {
             type: "popup",
+            title: "Producto",
             id: "frmProducto",
             formulario: [
                 [
                     {
-                        class: "mb-3 col-md-5",
+                        class: "mb-3 col-md-6",
                         label: "Id Producto",
                         name: "iidproducto",
                         value: 0,
                         readonly: true
                     },
                     {
-                        class: "mb-3 col-md-7",
+                        class: "mb-3 col-md-6",
                         label: "Nombre Producto",
                         name: "nombreproducto"
                     }
@@ -63,7 +64,7 @@ function listarProductos() {
                 ],
                 [
                     {
-                        class: "col-md-12",
+                        class: "mb-3 col-md-6",
                         type: "combobox",
                         label: "Marca",
                         datasource: "listaMarca",
@@ -71,6 +72,47 @@ function listarProductos() {
                         id: "cboMarca",
                         propiedadMostrar: "nombreMarca",
                         propiedadId: "iidMarca"
+                    },
+                    {
+                        class: "mb-3 col-md-6",
+                        type: "combobox",
+                        label: "Categoría",
+                        datasource: "listaCategoria",
+                        name: "iidcategoria",
+                        id: "cboCategoria",
+                        propiedadMostrar: "nombreCategoria",
+                        propiedadId: "iidCategoria"
+                    }
+                ],
+                [
+                    {
+                        class: "mb-3 col-md-12",
+                        type: "textarea",
+                        label: "Descripción Producto",
+                        name: "descripcion",
+                        rows: "3",
+                        cols: "20"
+
+                    }
+                ],
+                [
+                    {
+                        type: "number",
+                        class: "mb-3 col-md-4",
+                        label: "Precio Compra",
+                        name: "preciocompra"
+                    },
+                    {
+                        type: "number",
+                        class: "mb-3 col-md-4",
+                        label: "Precio Venta",
+                        name: "precioventa"
+                    },
+                    {
+                        type: "number",
+                        class: "mb-3 col-md-4",
+                        label: "Stock",
+                        name: "stock"
                     }
                 ]
             ]

@@ -1,4 +1,9 @@
-﻿function get(id) {
+﻿var combosLlenar = [];
+var objConfiguracionGlobal;
+var objBusquedaGlobal;
+var objFormularioGlobal;
+
+function get(id) {
     return document.getElementById(id).value;
 }
 
@@ -50,10 +55,6 @@ function setChecked(selector) {
     document.querySelector(selector).checked = true;
 }
 
-
-var objConfiguracionGlobal;
-var objBusquedaGlobal;
-var objFormularioGlobal;
 function pintar(objConfiguracion, objBusqueda, objFormulario) {
 
     var raiz = document.getElementById("hdfOculto").value;
@@ -83,7 +84,7 @@ function pintar(objConfiguracion, objBusqueda, objFormulario) {
                 if (objConfiguracion.sizepopup == undefined)
                     objConfiguracion.sizepopup = "";
 
-                objConfiguracionGlobal = objConfiguracion; 
+                objConfiguracionGlobal = objConfiguracion;
             }
 
             if (objFormulario != undefined) {
@@ -136,7 +137,7 @@ function pintar(objConfiguracion, objBusqueda, objFormulario) {
                         <div class="modal-dialog ${objConfiguracion.sizepopup}">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="staticBackdropLabel"></h5>
+                                    <h5 class="modal-title" id="lbl${objConfiguracion.idpopup}"></h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">`;
@@ -153,7 +154,7 @@ function pintar(objConfiguracion, objBusqueda, objFormulario) {
 
             }
 
-            
+
 
             if (objBusqueda != undefined && objBusqueda.busqueda == true) {
                 if (objBusqueda.placeholder == undefined)
@@ -248,7 +249,6 @@ function LimpiarDatos(idFormulario, excepciones = []) {
             elementos[i].value = "";
     }
 }
-
 
 function generarTabla(objConfiguracion, res, objFormulario, primeravez = false) {
     var listaPintar = res;
@@ -378,7 +378,6 @@ function Buscar() {
 
 }
 
-
 function recuperarGenerico(url, idFormulario, excepciones = [], adicional = false) {
     var elementos = document.querySelectorAll("#" + idFormulario + " [name]")
     var nombreName;
@@ -400,8 +399,6 @@ function recuperarGenerico(url, idFormulario, excepciones = [], adicional = fals
 
 
 }
-
-var combosLlenar = [];
 
 function construirFormulario(objFormulario) {
     var type = objFormulario.type;
@@ -458,7 +455,7 @@ function construirFormulario(objFormulario) {
                    ${hijosArray.readonly == true ? "readonly" : ""}  />`
             }
 
-            else if (typelemento=="textarea"){
+            else if (typelemento == "textarea") {
                 contenido += `  <textarea name="${hijosArray.name}" class="form-control"
                        rows="${hijosArray.rows}" cols="${hijosArray.cols}">
                    ${hijosArray.value}  </textarea>`
@@ -505,7 +502,16 @@ function GuardarGenerico(idformulario, urlguardar) {
 }
 
 function EditarGenerico(id, idFormulario) {
-
+    if (objFormularioGlobal.type=="popup") {
+        if (id == 0) {
+            document.getElementById("lbl"+objConfiguracionGlobal.idpopup).innerHTML = "Agregar " + objFormularioGlobal.title;
+        }
+        //Editar
+        else {
+            document.getElementById("lbl" + objConfiguracionGlobal.idpopup).innerHTML = "Editar " + objFormularioGlobal.title;
+            recuperarGenerico("Persona/recuperarPersona/?iidpersona=" + id, "frmPersona", [], false);
+        }
+    }
     var url = objConfiguracionGlobal.urlRecuperar;
     var nombreparametro = objConfiguracionGlobal.parametroRecuperar
     recuperarGenerico(`${url}/?${nombreparametro}=` + id, idFormulario);
