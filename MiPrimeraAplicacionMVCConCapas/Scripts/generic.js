@@ -106,7 +106,6 @@ function pintar(objConfiguracion, objBusqueda, objFormulario) {
                         contenido += "<legend>" + objFormulario.legend + "</legend>"
                     }
 
-
                     contenido += construirFormulario(objFormulario)
                     contenido += `
                      ${objFormulario.guardar == true ?
@@ -151,7 +150,6 @@ function pintar(objConfiguracion, objBusqueda, objFormulario) {
                         </div>
                     </div>`
                 }
-
             }
 
 
@@ -193,7 +191,6 @@ function pintar(objConfiguracion, objBusqueda, objFormulario) {
                                  ${objBusqueda.button == true ? "" : "onchange='Buscar()'"}
 
                                 id="${objBusqueda.id}"> </select>
-
                                 `
                 }
 
@@ -205,7 +202,6 @@ function pintar(objConfiguracion, objBusqueda, objFormulario) {
                       type="button" >
                     Buscar</button>`
                 }
-
                 contenido += ` </div>`
             }
             contenido += "<div id='divContenedor'>";
@@ -224,7 +220,6 @@ function pintar(objConfiguracion, objBusqueda, objFormulario) {
                     llenarCombo(res[item.datasource], item.id, item.propiedadMostrar, item.propiedadId);
                 }
             }
-
         })
 
 }
@@ -238,13 +233,11 @@ function llenarComboBusqueda(res) {
         var data = res[name]
         llenarCombo(data, id, propiedadMostrar, propiedadId);
     }
-
 }
 
 function LimpiarDatos(idFormulario, excepciones = []) {
     var elementos = document.querySelectorAll("#" + idFormulario + " [name]")
     for (var i = 0; i < elementos.length; i++) {
-
         if (!excepciones.includes(elementos[i].name))
             elementos[i].value = "";
     }
@@ -297,10 +290,6 @@ function generarTabla(objConfiguracion, res, objFormulario, primeravez = false) 
                 </svg></i>`
             }
 
-
-
-
-            //----------------------------------------------------
             if (objConfiguracion.eliminar == true) {
                 contenido += `<i class="btn btn-danger" 
                 onclick='${(objFormulario != undefined &&
@@ -312,11 +301,8 @@ function generarTabla(objConfiguracion, res, objFormulario, primeravez = false) 
                        <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
                        </svg></i>`
             }
-
             contenido += "</td>";
-
         }
-
         contenido += "</tr>";
     }
     contenido += "</table>"
@@ -468,17 +454,13 @@ function construirFormulario(objFormulario) {
                 combosLlenar.push(hijosArray)
             }
             contenido += `</div>`
-
         }
-
         contenido += "</div>";
-
     }
     contenido += "</form>";
     contenido += "</div>"
     return contenido;
 }
-
 function GuardarGenerico(idformulario, urlguardar) {
 
     var frmGenerico = document.getElementById(idformulario);
@@ -496,15 +478,14 @@ function GuardarGenerico(idformulario, urlguardar) {
                 document.getElementById("divContenedor").innerHTML = rpta;
             })
             LimpiarDatos(idformulario)
-
         }
     })
 }
 
 function EditarGenerico(id, idFormulario) {
-    if (objFormularioGlobal.type=="popup") {
+    if (objFormularioGlobal.type == "popup") {
         if (id == 0) {
-            document.getElementById("lbl"+objConfiguracionGlobal.idpopup).innerHTML = "Agregar " + objFormularioGlobal.title;
+            document.getElementById("lbl" + objConfiguracionGlobal.idpopup).innerHTML = "Agregar " + objFormularioGlobal.title;
         }
         //Editar
         else {
