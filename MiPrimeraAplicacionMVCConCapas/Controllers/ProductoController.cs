@@ -52,5 +52,11 @@ namespace MiPrimeraAplicacionMVCConCapas.Controllers
             return Json(obj.filtrarProductoPorCategoria(iidcategoria), JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult recuperarProducto(int iidproducto)
+        {
+            ProductoBL obj = new ProductoBL();
+            return Json(obj.recuperarProducto(iidproducto), JsonRequestBehavior.AllowGet);
+        }
+
     }
 }

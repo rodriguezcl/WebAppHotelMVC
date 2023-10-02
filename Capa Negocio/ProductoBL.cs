@@ -16,7 +16,6 @@ namespace Capa_Negocio
             ProductoDAL oProductoDAL = new ProductoDAL();
             return oProductoDAL.filtrarProductos(nombre);
         }
-
         public List<ProductoCLS> listarProductos()
         {
             ProductoDAL oProductoDAL = new ProductoDAL();
@@ -32,7 +31,6 @@ namespace Capa_Negocio
             ProductoDAL oProductoDAL = new ProductoDAL();
             return oProductoDAL.filtrarProductoPorMarca(iidmarca);
         }
-
         public ProductoMarcaCLS listarProductoMarca()
         {
             ProductoDAL oProductoDAL = new ProductoDAL();
@@ -45,18 +43,13 @@ namespace Capa_Negocio
 
             return oProductoMarcaCLS;
         }
+        public ProductoCLS recuperarProducto(int iidproducto)
+        {
+            ProductoDAL oProductoDAL = new ProductoDAL();
+            return oProductoDAL.recuperarProducto(iidproducto);
+        }
 
 
-        //public ProductoCategoriaCLS listarProductoCategoria()
-        //{
-        //    ProductoDAL oProductoDAL = new ProductoDAL();
-        //    CategoriaDAL oCategoriaDAL = new CategoriaDAL();
-        //    ProductoCategoriaCLS oProductoCategoriaCLS = new ProductoCategoriaCLS();
-        //    oProductoCategoriaCLS.listaProducto = oProductoDAL.listarProductos();
-        //    oProductoCategoriaCLS.listaCategoria = oCategoriaDAL.listarCategoria();
-
-        //    return oProductoCategoriaCLS;
-        //}
 
 
 

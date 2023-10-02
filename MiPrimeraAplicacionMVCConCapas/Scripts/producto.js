@@ -25,8 +25,8 @@ function listarProductos() {
         // Para modificar
         urlEliminar: "Cama/eliminarCama",
         parametroEliminar: "idcama",
-        urlRecuperar: "Cama/recuperarCama",
-        parametroRecuperar: "idcamita",
+        urlRecuperar: "Producto/recuperarProducto",
+        parametroRecuperar: "iidproducto",
         propiedadId: "iidproducto"
     },
         {
