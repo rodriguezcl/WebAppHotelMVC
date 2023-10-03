@@ -3,6 +3,7 @@
 }
 
 var objetoConf;
+
 function listarTipoHabitacion() {
     objetoConf = {
         url: "TipoHabitacion/lista", id: "divTabla",
@@ -25,15 +26,30 @@ function Limpiar() {
     LimpiarDatos("frmTipoHabitacion")
 }
 
-
 function GuardarDatos() {
-    var frmTipoHabitacion = document.getElementById("frmTipoHabitacion");
-    var frm = new FormData(frmTipoHabitacion);
-    fetchPostText("TipoHabitacion/guardarDatos", frm, function (res) {
-        if (res == "1") {
-            listarTipoHabitacion();
-            Limpiar();
-        }
+
+    var nombre = getN("nombre")
+    var descripcion = getN("descripcion")
+    if (nombre == "") {
+        Error("Debe ingresar el nombre");
+        return
+    }
+    if (descripcion == "") {
+        Error("Debe ingresar una descripción");
+        return
+    }
+
+    Confirmacion("Desea guardar datos de Tipo Habitación?", "Confirmar Datos", function (res) {
+
+
+        var frmTipoHabitacion = document.getElementById("frmTipoHabitacion");
+        var frm = new FormData(frmTipoHabitacion);
+        fetchPostText("TipoHabitacion/guardarDatos", frm, function (res) {
+            if (res == "1") {
+                listarTipoHabitacion();
+                Limpiar();
+            }
+        })
     })
 }
 
@@ -41,7 +57,6 @@ function Editar(id) {
     recuperarGenerico("TipoHabitacion/recuperarTipoHabitacion/?id=" + id,
         "frmTipoHabitacion");
 }
-
 
 function Eliminar(id) {
     Confirmacion("Desea eliminar el tipo habitación?", "Confirmar eliminación", function (res) {

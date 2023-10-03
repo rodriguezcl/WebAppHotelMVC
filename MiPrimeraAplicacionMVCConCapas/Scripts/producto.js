@@ -52,6 +52,7 @@ function listarProductos() {
         {
             type: "popup",
             title: "Producto",
+            tituloconfirmacionguardar: "Desea guardar el producto?",
             id: "frmProducto",
             //limpiarExcepcion: ["iidproducto"],
             urlGuardar: "Producto/guardarProducto",

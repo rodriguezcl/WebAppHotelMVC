@@ -51,6 +51,10 @@ function setN(id, valor) {
     document.getElementsByName(id)[0].value = valor;
 }
 
+function getN(id, valor) {
+    return document.getElementsByName(id)[0].value;
+}
+
 function setChecked(selector) {
     document.querySelector(selector).checked = true;
 }
@@ -90,7 +94,7 @@ function pintar(objConfiguracion, objBusqueda, objFormulario) {
 
                 objConfiguracionGlobal = objConfiguracion;
             }
-
+            
             if (objFormulario != undefined) {
                 objFormularioGlobal = objFormulario;
                 if (objFormulario.limpiarExcepcion == undefined)
@@ -105,6 +109,8 @@ function pintar(objConfiguracion, objBusqueda, objFormulario) {
                     objFormulario.callbackGuardar = "GuardarDatos"
                 if (objFormulario.id == undefined)
                     objFormulario.id = "frmFormulario"
+                if (objFormulario.tituloconfirmacionguardar == undefined)
+                    objFormulario.tituloconfirmacionguardar = "Desea guardar los cambios "
                 var type = objFormulario.type;
                 if (type == "fieldset") {
                     contenido += "<fieldset class='container'>";
@@ -164,7 +170,7 @@ function pintar(objConfiguracion, objBusqueda, objFormulario) {
 
 
             if (objBusqueda != undefined && objBusqueda.busqueda == true) {
-                
+
                 if (objBusqueda.placeholder == undefined)
                     objBusqueda.placeholder = "Ingrese un valor"
                 if (objBusqueda.id == undefined)
@@ -391,7 +397,7 @@ function recuperarGenerico(url, idFormulario, excepciones = [], adicional = fals
         }
         if (adicional == true) {
             objConfiguracionGlobal.callbackeditar(res);
-           /* recuperarEspecifico(res);*/
+            /* recuperarEspecifico(res);*/
         }
     });
 
@@ -473,38 +479,43 @@ function construirFormulario(objFormulario) {
     contenido += "</div>"
     return contenido;
 }
+
 function GuardarGenerico(idformulario, urlguardar) {
 
-    var tipoform = objFormularioGlobal.type;
-    var idpopup = objConfiguracionGlobal.idpopup;
-    var frmGenerico = document.getElementById(idformulario);
-    var frm = new FormData(frmGenerico);
-    fetchPostText(urlguardar, frm, function (res) {
-        if (res == "1") {
+    Confirmacion("" + objFormularioGlobal.tituloconfirmacionguardar, "Confirmar Datos", function (res) {
 
-            var objConf = objConfiguracionGlobal;
-            var objBus = objBusquedaGlobal;
+        var tipoform = objFormularioGlobal.type;
+        var idpopup = objConfiguracionGlobal.idpopup;
+        var frmGenerico = document.getElementById(idformulario);
+        var frm = new FormData(frmGenerico);
+        fetchPostText(urlguardar, frm, function (res) {
+            if (res == "1") {
 
-            //Id del control
-            var valor = get(objBus.id);
-            if (tipoform == "popup") {
-                document.getElementById("btnCerrar" + objConfiguracionGlobal.idpopup).click();
+                var objConf = objConfiguracionGlobal;
+                var objBus = objBusquedaGlobal;
+
+                //Id del control
+                var valor = get(objBus.id);
+                if (tipoform == "popup") {
+                    document.getElementById("btnCerrar" + objConfiguracionGlobal.idpopup).click();
+                }
+
+                fetchGet(`${objBus.url}/?${objBus.nombreparametro}=` + valor, function (res) {
+                    var rpta = generarTabla(objConf, res, objFormularioGlobal);
+                    document.getElementById("divContenedor").innerHTML = rpta;
+                })
+                LimpiarDatos(idformulario)
             }
-
-            fetchGet(`${objBus.url}/?${objBus.nombreparametro}=` + valor, function (res) {
-                var rpta = generarTabla(objConf, res, objFormularioGlobal);
-                document.getElementById("divContenedor").innerHTML = rpta;
-            })
-            LimpiarDatos(idformulario)
-        }
+        })
     })
+
 }
 
 function EditarGenerico(id, idFormulario) {
     var url = objConfiguracionGlobal.urlRecuperar;
     var nombreparametro = objConfiguracionGlobal.parametroRecuperar
     if (objFormularioGlobal.type == "popup") {
-    LimpiarGenerico(objFormularioGlobal.id);
+        LimpiarGenerico(objFormularioGlobal.id);
         if (id == 0) {
             document.getElementById("lbl" + objConfiguracionGlobal.idpopup).innerHTML = "Agregar " + objFormularioGlobal.title;
         }
@@ -515,7 +526,7 @@ function EditarGenerico(id, idFormulario) {
         }
     }
     else {
-   
+
         recuperarGenerico(`${url}/?${nombreparametro}=` + id, idFormulario, objConfiguracionGlobal.recuperarExcepcion, objConfiguracionGlobal.iscallbackeditar);
     }
 }
@@ -545,13 +556,13 @@ function EliminarGenerico(id) {
 }
 
 function LimpiarGenerico(idFormulario) {
-    LimpiarDatos(idFormulario,objFormularioGlobal.limpiarExcepcion)
+    LimpiarDatos(idFormulario, objFormularioGlobal.limpiarExcepcion)
 }
 
-function llenarCombo(data, id, propiedadMostrar, propiedadId, valueDefecto="") {
+function llenarCombo(data, id, propiedadMostrar, propiedadId, valueDefecto = "") {
     var contenido = ""
     var elemento;
-    contenido += "<option value='" + valueDefecto+"'>--Seleccione--</option>"
+    contenido += "<option value='" + valueDefecto + "'>--Seleccione--</option>"
 
     for (var j = 0; j < data.length; j++) {
         elemento = data[j];
