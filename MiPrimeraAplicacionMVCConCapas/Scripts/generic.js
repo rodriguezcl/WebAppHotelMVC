@@ -455,7 +455,7 @@ function construirFormulario(objFormulario) {
                 hijosArray.rows = "10";
             }
             if (hijosArray.id == undefined) {
-                hijosArray.id = "cboPrueba";
+                hijosArray.id = "cboPrueba"; 
             }
             if (hijosArray.propiedadMostrar == undefined) {
                 hijosArray.propiedadMostrar = "nombre";
@@ -463,24 +463,28 @@ function construirFormulario(objFormulario) {
             if (hijosArray.propiedadId == undefined) {
                 hijosArray.propiedadId = "id";
             }
+            if (hijosArray.classControl == undefined) {
+                hijosArray.classControl = "";
+            }
             var typelemento = hijosArray.type;
+            var classControl = hijosArray.classControl;
             contenido += `<div class="${hijosArray.class}">`
             contenido += `<label>${hijosArray.label}</label>`
             if (typelemento == "text" || typelemento == "number" || typelemento == "date") {
-                contenido += `  <input type="${typelemento}" class="form-control"
+                contenido += `  <input type="${typelemento}" class="form-control ${classControl} "
                        name="${hijosArray.name}" value="${hijosArray.value}"
                    ${hijosArray.readonly == true ? "readonly" : ""}  />`
             }
 
             else if (typelemento == "textarea") {
-                contenido += `  <textarea name="${hijosArray.name}" class="form-control"
+                contenido += `  <textarea name="${hijosArray.name}" class="form-control ${classControl}"
                        rows="${hijosArray.rows}" cols="${hijosArray.cols}">
                    ${hijosArray.value}  </textarea>`
             }
 
             else if (typelemento == "combobox") {
                 contenido += `
-                            <select name="${hijosArray.name}" id="${hijosArray.id}" class="form-control"></select>
+                            <select name="${hijosArray.name}" id="${hijosArray.id}" class="form-control ${classControl}"></select>
                             `
                 combosLlenar.push(hijosArray)
             }
@@ -494,6 +498,12 @@ function construirFormulario(objFormulario) {
 }
 
 function GuardarGenerico(idformulario, urlguardar) {
+
+    var error = validarObligatorios(idformulario)
+    if (error != "") {
+        Error(error);
+        return;
+    }
 
     Confirmacion("" + objFormularioGlobal.tituloconfirmacionguardar, "Confirmar Datos", function (res) {
 

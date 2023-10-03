@@ -43,7 +43,8 @@ function listarCama() {
                     {
                         class: "mb-3 col-md-7",
                         label: "Nombre cama",
-                        name: "nombre"
+                        name: "nombre",
+                        classControl: "o"
                     }
 
                 ],
@@ -54,8 +55,8 @@ function listarCama() {
                         label: "Descripcion Cama",
                         name: "descripcion",
                         rows: "5",
-                        cols: "20"
-
+                        cols: "20",
+                        classControl: "o"
                     }
                 ]
             ]
