@@ -224,5 +224,36 @@ namespace Capa_Datos
 
 
         }
+
+        public int eliminarPersona(int iidpersona)
+        {
+            //error
+            int rpta = 0;
+            using (SqlConnection cn = new SqlConnection(cadena))
+            {
+                try
+                {
+                    //Abro la conexion
+                    cn.Open();
+                    using (SqlCommand cmd = new SqlCommand("uspEliminarPersona", cn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@iidpersona", iidpersona);
+
+                        rpta = cmd.ExecuteNonQuery();
+                        cn.Close();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    rpta = 0;
+                    cn.Close();
+                }
+
+            }
+
+            return rpta;
+
+        }
     }
 }

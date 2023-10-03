@@ -409,4 +409,15 @@ where IIDPRODUCTO=@idproducto
 end
 go
 
+--29)[uspEliminarPersona]
+create procedure uspEliminarPersona
+@iidpersona int
+as
+begin
+update Persona
+set BHABILITADO=0
+where IIDPERSONA=@iidpersona
+end
+go
+
 

@@ -34,6 +34,12 @@ namespace Capa_Negocio
             return oPersonaDAL.guardarPersona(oPersonaCLS);
         }
 
+        public int eliminarPersona(int iidpersona)
+        {
+            PersonaDAL oPersonaDAL = new PersonaDAL();
+            return oPersonaDAL.eliminarPersona(iidpersona);
+        }
+
 
     }
 }

@@ -4,21 +4,25 @@
 }
 
 function listarPersona() {
-    pintar({
-        popup: true,
-        idpopup: "staticBackdrop",
-        url: "Persona/listarPersona", id: "divTabla",
-        cabeceras: ["Id", "Nombre Completo", "Sexo", "Tipo Usuario"],
-        propiedades: ["iidpersona", "nombreCompleto", "nombreSexo", "nombreTipoUsuario"],
-        editar: true,
-        eliminar: true,
-        propiedadId: "iidpersona"
-    })
+    pintar(
+        {
+            popup: true,
+            idpopup: "staticBackdrop",
+            url: "Persona/listarPersona", id: "divTabla",
+            cabeceras: ["Id", "Nombre Completo", "Sexo", "Tipo Usuario"],
+            propiedades: ["iidpersona", "nombreCompleto", "nombreSexo", "nombreTipoUsuario"],
+            editar: true,
+            eliminar: true,
+            propiedadId: "iidpersona",
+            urlEliminar: "Persona/eliminarPersona",
+            parametroEliminar: "iidpersona"
+        }
+    )
 }
 
 function listarCombo() {
     fetchGet("TipoUsuario/listarTipoUsuario", function (data) {
-        llenarCombo(data, "cboTipoUsuario", "nombre", "iidtipousuario","0")
+        llenarCombo(data, "cboTipoUsuario", "nombre", "iidtipousuario", "0")
         llenarCombo(data, "cboTipoUsuarioForm", "nombre", "iidtipousuario")
     })
 }
@@ -62,4 +66,16 @@ function Editar(id) {
         document.getElementById("staticBackdropLabel").innerHTML = "Editar Persona"
         recuperarGenerico("Persona/recuperarPersona/?iidpersona=" + id, "frmPersona", [], false);
     }
+}
+
+function Eliminar(id) {
+    Confirmacion("Desea eliminar la persona?", "Confirmar eliminación", function (res) {
+
+        fetchGetText("Persona/eliminarPersona/?iidpersona=" + id, function (rpta) {
+            if (rpta == "1") {
+                Correcto("Se eliminó correctamente");
+                listarPersona();
+            }
+        })
+    })
 }

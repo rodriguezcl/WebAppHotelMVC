@@ -4,19 +4,20 @@
 
 
 function listarMarca() {
-    pintar({
-        url: "Marca/listarMarca",
-        id: "divTabla",
-        cabeceras: ["Id Marca", "Nombre", "Descripcion"],
-        propiedades: ["iidMarca", "nombreMarca", "descripcionMarca"],
-        editar: true,
-        eliminar: true,
-        propiedadId: "iidMarca",
-        urlEliminar: "Marca/eliminarMarca",
-        parametroEliminar: "iidmarca",
-        urlRecuperar: "Marca/recuperarMarca",
-        parametroRecuperar: "iidmarca"
-    },
+    pintar(
+        {
+            url: "Marca/listarMarca",
+            id: "divTabla",
+            cabeceras: ["Id Marca", "Nombre", "Descripcion"],
+            propiedades: ["iidMarca", "nombreMarca", "descripcionMarca"],
+            editar: true,
+            eliminar: true,
+            propiedadId: "iidMarca",
+            urlEliminar: "Marca/eliminarMarca",
+            parametroEliminar: "iidmarca",
+            urlRecuperar: "Marca/recuperarMarca",
+            parametroRecuperar: "iidmarca"
+        },
         {
             busqueda: true,
             url: "Marca/filtrarMarca",
