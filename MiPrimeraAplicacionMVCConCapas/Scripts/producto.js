@@ -27,6 +27,12 @@ function listarProductos() {
             urlEliminar: "Cama/eliminarCama",
             parametroEliminar: "idcama",
             urlRecuperar: "Producto/recuperarProducto",
+            //recuperarExcepcion: ["iidproducto"],
+            iscallbackeditar: true,
+            callbackeditar: function (res) {
+                //Cosas adicionales
+                document.getElementById("lblTituloForm").innerHTML="Producto"
+            },
             parametroRecuperar: "iidproducto",
             propiedadId: "iidproducto"
         },
@@ -46,8 +52,9 @@ function listarProductos() {
         {
             type: "popup",
             title: "Producto",
-            urlGuardar: "Producto/guardarProducto",
             id: "frmProducto",
+            //limpiarExcepcion: ["iidproducto"],
+            urlGuardar: "Producto/guardarProducto",
             formulario: [
                 [
                     {

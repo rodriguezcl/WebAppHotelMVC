@@ -77,18 +77,24 @@ function pintar(objConfiguracion, objBusqueda, objFormulario) {
                     objConfiguracion.propiedadId = "id";
                 if (objConfiguracion.callbackEliminar == undefined)
                     objConfiguracion.callbackEliminar = "Eliminar";
-                if (objConfiguracion.callbackEditar == undefined)
-                    objConfiguracion.callbackEditar = "Editar";
+                if (objConfiguracion.callbackeditar == undefined)
+                    objConfiguracion.callbackeditar = "Editar";
                 if (objConfiguracion.popup == undefined)
                     objConfiguracion.popup = false;
                 if (objConfiguracion.sizepopup == undefined)
                     objConfiguracion.sizepopup = "";
+                if (objConfiguracion.recuperarExcepcion == undefined)
+                    objConfiguracion.recuperarExcepcion = [];
+                if (objConfiguracion.iscallbackeditar == undefined)
+                    objConfiguracion.iscallbackeditar = false;
 
                 objConfiguracionGlobal = objConfiguracion;
             }
 
             if (objFormulario != undefined) {
                 objFormularioGlobal = objFormulario;
+                if (objFormulario.limpiarExcepcion == undefined)
+                    objFormulario.limpiarExcepcion = [];
                 if (objFormulario.guardar == undefined)
                     objFormulario.guardar = true
                 if (objFormulario.limpiar == undefined)
@@ -286,7 +292,7 @@ function generarTabla(objConfiguracion, res, objFormulario, primeravez = false) 
                onclick='${(objFormulario != undefined &&
                         objFormulario.formulariogenerico != undefined &&
                         objFormulario.formulariogenerico == true) ? "EditarGenerico"
-                        : objConfiguracion.callbackEditar
+                        : objConfiguracion.callbackeditar
                     }(${fila[objConfiguracion.propiedadId]} , 
                      "${objFormulario == undefined ? "" : objFormulario.id} " ) ' >
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eyedropper" viewBox="0 0 16 16">
@@ -374,16 +380,18 @@ function recuperarGenerico(url, idFormulario, excepciones = [], adicional = fals
     fetchGet(url, function (res) {
         for (var i = 0; i < elementos.length; i++) {
             nombreName = elementos[i].name
-            if (!excepciones.includes(elementos[i].name))
+            if (!excepciones.includes(elementos[i].name)) {
                 if (elementos[i].type.toUpperCase() == "RADIO") {
                     setChecked("[type='radio'][value='" + res[nombreName] + "']")
                 }
                 else {
                     setN(nombreName, res[nombreName])
                 }
+            }
         }
         if (adicional == true) {
-            recuperarEspecifico(res);
+            objConfiguracionGlobal.callbackeditar(res);
+           /* recuperarEspecifico(res);*/
         }
     });
 
@@ -493,20 +501,23 @@ function GuardarGenerico(idformulario, urlguardar) {
 }
 
 function EditarGenerico(id, idFormulario) {
-    LimpiarGenerico(objFormularioGlobal.id);
+    var url = objConfiguracionGlobal.urlRecuperar;
+    var nombreparametro = objConfiguracionGlobal.parametroRecuperar
     if (objFormularioGlobal.type == "popup") {
+    LimpiarGenerico(objFormularioGlobal.id);
         if (id == 0) {
             document.getElementById("lbl" + objConfiguracionGlobal.idpopup).innerHTML = "Agregar " + objFormularioGlobal.title;
         }
         //Editar
         else {
             document.getElementById("lbl" + objConfiguracionGlobal.idpopup).innerHTML = "Editar " + objFormularioGlobal.title;
-            recuperarGenerico("Persona/recuperarPersona/?iidpersona=" + id, "frmPersona", [], false);
+            recuperarGenerico(`${url}/?${nombreparametro}=` + id, idFormulario, objConfiguracionGlobal.recuperarExcepcion, objConfiguracionGlobal.iscallbackeditar);
         }
     }
-    var url = objConfiguracionGlobal.urlRecuperar;
-    var nombreparametro = objConfiguracionGlobal.parametroRecuperar
-    recuperarGenerico(`${url}/?${nombreparametro}=` + id, idFormulario);
+    else {
+   
+        recuperarGenerico(`${url}/?${nombreparametro}=` + id, idFormulario, objConfiguracionGlobal.recuperarExcepcion, objConfiguracionGlobal.iscallbackeditar);
+    }
 }
 
 function EliminarGenerico(id) {
@@ -534,7 +545,7 @@ function EliminarGenerico(id) {
 }
 
 function LimpiarGenerico(idFormulario) {
-    LimpiarDatos(idFormulario)
+    LimpiarDatos(idFormulario,objFormularioGlobal.limpiarExcepcion)
 }
 
 function llenarCombo(data, id, propiedadMostrar, propiedadId, valueDefecto="") {
