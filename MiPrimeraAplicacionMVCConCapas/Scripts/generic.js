@@ -259,6 +259,19 @@ function LimpiarDatos(idFormulario, excepciones = []) {
     }
 }
 
+function validarObligatorios(idFormulario) {
+    //No hay error
+    var error = "";
+    var elementos = document.querySelectorAll("#" + idFormulario + " .o")
+    for (var i = 0; i < elementos.length; i++) {
+        if (elementos[i].value == "") {
+            error = "Ingrese " + elementos[i].name;
+            return error;
+        }
+    }
+    return error;
+}
+
 function generarTabla(objConfiguracion, res, objFormulario, primeravez = false) {
     var listaPintar = res;
     if (objConfiguracion != null && objConfiguracion.name != undefined && primeravez == true) {

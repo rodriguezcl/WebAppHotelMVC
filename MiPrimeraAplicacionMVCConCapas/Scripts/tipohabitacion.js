@@ -28,15 +28,21 @@ function Limpiar() {
 
 function GuardarDatos() {
 
-    var nombre = getN("nombre")
-    var descripcion = getN("descripcion")
-    if (nombre == "") {
-        Error("Debe ingresar el nombre");
-        return
-    }
-    if (descripcion == "") {
-        Error("Debe ingresar una descripción");
-        return
+    //var nombre = getN("nombre")
+    //var descripcion = getN("descripcion")
+    //if (nombre == "") {
+    //    Error("Debe ingresar el nombre");
+    //    return
+    //}
+    //if (descripcion == "") {
+    //    Error("Debe ingresar una descripción");
+    //    return
+    //}
+
+    var error = validarObligatorios("frmTipoHabitacion")
+    if (error != "") {
+        Error(error);
+        return;
     }
 
     Confirmacion("Desea guardar datos de Tipo Habitación?", "Confirmar Datos", function (res) {
