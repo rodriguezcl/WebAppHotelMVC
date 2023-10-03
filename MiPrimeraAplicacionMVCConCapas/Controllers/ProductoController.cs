@@ -1,4 +1,5 @@
-﻿using Capa_Negocio;
+﻿using Capa_Entidad;
+using Capa_Negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,20 +35,18 @@ namespace MiPrimeraAplicacionMVCConCapas.Controllers
             return Json(obj.listarProductoMarca(), JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult filtrarProductoPorMarca(int iidmarca)
+        public JsonResult filtrarProductoPorMarca(int? iidmarca)
         {
             ProductoBL obj = new ProductoBL();
             return Json(obj.filtrarProductoPorMarca(iidmarca), JsonRequestBehavior.AllowGet);
         }
 
-        //public JsonResult listarProductoCategoria()
-        //{
-        //    ProductoBL obj = new ProductoBL();
-        //    return Json(obj.listarProductoCategoria(), JsonRequestBehavior.AllowGet);
-        //}
-
-        public JsonResult filtrarProductoPorCategoria(int iidcategoria)
+        public JsonResult filtrarProductoPorCategoria(int? iidcategoria)
         {
+            if (iidcategoria==null)
+            {
+                iidcategoria = 0;
+            }
             ProductoBL obj = new ProductoBL();
             return Json(obj.filtrarProductoPorCategoria(iidcategoria), JsonRequestBehavior.AllowGet);
         }
@@ -56,6 +55,12 @@ namespace MiPrimeraAplicacionMVCConCapas.Controllers
         {
             ProductoBL obj = new ProductoBL();
             return Json(obj.recuperarProducto(iidproducto), JsonRequestBehavior.AllowGet);
+        }
+
+        public int guardarProducto(ProductoCLS oProductoCLS)
+        {
+            ProductoBL obj = new ProductoBL();
+            return obj.guardarProducto(oProductoCLS);
         }
 
     }

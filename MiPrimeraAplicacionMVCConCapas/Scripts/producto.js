@@ -10,41 +10,43 @@ function llenarComboMarca() {
 }
 
 function listarProductos() {
-    pintar({
-        popup: true,
-        editar: true,
-        eliminar: true,
-        idpopup: "staticBackdrop1",
-        sizepopup: "modal-lg",
-        url: "Producto/listarProductoMarca", id: "divTabla",
-        cabeceras: ["Id Producto", "Nombre", "Nombre Marca", "Precio",
-            "Stock", "Denominacion"],
-        name: "listaProducto",
-        propiedades: ["iidproducto", "nombreproducto", "nombremarca",
-            "precioventa", "stock", "denominacion"],
-        // Para modificar
-        urlEliminar: "Cama/eliminarCama",
-        parametroEliminar: "idcama",
-        urlRecuperar: "Producto/recuperarProducto",
-        parametroRecuperar: "iidproducto",
-        propiedadId: "iidproducto"
-    },
+    pintar(
+        {
+            popup: true,
+            editar: true,
+            eliminar: true,
+            idpopup: "staticBackdrop1",
+            sizepopup: "modal-lg",
+            url: "Producto/listarProductoMarca", id: "divTabla",
+            cabeceras: ["Id Producto", "Nombre", "Nombre Marca", "Precio",
+                "Stock", "Denominacion"],
+            name: "listaProducto",
+            propiedades: ["iidproducto", "nombreproducto", "nombremarca",
+                "precioventa", "stock", "denominacion"],
+            // Para modificar
+            urlEliminar: "Cama/eliminarCama",
+            parametroEliminar: "idcama",
+            urlRecuperar: "Producto/recuperarProducto",
+            parametroRecuperar: "iidproducto",
+            propiedadId: "iidproducto"
+        },
         {
             busqueda: true,
             //filtro
             url: "Producto/filtrarProductoPorCategoria",
-            nombreparametro: "iidcategoria",
+            nombreparametro: "iidCategoria",
             type: "combobox",
             name: "listaCategoria",
             displaymember: "nombreCategoria",
-            valuemember: "iidcategoria",
+            valuemember: "iidCategoria",
             button: true,
-            id: "cboCategoria"
+            id: "cboCategoriaBusqueda"
 
         },
         {
             type: "popup",
             title: "Producto",
+            urlGuardar: "Producto/guardarProducto",
             id: "frmProducto",
             formulario: [
                 [
@@ -78,7 +80,7 @@ function listarProductos() {
                         type: "combobox",
                         label: "Categoría",
                         datasource: "listaCategoria",
-                        name: "iidcategoria",
+                        name: "iidCategoria",
                         id: "cboCategoria",
                         propiedadMostrar: "nombreCategoria",
                         propiedadId: "iidCategoria"

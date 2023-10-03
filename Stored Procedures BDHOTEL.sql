@@ -371,7 +371,7 @@ if @idproducto=0
 else
 update Producto
 set NOMBRE=@nombre,IIDMARCA=@idmarca,DESCRIPCION=@descripcion,PRECIOCOMPRA=@preciocompra,PRECIOVENTA=@precioventa,STOCK=@stock,IIDCATEGORIA=@iidcategoria
-where IIDMARCA=@idproducto
+where IIDPRODUCTO=@idproducto
 end
 go
 

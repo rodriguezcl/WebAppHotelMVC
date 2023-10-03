@@ -71,7 +71,7 @@ namespace Capa_Datos
 
 
         }
-        public List<ProductoCLS> filtrarProductoPorMarca(int iidmarca)
+        public List<ProductoCLS> filtrarProductoPorMarca(int? iidmarca)
         {
             List<ProductoCLS> lista = null;
             //  string cadena = ConfigurationManager.ConnectionStrings["cn"].ConnectionString; 
@@ -131,7 +131,7 @@ namespace Capa_Datos
 
 
         }
-        public List<ProductoCLS> filtrarProductoPorCategoria(int iidcategoria)
+        public List<ProductoCLS> filtrarProductoPorCategoria(int? iidcategoria)
         {
             List<ProductoCLS> lista = null;
             //  string cadena = ConfigurationManager.ConnectionStrings["cn"].ConnectionString; 
@@ -300,6 +300,45 @@ namespace Capa_Datos
                 }
             }
             return oProductoCLS;
+
+
+        }
+        public int guardarProducto(ProductoCLS oProductoCLS)
+        {
+            int rpta = 0;
+            //  string cadena = ConfigurationManager.ConnectionStrings["cn"].ConnectionString; 
+            using (SqlConnection cn = new SqlConnection(cadena))
+            {
+                try
+                {
+                    //Abro la conexion
+                    cn.Open();
+                    //Llame al procedure
+                    using (SqlCommand cmd = new SqlCommand("uspGuardarProducto", cn))
+                    {
+                        //Buena practica (Opcional)->Indicamos que es un procedure
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@idproducto", oProductoCLS.iidproducto);
+                        cmd.Parameters.AddWithValue("@nombre", oProductoCLS.nombreproducto);
+                        cmd.Parameters.AddWithValue("@idmarca", oProductoCLS.iidmarca);
+                        cmd.Parameters.AddWithValue("@descripcion", oProductoCLS.descripcion);
+                        cmd.Parameters.AddWithValue("@preciocompra", oProductoCLS.preciocompra);
+                        cmd.Parameters.AddWithValue("@precioventa", oProductoCLS.precioventa);
+                        cmd.Parameters.AddWithValue("@stock", oProductoCLS.stock);
+                        cmd.Parameters.AddWithValue("@iidcategoria", oProductoCLS.iidcategoria);
+                        rpta = cmd.ExecuteNonQuery();
+                    }
+
+                    //Cierro una vez de traer la data
+                    cn.Close();
+                }
+                catch (Exception ex)
+                {
+                    cn.Close();
+                }
+
+            }
+            return rpta;
 
 
         }

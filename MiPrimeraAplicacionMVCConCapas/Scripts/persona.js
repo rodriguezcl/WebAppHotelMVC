@@ -18,7 +18,7 @@ function listarPersona() {
 
 function listarCombo() {
     fetchGet("TipoUsuario/listarTipoUsuario", function (data) {
-        llenarCombo(data, "cboTipoUsuario", "nombre", "iidtipousuario")
+        llenarCombo(data, "cboTipoUsuario", "nombre", "iidtipousuario","0")
         llenarCombo(data, "cboTipoUsuarioForm", "nombre", "iidtipousuario")
     })
 }

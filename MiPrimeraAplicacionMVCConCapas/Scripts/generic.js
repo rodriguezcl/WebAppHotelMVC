@@ -144,7 +144,10 @@ function pintar(objConfiguracion, objBusqueda, objFormulario) {
                     contenido += `</div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                    <button type="button" class="btn btn-primary">Guardar</button>
+                                    <button type="button" class="btn btn-primary" onclick="${(objFormulario.formulariogenerico == undefined
+                            || objFormulario.formulariogenerico == false) ? `${objFormulario.callbackGuardar}()`
+                            : `GuardarGenerico
+                          ('${objFormulario.id}', '${objFormulario.urlGuardar}')`}" >Guardar</button>
                                 </div>
                             </div>
                         </div>
