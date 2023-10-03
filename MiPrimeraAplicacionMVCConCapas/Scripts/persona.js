@@ -40,7 +40,7 @@ function guardarPersona() {
     var frm = new FormData(frmPersona);
     fetchPostText("Persona/guardarPersona", frm, function (res) {
         if (res == "1") {
-            document.getElementById("btnCerrar").click
+            document.getElementById("btnCerrar").click();
             listarPersona();
             Limpiar();
         }

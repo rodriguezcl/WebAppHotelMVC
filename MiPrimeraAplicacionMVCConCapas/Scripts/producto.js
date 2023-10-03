@@ -80,7 +80,7 @@ function listarProductos() {
                         type: "combobox",
                         label: "Categoría",
                         datasource: "listaCategoria",
-                        name: "iidCategoria",
+                        name: "iidcategoria",
                         id: "cboCategoria",
                         propiedadMostrar: "nombreCategoria",
                         propiedadId: "iidCategoria"

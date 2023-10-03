@@ -143,7 +143,7 @@ function pintar(objConfiguracion, objBusqueda, objFormulario) {
                     contenido += construirFormulario(objFormulario);
                     contenido += `</div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id='btnCerrar${objConfiguracionGlobal.idpopup}' >Cerrar</button>
                                     <button type="button" class="btn btn-primary" onclick="${(objFormulario.formulariogenerico == undefined
                             || objFormulario.formulariogenerico == false) ? `${objFormulario.callbackGuardar}()`
                             : `GuardarGenerico
@@ -158,6 +158,7 @@ function pintar(objConfiguracion, objBusqueda, objFormulario) {
 
 
             if (objBusqueda != undefined && objBusqueda.busqueda == true) {
+                
                 if (objBusqueda.placeholder == undefined)
                     objBusqueda.placeholder = "Ingrese un valor"
                 if (objBusqueda.id == undefined)
@@ -466,6 +467,8 @@ function construirFormulario(objFormulario) {
 }
 function GuardarGenerico(idformulario, urlguardar) {
 
+    var tipoform = objFormularioGlobal.type;
+    var idpopup = objConfiguracionGlobal.idpopup;
     var frmGenerico = document.getElementById(idformulario);
     var frm = new FormData(frmGenerico);
     fetchPostText(urlguardar, frm, function (res) {
@@ -475,7 +478,11 @@ function GuardarGenerico(idformulario, urlguardar) {
             var objBus = objBusquedaGlobal;
 
             //Id del control
-            var valor = get(objBus.id)
+            var valor = get(objBus.id);
+            if (tipoform == "popup") {
+                document.getElementById("btnCerrar" + objConfiguracionGlobal.idpopup).click();
+            }
+
             fetchGet(`${objBus.url}/?${objBus.nombreparametro}=` + valor, function (res) {
                 var rpta = generarTabla(objConf, res, objFormularioGlobal);
                 document.getElementById("divContenedor").innerHTML = rpta;
@@ -486,6 +493,7 @@ function GuardarGenerico(idformulario, urlguardar) {
 }
 
 function EditarGenerico(id, idFormulario) {
+    LimpiarGenerico(objFormularioGlobal.id);
     if (objFormularioGlobal.type == "popup") {
         if (id == 0) {
             document.getElementById("lbl" + objConfiguracionGlobal.idpopup).innerHTML = "Agregar " + objFormularioGlobal.title;
@@ -529,10 +537,10 @@ function LimpiarGenerico(idFormulario) {
     LimpiarDatos(idFormulario)
 }
 
-function llenarCombo(data, id, propiedadMostrar, propiedadId) {
+function llenarCombo(data, id, propiedadMostrar, propiedadId, valueDefecto="") {
     var contenido = ""
     var elemento;
-    contenido += "<option value=''>--Seleccione--</option>"
+    contenido += "<option value='" + valueDefecto+"'>--Seleccione--</option>"
 
     for (var j = 0; j < data.length; j++) {
         elemento = data[j];
