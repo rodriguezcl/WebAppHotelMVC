@@ -485,9 +485,22 @@ function validarSoloNumeros(e) {
     }
 }
 
-function encontroClase(clase) {
+function validarSoloNumerosDecimales(e){
+    var codigoAscii = e.keyCode;
+    if ((codigoAscii < 48 && codigoAscii!=46) || codigoAscii > 57) {
+        e.preventDefault();
+    }
+    if (String.fromCharCode(e.keyCode) == ".") {
+        if (e.target.value.includes(".")) e.preventDefault();
+    }
+    if (e.target.value.length==0 && String.fromCharCode(e.keyCode) == ".") {
+        e.preventDefault();
+    }
+}
+
+function encontroClase(clase, claseBuscar="snc") {
     var arrayClase = clase.split(" ");
-    var numeroEncontradas = arrayClase.filter(p => p.includes("snc")).length;
+    var numeroEncontradas = arrayClase.filter(p => p.includes(claseBuscar)).length;
     if (numeroEncontradas == 0) return false
     else return true;
 
@@ -509,6 +522,7 @@ function construirFormulario(objFormulario) {
         contenido += "<div class='row'>";
         for (var j = 0; j < numeroarrayelemento; j++) {
             var hijosArray = arrayelemento[j]
+
             if (hijosArray.class == undefined) {
                 hijosArray.class = "mb-3";
             }
@@ -542,8 +556,12 @@ function construirFormulario(objFormulario) {
             if (hijosArray.classControl == undefined) {
                 hijosArray.classControl = "";
             }
+            if (hijosArray.className == undefined) {
+                hijosArray.className = "mb-3";
+            }
 
-            var encontroSNC = encontroClase(hijosArray.classControl)
+            var encontroSNC = encontroClase(hijosArray.classControl, "snc")
+            var encontroSNDC = encontroClase(hijosArray.classControl, "sndc")
 
             
             var typelemento = hijosArray.type;
@@ -551,7 +569,8 @@ function construirFormulario(objFormulario) {
             contenido += `<div class="${hijosArray.class}">`
             contenido += `<label>${hijosArray.label}</label>`
             if (typelemento == "text" || typelemento == "number" || typelemento == "date") {
-                contenido += `  <input type="text" class="form-control ${classControl}" ${encontroSNC == false ? "" : "onkeypress='validarSoloNumeros(event)'"}
+                contenido += `  <input type="text" class="form-control ${classControl}" ${encontroSNC == false ? "" : "onkeypress='validarSoloNumeros(event)'"} 
+                                  ${encontroSNDC == false ? "" : "onkeypress='validarSoloNumerosDecimales(event)'"}
                        name="${hijosArray.name}" value="${hijosArray.value}"
                    ${hijosArray.readonly == true ? "readonly" : ""}  />`
             }

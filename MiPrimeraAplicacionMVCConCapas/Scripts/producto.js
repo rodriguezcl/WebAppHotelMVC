@@ -115,14 +115,14 @@ function listarProductos() {
                         class: "mb-3 col-md-4",
                         label: "Precio Compra",
                         name: "preciocompra",
-                        classControl: "o"
+                        classControl: "o sndc"
                     },
                     {
                         type: "number",
                         class: "mb-3 col-md-4",
                         label: "Precio Venta",
                         name: "precioventa",
-                        classControl: "o"
+                        classControl: "o sndc"
                     },
                     {
                         type: "number",
