@@ -272,7 +272,7 @@ function validarLongitudMaxima(idFormulario) {
         //40
         var valorMax = claseMax.replace("max-", "") * 1;
         if (control.value.length > valorMax) {
-            error = "El campo " + control.name + " tiene una longitud de " + control.value.length+ " caracteres, no puede ser superior a " + valorMax;
+            error = "El campo " + control.name + " tiene una longitud de " + control.value.length + " caracteres, no puede ser superior a " + valorMax;
             return error;
         }
     }
@@ -295,7 +295,7 @@ function validarSoloNumerosEnteros(idFormulario) {
             }
 
         }
-        
+
     }
     return error;
 }
@@ -480,9 +480,17 @@ function recuperarGenerico(url, idFormulario, excepciones = [], adicional = fals
 
 function validarSoloNumeros(e) {
     var codigoAscii = e.keyCode;
-    if (codigoAscii<48 || codigoAscii>57) {
+    if (codigoAscii < 48 || codigoAscii > 57) {
         e.preventDefault();
     }
+}
+
+function encontroClase(clase) {
+    var arrayClase = clase.split(" ");
+    var numeroEncontradas = arrayClase.filter(p => p.includes("snc")).length;
+    if (numeroEncontradas == 0) return false
+    else return true;
+
 }
 
 function construirFormulario(objFormulario) {
@@ -534,12 +542,16 @@ function construirFormulario(objFormulario) {
             if (hijosArray.classControl == undefined) {
                 hijosArray.classControl = "";
             }
+
+            var encontroSNC = encontroClase(hijosArray.classControl)
+
+            
             var typelemento = hijosArray.type;
             var classControl = hijosArray.classControl;
             contenido += `<div class="${hijosArray.class}">`
             contenido += `<label>${hijosArray.label}</label>`
             if (typelemento == "text" || typelemento == "number" || typelemento == "date") {
-                contenido += `  <input type="text" class="form-control ${classControl} "
+                contenido += `  <input type="text" class="form-control ${classControl}" ${encontroSNC == false ? "" : "onkeypress='validarSoloNumeros(event)'"}
                        name="${hijosArray.name}" value="${hijosArray.value}"
                    ${hijosArray.readonly == true ? "readonly" : ""}  />`
             }
@@ -578,6 +590,11 @@ function GuardarGenerico(idformulario, urlguardar) {
         return;
     }
     var error = validarLongitudMinima(idformulario)
+    if (error != "") {
+        Error(error);
+        return;
+    }
+    var error = validarSoloNumerosEnteros(idformulario)
     if (error != "") {
         Error(error);
         return;

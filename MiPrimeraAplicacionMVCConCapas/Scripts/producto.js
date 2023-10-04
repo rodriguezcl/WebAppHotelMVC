@@ -68,7 +68,8 @@ function listarProductos() {
                     {
                         class: "mb-3 col-md-6",
                         label: "Nombre Producto",
-                        name: "nombreproducto"
+                        name: "nombreproducto",
+                        classControl: "o max-100 min-3"
                     }
 
                 ],
@@ -81,7 +82,8 @@ function listarProductos() {
                         name: "iidmarca",
                         id: "cboMarca",
                         propiedadMostrar: "nombreMarca",
-                        propiedadId: "iidMarca"
+                        propiedadId: "iidMarca",
+                        classControl: "o"
                     },
                     {
                         class: "mb-3 col-md-6",
@@ -91,7 +93,8 @@ function listarProductos() {
                         name: "iidcategoria",
                         id: "cboCategoria",
                         propiedadMostrar: "nombreCategoria",
-                        propiedadId: "iidCategoria"
+                        propiedadId: "iidCategoria",
+                        classControl: "o"
                     }
                 ],
                 [
@@ -101,7 +104,8 @@ function listarProductos() {
                         label: "Descripción Producto",
                         name: "descripcion",
                         rows: "3",
-                        cols: "20"
+                        cols: "20",
+                        classControl: "o"
 
                     }
                 ],
@@ -110,19 +114,22 @@ function listarProductos() {
                         type: "number",
                         class: "mb-3 col-md-4",
                         label: "Precio Compra",
-                        name: "preciocompra"
+                        name: "preciocompra",
+                        classControl: "o"
                     },
                     {
                         type: "number",
                         class: "mb-3 col-md-4",
                         label: "Precio Venta",
-                        name: "precioventa"
+                        name: "precioventa",
+                        classControl: "o"
                     },
                     {
                         type: "number",
                         class: "mb-3 col-md-4",
                         label: "Stock",
-                        name: "stock"
+                        name: "stock",
+                        classControl: "o snc"
                     }
                 ]
             ]
