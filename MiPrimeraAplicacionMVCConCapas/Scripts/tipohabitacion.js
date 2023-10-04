@@ -39,6 +39,11 @@ function GuardarDatos() {
         Error(error);
         return;
     }
+    var error = validarLongitudMinima("frmTipoHabitacion")
+    if (error != "") {
+        Error(error);
+        return;
+    }
 
     Confirmacion("Desea guardar datos de Tipo Habitación?", "Confirmar Datos", function (res) {
 

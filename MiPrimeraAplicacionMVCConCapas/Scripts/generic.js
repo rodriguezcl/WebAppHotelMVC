@@ -279,6 +279,26 @@ function validarLongitudMaxima(idFormulario) {
     return error;
 }
 
+function validarLongitudMinima(idFormulario) {
+    var error = "";
+    var control;
+    var controles = document.querySelectorAll("#" + idFormulario + " [class*='min-']");
+    for (var i = 0; i < controles.length; i++) {
+        control = controles[i];
+        //["form-control","o","max-40"]
+        var arrayClase = control.className.split(" ");
+        //max-40
+        var claseMin = arrayClase.filter(p => p.includes("min-"))[0];
+        //40
+        var valorMin = claseMin.replace("min-", "") * 1;
+        if (control.value.length < valorMin) {
+            error = "El campo " + control.name + " tiene una longitud de " + control.value.length + " caracteres, no puede ser inferior a " + valorMin;
+            return error;
+        }
+    }
+    return error;
+}
+
 function validarObligatorios(idFormulario) {
     //No hay error
     var error = "";
@@ -525,6 +545,11 @@ function GuardarGenerico(idformulario, urlguardar) {
         return;
     }
     var error = validarLongitudMaxima(idformulario)
+    if (error != "") {
+        Error(error);
+        return;
+    }
+    var error = validarLongitudMinima(idFormulario)
     if (error != "") {
         Error(error);
         return;
