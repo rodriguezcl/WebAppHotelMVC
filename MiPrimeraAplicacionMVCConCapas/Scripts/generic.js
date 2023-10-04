@@ -272,7 +272,7 @@ function validarLongitudMaxima(idFormulario) {
         //40
         var valorMax = claseMax.replace("max-", "") * 1;
         if (control.value.length > valorMax) {
-            error = "El campo " + control.name + " no puede tener una longitud superior a " + valorMax;
+            error = "El campo " + control.name + " tiene una longitud de " + control.value.length+ " caracteres, no puede ser superior a " + valorMax;
             return error;
         }
     }
@@ -520,6 +520,11 @@ function construirFormulario(objFormulario) {
 function GuardarGenerico(idformulario, urlguardar) {
 
     var error = validarObligatorios(idformulario)
+    if (error != "") {
+        Error(error);
+        return;
+    }
+    var error = validarLongitudMaxima(idformulario)
     if (error != "") {
         Error(error);
         return;
