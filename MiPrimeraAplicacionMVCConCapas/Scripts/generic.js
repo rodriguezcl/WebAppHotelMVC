@@ -457,6 +457,13 @@ function recuperarGenerico(url, idFormulario, excepciones = [], adicional = fals
 
 }
 
+function validarSoloNumeros(e) {
+    var codigoAscii = e.keyCode;
+    if (codigoAscii<48 || codigoAscii>57) {
+        e.preventDefault();
+    }
+}
+
 function construirFormulario(objFormulario) {
     var type = objFormulario.type;
     var elementos = objFormulario.formulario;
@@ -511,7 +518,7 @@ function construirFormulario(objFormulario) {
             contenido += `<div class="${hijosArray.class}">`
             contenido += `<label>${hijosArray.label}</label>`
             if (typelemento == "text" || typelemento == "number" || typelemento == "date") {
-                contenido += `  <input type="${typelemento}" class="form-control ${classControl} "
+                contenido += `  <input type="text" class="form-control ${classControl} "
                        name="${hijosArray.name}" value="${hijosArray.value}"
                    ${hijosArray.readonly == true ? "readonly" : ""}  />`
             }
@@ -549,7 +556,7 @@ function GuardarGenerico(idformulario, urlguardar) {
         Error(error);
         return;
     }
-    var error = validarLongitudMinima(idFormulario)
+    var error = validarLongitudMinima(idformulario)
     if (error != "") {
         Error(error);
         return;
