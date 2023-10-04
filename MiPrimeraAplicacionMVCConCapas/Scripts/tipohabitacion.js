@@ -28,18 +28,13 @@ function Limpiar() {
 
 function GuardarDatos() {
 
-    //var nombre = getN("nombre")
-    //var descripcion = getN("descripcion")
-    //if (nombre == "") {
-    //    Error("Debe ingresar el nombre");
-    //    return
-    //}
-    //if (descripcion == "") {
-    //    Error("Debe ingresar una descripción");
-    //    return
-    //}
-
+    
     var error = validarObligatorios("frmTipoHabitacion")
+    if (error != "") {
+        Error(error);
+        return;
+    }
+    var error = validarLongitudMaxima("frmTipoHabitacion")
     if (error != "") {
         Error(error);
         return;

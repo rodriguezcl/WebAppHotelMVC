@@ -94,7 +94,7 @@ function pintar(objConfiguracion, objBusqueda, objFormulario) {
 
                 objConfiguracionGlobal = objConfiguracion;
             }
-            
+
             if (objFormulario != undefined) {
                 objFormularioGlobal = objFormulario;
                 if (objFormulario.limpiarExcepcion == undefined)
@@ -257,6 +257,26 @@ function LimpiarDatos(idFormulario, excepciones = []) {
         if (!excepciones.includes(elementos[i].name))
             elementos[i].value = "";
     }
+}
+
+function validarLongitudMaxima(idFormulario) {
+    var error = "";
+    var control;
+    var controles = document.querySelectorAll("#" + idFormulario + " [class*='max-']");
+    for (var i = 0; i < controles.length; i++) {
+        control = controles[i];
+        //["form-control","o","max-40"]
+        var arrayClase = control.className.split(" ");
+        //max-40
+        var claseMax = arrayClase.filter(p => p.includes("max-"))[0];
+        //40
+        var valorMax = claseMax.replace("max-", "") * 1;
+        if (control.value.length > valorMax) {
+            error = "El campo " + control.name + " no puede tener una longitud superior a " + valorMax;
+            return error;
+        }
+    }
+    return error;
 }
 
 function validarObligatorios(idFormulario) {
@@ -455,7 +475,7 @@ function construirFormulario(objFormulario) {
                 hijosArray.rows = "10";
             }
             if (hijosArray.id == undefined) {
-                hijosArray.id = "cboPrueba"; 
+                hijosArray.id = "cboPrueba";
             }
             if (hijosArray.propiedadMostrar == undefined) {
                 hijosArray.propiedadMostrar = "nombre";
