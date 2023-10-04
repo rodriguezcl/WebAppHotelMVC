@@ -279,6 +279,27 @@ function validarLongitudMaxima(idFormulario) {
     return error;
 }
 
+function validarSoloNumerosEnteros(idFormulario) {
+    var error = "";
+    var control;
+    var controles = document.querySelectorAll("#" + idFormulario + " [class*='snc']");
+    for (var i = 0; i < controles.length; i++) {
+        control = controles[i];
+        var valor = control.value;
+        var longitud = valor.length;
+        for (var j = 0; j < valor.length; j++) {
+            var caracter = valor[j];
+            if (caracter != "0" && caracter != "1" && caracter != "2" && caracter != "3" && caracter != "4" && caracter != "5" && caracter != "6" && caracter != "7" && caracter != "8" && caracter != "9") {
+                error = "El control " + control.name + " solo debe contener números enteros.";
+                return error;
+            }
+
+        }
+        
+    }
+    return error;
+}
+
 function validarLongitudMinima(idFormulario) {
     var error = "";
     var control;

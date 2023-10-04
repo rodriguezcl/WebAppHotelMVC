@@ -40,6 +40,18 @@ function filtrarPersonaTipoUsuario() {
 }
 
 function guardarPersona() {
+
+    var error = validarObligatorios("frmPersona")
+    if (error != "") {
+        Error(error);
+        return;
+    }
+    var error = validarSoloNumerosEnteros("frmPersona")
+    if (error != "") {
+        Error(error);
+        return;
+    }
+
     var frmPersona = document.getElementById("frmPersona");
     var frm = new FormData(frmPersona);
     fetchPostText("Persona/guardarPersona", frm, function (res) {
