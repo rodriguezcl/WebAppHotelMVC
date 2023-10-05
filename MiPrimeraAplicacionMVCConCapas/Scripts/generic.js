@@ -300,6 +300,41 @@ function validarSoloNumerosEnteros(idFormulario) {
     return error;
 }
 
+function validarSoloNumerosDecimalesControl(idFormulario) {
+    var error = "";
+    var control;
+    var controles = document.querySelectorAll("#" + idFormulario + " [class*='sndc']");
+    for (var i = 0; i < controles.length; i++) {
+        control = controles[i];
+        var valor = control.value;
+        var longitud = valor.length;
+        var numeroVeces = [...valor].filter(p => p.includes(".")).length
+        if (numeroVeces > 1) {
+            error = "El control " + control.name + " solo debe haber un punto decimal.";
+            return error;
+        }
+        if (valor[0] == ".") {
+            error = "El control " + control.name + " no puede iniciar con un punto (.)";
+            return error
+        }
+        if (valor[longitud - 1] == ".") {
+            error = "El control " + control.name + " no puede finalizar con un punto (.)";
+            return error
+        }
+        for (var j = 0; j < valor.length; j++) {
+
+            var caracter = valor[j];
+            if (caracter != "0" && caracter != "1" && caracter != "2" && caracter != "3" && caracter != "4" && caracter != "5" && caracter != "6" && caracter != "7" && caracter != "8" && caracter != "9" && caracter != ".") {
+                error = "El control " + control.name + " solo debe contener números.";
+                return error;
+            }
+
+        }
+
+    }
+    return error;
+}
+
 function validarLongitudMinima(idFormulario) {
     var error = "";
     var control;
@@ -485,20 +520,20 @@ function validarSoloNumeros(e) {
     }
 }
 
-function validarSoloNumerosDecimales(e){
+function validarSoloNumerosDecimales(e) {
     var codigoAscii = e.keyCode;
-    if ((codigoAscii < 48 && codigoAscii!=46) || codigoAscii > 57) {
+    if ((codigoAscii < 48 && codigoAscii != 46) || codigoAscii > 57) {
         e.preventDefault();
     }
     if (String.fromCharCode(e.keyCode) == ".") {
         if (e.target.value.includes(".")) e.preventDefault();
     }
-    if (e.target.value.length==0 && String.fromCharCode(e.keyCode) == ".") {
+    if (e.target.value.length == 0 && String.fromCharCode(e.keyCode) == ".") {
         e.preventDefault();
     }
 }
 
-function encontroClase(clase, claseBuscar="snc") {
+function encontroClase(clase, claseBuscar = "snc") {
     var arrayClase = clase.split(" ");
     var numeroEncontradas = arrayClase.filter(p => p.includes(claseBuscar)).length;
     if (numeroEncontradas == 0) return false
@@ -563,7 +598,7 @@ function construirFormulario(objFormulario) {
             var encontroSNC = encontroClase(hijosArray.classControl, "snc")
             var encontroSNDC = encontroClase(hijosArray.classControl, "sndc")
 
-            
+
             var typelemento = hijosArray.type;
             var classControl = hijosArray.classControl;
             contenido += `<div class="${hijosArray.class}">`
@@ -614,6 +649,11 @@ function GuardarGenerico(idformulario, urlguardar) {
         return;
     }
     var error = validarSoloNumerosEnteros(idformulario)
+    if (error != "") {
+        Error(error);
+        return;
+    }
+    var error = validarSoloNumerosDecimalesControl(idformulario)
     if (error != "") {
         Error(error);
         return;
