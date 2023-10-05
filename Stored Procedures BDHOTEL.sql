@@ -420,4 +420,43 @@ where IIDPERSONA=@iidpersona
 end
 go
 
+--30)[uspGuardarCategoria]
+create procedure uspGuardarCategoria
+@idcategoria int,
+@nombre varchar(100),
+@descripcion varchar(100)
+as 
+begin
+
+if @idcategoria=0
+ insert into CATEGORIA(NOMBRE,DESCRIPCION)
+ values(@nombre,@descripcion)
+else
+update CATEGORIA
+set NOMBRE=@nombre,DESCRIPCION=@descripcion
+where IIDCATEGORIA=@idcategoria
+end
+go
+
+--31)[uspEliminarCategoria]
+create procedure uspEliminarCategoria
+@idcategoria int
+as
+begin
+delete from CATEGORIA
+where IIDCATEGORIA=@idcategoria
+end
+go
+
+--32)[uspRecuperarCategoria]
+create procedure uspRecuperarCategoria
+@idcategoria int 
+as
+begin
+select IIDCATEGORIA, NOMBRE, DESCRIPCION
+from CATEGORIA
+where IIDCATEGORIA = @idcategoria
+end
+go
+
 
