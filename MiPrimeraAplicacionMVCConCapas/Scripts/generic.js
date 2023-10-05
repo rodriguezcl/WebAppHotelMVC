@@ -671,16 +671,30 @@ function GuardarGenerico(idformulario, urlguardar) {
                 var objConf = objConfiguracionGlobal;
                 var objBus = objBusquedaGlobal;
 
+                if (objBus != undefined) {
+                    var valor = get(objBus.id);
+
+                    fetchGet(`${objBus.url}/?${objBus.nombreparametro}=` + valor, function (res) {
+                        var rpta = generarTabla(objConf, res, objFormularioGlobal);
+                        document.getElementById("divContenedor").innerHTML = rpta;
+                    })
+                }
+                else {
+                    
+                    fetchGet(`${objConf.url}`, function (res) {
+                        if(objConf.name!=undefined && objConf.name!="")
+                        res=res[objConf.name]
+                        var rpta = generarTabla(objConf, res, objFormularioGlobal);
+                        document.getElementById("divContenedor").innerHTML = rpta;
+                    })
+                }
+
                 //Id del control
-                var valor = get(objBus.id);
                 if (tipoform == "popup") {
                     document.getElementById("btnCerrar" + objConfiguracionGlobal.idpopup).click();
                 }
 
-                fetchGet(`${objBus.url}/?${objBus.nombreparametro}=` + valor, function (res) {
-                    var rpta = generarTabla(objConf, res, objFormularioGlobal);
-                    document.getElementById("divContenedor").innerHTML = rpta;
-                })
+
                 LimpiarDatos(idformulario)
             }
         })
@@ -713,7 +727,7 @@ function EliminarGenerico(id) {
     var nombreparametro = objConfiguracionGlobal.parametroEliminar;
     var objConf = objConfiguracionGlobal;
     var objBus = objBusquedaGlobal;
-    var valor = get(objBus.id)
+   
 
     Confirmacion("¿Desea eliminar?", "Confirmar eliminación",
         function (res) {
@@ -722,11 +736,21 @@ function EliminarGenerico(id) {
                 function (rpta) {
                     if (rpta == "1") {
                         Correcto("Se eliminó correctamente");
-                        fetchGet(`${objBus.url}/?${objBus.nombreparametro}=` + valor, function (res) {
-                            var rpta = generarTabla(objConf, res, objFormularioGlobal);
-                            document.getElementById("divContenedor").innerHTML = rpta;
-                        })
-
+                        if (objBus != null && objBus != undefined) {
+                            var valor = get(objBus.id);
+                            fetchGet(`${objBus.url}/?${objBus.nombreparametro}=` + valor, function (res) {
+                                var rpta = generarTabla(objConf, res, objFormularioGlobal);
+                                document.getElementById("divContenedor").innerHTML = rpta;
+                            })
+                        }
+                        else {
+                            fetchGet(`${objConf.url}`, function (res) {
+                                if (objConf.name != undefined && objConf.name != "")
+                                    res = res[objConf.name]
+                                var rpta = generarTabla(objConf, res, objFormularioGlobal);
+                                document.getElementById("divContenedor").innerHTML = rpta;
+                            })
+                        }
                     }
                 })
         })

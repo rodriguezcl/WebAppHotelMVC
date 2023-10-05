@@ -47,7 +47,6 @@ function listarProductos() {
             valuemember: "iidCategoria",
             button: true,
             id: "cboCategoriaBusqueda"
-
         },
         {
             type: "popup",
