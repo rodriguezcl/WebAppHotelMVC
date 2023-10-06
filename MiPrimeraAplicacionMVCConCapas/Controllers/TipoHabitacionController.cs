@@ -16,32 +16,6 @@ namespace MiPrimeraAplicacionMVCConCapas.Controllers
             return View();
         }
 
-        public ActionResult Inicio()
-        {
-            return View();
-        }
-
-        public ActionResult VistaPruebaInicio()
-        {
-            return View();
-        }
-
-        public string cadena()
-        {
-            return "123";
-        }
-
-        public int numero()
-        {
-            return 5;
-        }
-
-        //public List<TipoHabitacionCLS> lista()
-        //{
-        //    TipoHabitacionBL obj = new TipoHabitacionBL();
-        //    return obj.listarTipoHabitacion();
-        //}
-        // [{"id":1,"nombre":"Simple","descripcion":"Solo para uno"},{"id":2,"nombre":"Doble","descripcion":"Hecho para casados"}]
         public JsonResult lista()
         {
             TipoHabitacionBL obj = new TipoHabitacionBL();
@@ -55,12 +29,10 @@ namespace MiPrimeraAplicacionMVCConCapas.Controllers
                 JsonRequestBehavior.AllowGet);
         }
 
-
         public int guardarDatos(TipoHabitacionCLS oTipoHabitacionCLS)
         {
             TipoHabitacionBL obj = new TipoHabitacionBL();
             return obj.guardarTipoHabitacion(oTipoHabitacionCLS);
-
         }
 
         public JsonResult recuperarTipoHabitacion(int id)
