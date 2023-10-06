@@ -10,7 +10,6 @@ using Capa_Entidad;
 
 public class CamaDAL:CadenaDAL
     {
-
     public CamaCLS recuperarCamaPorId(int id)
     {
         CamaCLS oCamaCLS=null;
@@ -35,6 +34,7 @@ public class CamaDAL:CadenaDAL
                         int posId = drd.GetOrdinal("IIDCAMA");
                         int posNombre = drd.GetOrdinal("NOMBRE");
                         int posDescripcion = drd.GetOrdinal("DESCRIPCION");
+                        int posIidEstado = drd.GetOrdinal("IIDESTADO");
                         while (drd.Read())
                         {
                             oCamaCLS = new CamaCLS();
@@ -44,7 +44,9 @@ public class CamaDAL:CadenaDAL
                                 : drd.GetString(posNombre);
                             oCamaCLS.descripcion = drd.IsDBNull(posDescripcion) ? ""
                                 : drd.GetString(posDescripcion);
-                           
+                            oCamaCLS.iidestado = drd.IsDBNull(posIidEstado) ? 0
+                                : drd.GetInt32(posIidEstado);
+
                         }
                     }
 
@@ -63,8 +65,6 @@ public class CamaDAL:CadenaDAL
 
 
     }
-
-
 
     public List<CamaCLS> listarCama()
         {
@@ -117,8 +117,6 @@ public class CamaDAL:CadenaDAL
 
 
         }
-
-
 
     public int eliminarCama(int iidcama)
     {
@@ -189,7 +187,6 @@ public class CamaDAL:CadenaDAL
 
 
     }
-
 
     public List<CamaCLS> filtrarCama(string nombrecama)
     {

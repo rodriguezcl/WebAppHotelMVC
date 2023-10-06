@@ -32,6 +32,7 @@ function listarCama() {
             type: "fieldset",
             urlGuardar: "Cama/guardarCama",
             legend: "Datos de la Cama",
+            limpiarexcepcion: ["iidestado"],
             formulario: [
                 [
                     {
@@ -71,7 +72,7 @@ function listarCama() {
                         values: ["1", "2", "3"],
                         ids: ["rbExcelente", "rbBuen", "rbMal"],
                         name: "iidestado",
-                        checked: "rbExcelente"
+                        checked: "rbBuen"
                     }
                 ]
             ]
