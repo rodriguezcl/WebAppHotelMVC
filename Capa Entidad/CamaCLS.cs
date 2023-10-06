@@ -11,5 +11,6 @@ namespace Capa_Entidad
         public int idcama { get; set; }
         public string nombre { get; set; }
         public string descripcion { get; set; }
+        public int iidestado { get; set; }
     }
 }

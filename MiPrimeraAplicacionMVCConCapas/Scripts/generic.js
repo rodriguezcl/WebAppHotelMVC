@@ -1,13 +1,8 @@
-﻿var combosLlenar = [];
-var objConfiguracionGlobal;
-var objBusquedaGlobal;
-var objFormularioGlobal;
-
-function get(id) {
+﻿function get(id) {
     return document.getElementById(id).value;
 }
 
-function Error(texto = "Ocurrió un error") {
+function Error(texto ="Ocurrió un error") {
     Swal.fire({
         icon: 'error',
         title: 'Error',
@@ -15,7 +10,7 @@ function Error(texto = "Ocurrió un error") {
     })
 }
 
-function Correcto(texto = "Se realizó correctamente") {
+function Correcto(texto="Se realizó correctamente") {
     Swal.fire({
         position: 'center',
         icon: 'success',
@@ -25,53 +20,60 @@ function Correcto(texto = "Se realizó correctamente") {
     })
 }
 
-function Confirmacion(texto = "¿Desea guardar los cambios?", title = "Confirmación",
-    callback) {
-    return Swal.fire({
+function Confirmacion(texto = "Desea guardar los cambios?", title = "Confirmación",
+callback) {
+  return  Swal.fire({
         title: title,
         text: texto,
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Si',
-        cancelButtonText: 'No'
+      confirmButtonText: 'Si',
+      cancelButtonText: 'No'
     }).then((result) => {
         if (result.isConfirmed) {
             callback();
-        }
+        } 
     })
 }
 
-function set(id, valor) {
+function set(id,valor) {
     document.getElementById(id).value = valor;
 }
-
+//No sirve por que los input radio tienen check
 function setN(id, valor) {
     document.getElementsByName(id)[0].value = valor;
 }
-
 function getN(id, valor) {
     return document.getElementsByName(id)[0].value;
 }
 
-function setChecked(selector) {
+function setC(selector) {
     document.querySelector(selector).checked = true;
 }
 
-function pintar(objConfiguracion, objBusqueda, objFormulario) {
 
+
+
+
+
+var objConfiguracionGlobal;
+var objBusquedaGlobal;
+var objFormularioGlobal;
+function pintar(objConfiguracion, objBusqueda,objFormulario) {
+
+    //URL Absolute  https://localhos
     var raiz = document.getElementById("hdfOculto").value;
     var urlAbsoluta = window.location.protocol + "//" +
         window.location.host + raiz + objConfiguracion.url;
-
+    // alert(urlAbsoluta)
     //Controles//accion
     fetch(urlAbsoluta)
         .then(res => res.json())
         .then(res => {
             var contenido = "";
             //Configuracion del formulario
-
             if (objConfiguracion != undefined) {
                 if (objConfiguracion.editar == undefined)
                     objConfiguracion.editar = false;
@@ -81,26 +83,25 @@ function pintar(objConfiguracion, objBusqueda, objFormulario) {
                     objConfiguracion.propiedadId = "id";
                 if (objConfiguracion.callbackEliminar == undefined)
                     objConfiguracion.callbackEliminar = "Eliminar";
-                if (objConfiguracion.callbackeditar == undefined)
-                    objConfiguracion.callbackeditar = "Editar";
+                if (objConfiguracion.callbackEditar == undefined)
+                    objConfiguracion.callbackEditar = "Editar";
                 if (objConfiguracion.popup == undefined)
                     objConfiguracion.popup = false;
                 if (objConfiguracion.sizepopup == undefined)
                     objConfiguracion.sizepopup = "";
-                if (objConfiguracion.recuperarExcepcion == undefined)
-                    objConfiguracion.recuperarExcepcion = [];
+                if (objConfiguracion.recuperarexcepcion == undefined)
+                    objConfiguracion.recuperarexcepcion = [];
                 if (objConfiguracion.iscallbackeditar == undefined)
                     objConfiguracion.iscallbackeditar = false;
-
+                   
                 objConfiguracionGlobal = objConfiguracion;
             }
-
             if (objFormulario != undefined) {
                 objFormularioGlobal = objFormulario;
-                if (objFormulario.limpiarExcepcion == undefined)
-                    objFormulario.limpiarExcepcion = [];
                 if (objFormulario.guardar == undefined)
                     objFormulario.guardar = true
+                if (objFormulario.limpiarexcepcion == undefined)
+                    objFormulario.limpiarexcepcion = []
                 if (objFormulario.limpiar == undefined)
                     objFormulario.limpiar = true
                 if (objFormulario.formulariogenerico == undefined)
@@ -110,13 +111,14 @@ function pintar(objConfiguracion, objBusqueda, objFormulario) {
                 if (objFormulario.id == undefined)
                     objFormulario.id = "frmFormulario"
                 if (objFormulario.tituloconfirmacionguardar == undefined)
-                    objFormulario.tituloconfirmacionguardar = "Desea guardar los cambios "
+                    objFormulario.tituloconfirmacionguardar = "Desea guardar los cambios?"
                 var type = objFormulario.type;
                 if (type == "fieldset") {
                     contenido += "<fieldset class='container'>";
                     if (objFormulario.legend != undefined) {
                         contenido += "<legend>" + objFormulario.legend + "</legend>"
                     }
+
 
                     contenido += construirFormulario(objFormulario)
                     contenido += `
@@ -137,14 +139,20 @@ function pintar(objConfiguracion, objBusqueda, objFormulario) {
                             : ''} 
                        `
                     contenido += "</fieldset>";
-                }
-
-                else if (type == "popup") {
+                } else if (type == "popup") {
                     contenido += `
-                     <button type="button"  onclick="EditarGenerico(0,'${objFormulario.id}')" class="mb-3 btn btn-primary" data-bs-toggle="modal" data-bs-target="#${objConfiguracion.idpopup}">Nuevo</button>
-`
-                    contenido += `
-                    <div class="modal fade" id="${objConfiguracion.idpopup}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                       <button type="button" class="btn btn-primary mb-3"
+                              onclick="EditarGenerico(0,'${objFormulario.id}')"
+                                       data-bs-toggle="modal"
+                              
+                                data-bs-target="#${objConfiguracion.idpopup}">
+                          Nuevo
+                           </button>
+                      `
+                    contenido += `<div class="modal fade" id="${objConfiguracion.idpopup}" 
+                                data-bs-backdrop="static" data-bs-keyboard="false"
+                             tabindex="-1" aria-labelledby="staticBackdropLabel" 
+                               aria-hidden="true">
                         <div class="modal-dialog ${objConfiguracion.sizepopup}">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -152,25 +160,30 @@ function pintar(objConfiguracion, objBusqueda, objFormulario) {
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">`;
-                    contenido += construirFormulario(objFormulario);
-                    contenido += `</div>
+                    contenido += construirFormulario(objFormulario)
+                    contenido +=`
+                                </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id='btnCerrar${objConfiguracionGlobal.idpopup}' >Cerrar</button>
-                                    <button type="button" class="btn btn-primary" onclick="${(objFormulario.formulariogenerico == undefined
+                                    <button type="button" class="btn btn-secondary"
+                                    data-bs-dismiss="modal"
+                   id='btnCerrar${objConfiguracionGlobal.idpopup}'>Cerrar</button>
+                                    <button type="button" class="btn btn-primary"
+                                    onclick="${(objFormulario.formulariogenerico == undefined
                             || objFormulario.formulariogenerico == false) ? `${objFormulario.callbackGuardar}()`
                             : `GuardarGenerico
-                          ('${objFormulario.id}', '${objFormulario.urlGuardar}')`}" >Guardar</button>
+                          ('${objFormulario.id}', '${objFormulario.urlGuardar}')`}"
+                                >Guardar</button>
                                 </div>
                             </div>
                         </div>
                     </div>`
                 }
+               
             }
 
-
+         
 
             if (objBusqueda != undefined && objBusqueda.busqueda == true) {
-
                 if (objBusqueda.placeholder == undefined)
                     objBusqueda.placeholder = "Ingrese un valor"
                 if (objBusqueda.id == undefined)
@@ -181,16 +194,13 @@ function pintar(objConfiguracion, objBusqueda, objFormulario) {
                     objConfiguracion.id = "divTabla";
                 if (objBusqueda.button == undefined)
                     objBusqueda.button = true;
-
+               
                 //Asignar los valores
-
+         
                 objBusquedaGlobal = objBusqueda;
-
                 var type = objBusqueda.type;
-
                 contenido += `
-                 <div class="container input-group mt-3 mb-3">`
-
+                 <div class="container input-group mb-3">`
                 if (type == "text") {
                     contenido += `
                            <input type="${objBusqueda.type}" class="form-control"
@@ -198,19 +208,14 @@ function pintar(objConfiguracion, objBusqueda, objFormulario) {
                          ${objBusqueda.button == true ? "" : "onkeyup='Buscar()'"}  
                        placeholder="${objBusqueda.placeholder}"
                                />`
-                }
-
-                else if (type == "combobox") {
+                } else if (type == "combobox") {
                     contenido += `
-                                 <select class="form-control"
-
-                                 ${objBusqueda.button == true ? "" : "onchange='Buscar()'"}
-
-                                id="${objBusqueda.id}"> </select>
-                                `
+                            <select class="form-control"
+                        ${objBusqueda.button == true ? "" : "onchange='Buscar()'"}  
+                            id="${objBusqueda.id}"></select>
+                              `
                 }
-
-
+               
                 if (objBusqueda.button == true) {
                     contenido += `
                   <button class="btn btn-primary" 
@@ -218,24 +223,27 @@ function pintar(objConfiguracion, objBusqueda, objFormulario) {
                       type="button" >
                     Buscar</button>`
                 }
-                contenido += ` </div>`
+           
+                contenido +=  ` </div>`
             }
             contenido += "<div id='divContenedor'>";
-            contenido += generarTabla(objConfiguracion, res, objFormulario, true);
+            contenido += generarTabla(objConfiguracion, res, objFormulario,true);
             contenido += "</div>";
             document.getElementById(objConfiguracion.id).innerHTML = contenido;
             if (objBusqueda != null) {
                 llenarComboBusqueda(res);
             }
-
             //Aqui llenamos los combos
             if (combosLlenar.length > 0) {
                 var item;
                 for (var i = 0; i < combosLlenar.length; i++) {
                     item = combosLlenar[i];
-                    llenarCombo(res[item.datasource], item.id, item.propiedadMostrar, item.propiedadId);
+                    llenarCombo(res[item.datasource], item.id, item.propiedadMostrar,
+                        item.propiedadId)
                 }
             }
+           
+
         })
 
 }
@@ -247,32 +255,38 @@ function llenarComboBusqueda(res) {
         var propiedadId = objBusquedaGlobal.valuemember;
         var name = objBusquedaGlobal.name;
         var data = res[name]
-        llenarCombo(data, id, propiedadMostrar, propiedadId);
+        llenarCombo(data, id, propiedadMostrar, propiedadId)
     }
+  
 }
 
-function LimpiarDatos(idFormulario, excepciones = []) {
-    var elementos = document.querySelectorAll("#" + idFormulario + " [name]")
+function LimpiarDatos(idFormulario,excepciones=[]) {
+    var elementos = document.querySelectorAll("#"+idFormulario+" [name]")
     for (var i = 0; i < elementos.length; i++) {
+        //Si esta incluido no se hace nada
+
         if (!excepciones.includes(elementos[i].name))
-            elementos[i].value = "";
+        elementos[i].value = "";
     }
 }
 
-function validarLongitudMaxima(idFormulario) {
+function ValidarLongitudMaxima(idFormulario) {
     var error = "";
+    var controles = document.querySelectorAll("#" + idFormulario + " [class*='max-']")
     var control;
-    var controles = document.querySelectorAll("#" + idFormulario + " [class*='max-']");
+    
     for (var i = 0; i < controles.length; i++) {
-        control = controles[i];
-        //["form-control","o","max-40"]
+        control = controles[i]
+        //["form-control", "o", "max-40"]
         var arrayClase = control.className.split(" ");
         //max-40
-        var claseMax = arrayClase.filter(p => p.includes("max-"))[0];
+        var claseMax = arrayClase.filter(p => p.includes("max-"))[0]
         //40
         var valorMax = claseMax.replace("max-", "") * 1;
         if (control.value.length > valorMax) {
-            error = "El campo " + control.name + " tiene una longitud de " + control.value.length + " caracteres, no puede ser superior a " + valorMax;
+            error = "El campo " + control.name + " tiene una longitud de "
+                + control.value.length + " , esta no puede ser mayor a "
+                + valorMax+" por favor corregir";
             return error;
         }
     }
@@ -281,96 +295,113 @@ function validarLongitudMaxima(idFormulario) {
 
 function validarSoloNumerosEnteros(idFormulario) {
     var error = "";
+    var controles = document.querySelectorAll("#" + idFormulario + " [class*='snc']")
     var control;
-    var controles = document.querySelectorAll("#" + idFormulario + " [class*='snc']");
+    var caracter;
     for (var i = 0; i < controles.length; i++) {
-        control = controles[i];
+        control = controles[i]
         var valor = control.value;
         var longitud = valor.length;
         for (var j = 0; j < valor.length; j++) {
-            var caracter = valor[j];
-            if (caracter != "0" && caracter != "1" && caracter != "2" && caracter != "3" && caracter != "4" && caracter != "5" && caracter != "6" && caracter != "7" && caracter != "8" && caracter != "9") {
-                error = "El control " + control.name + " solo debe contener números enteros.";
+            caracter = valor[j];
+            if (caracter != "0" && caracter != "1" && caracter != "2" &&
+                caracter != "3" && caracter != "4" && caracter != "5" &&
+                caracter != "6" && caracter != "7" && caracter != "8"
+                && caracter != "9") {
+                error = "El control " + control.name + " solo debe tener numeros enteros";
                 return error;
             }
-
         }
+
 
     }
     return error;
 }
+
 
 function validarSoloNumerosDecimalesControl(idFormulario) {
     var error = "";
+    var controles = document.querySelectorAll("#" + idFormulario + " [class*='sndc']")
     var control;
-    var controles = document.querySelectorAll("#" + idFormulario + " [class*='sndc']");
+    var caracter;
     for (var i = 0; i < controles.length; i++) {
-        control = controles[i];
+        control = controles[i]
         var valor = control.value;
         var longitud = valor.length;
-        var numeroVeces = [...valor].filter(p => p.includes(".")).length
-        if (numeroVeces > 1) {
-            error = "El control " + control.name + " solo debe haber un punto decimal.";
+        if (valor[0] == ".") {
+            error = "El control " + control.name + " no puede iniciar con un punto(.)";
             return error;
         }
-        if (valor[0] == ".") {
-            error = "El control " + control.name + " no puede iniciar con un punto (.)";
-            return error
-        }
         if (valor[longitud - 1] == ".") {
-            error = "El control " + control.name + " no puede finalizar con un punto (.)";
-            return error
+            error = "El control " + control.name + " no puede terminar con un punto(.)";
+            return error;
+        }
+        var numeroVeces = [...valor].filter(p => p.includes(".")).length
+        if (numeroVeces > 1) {
+            error = "El control " + control.name + " solo debe haber un punto decimal";
+            return error;
         }
         for (var j = 0; j < valor.length; j++) {
-
-            var caracter = valor[j];
-            if (caracter != "0" && caracter != "1" && caracter != "2" && caracter != "3" && caracter != "4" && caracter != "5" && caracter != "6" && caracter != "7" && caracter != "8" && caracter != "9" && caracter != ".") {
-                error = "El control " + control.name + " solo debe contener números.";
+         
+            caracter = valor[j];
+            if (caracter != "0" && caracter != "1" && caracter != "2" &&
+                caracter != "3" && caracter != "4" && caracter != "5" &&
+                caracter != "6" && caracter != "7" && caracter != "8"
+                && caracter != "9" && caracter != ".") {
+                error = "El control " + control.name + " solo debe tener numeros enteros";
                 return error;
             }
-
         }
+
 
     }
     return error;
 }
 
-function validarLongitudMinima(idFormulario) {
+function ValidarLongitudMinima(idFormulario) {
     var error = "";
+    var controles = document.querySelectorAll("#" + idFormulario + " [class*='min-']")
     var control;
-    var controles = document.querySelectorAll("#" + idFormulario + " [class*='min-']");
+
     for (var i = 0; i < controles.length; i++) {
-        control = controles[i];
-        //["form-control","o","max-40"]
+        control = controles[i]
+        //["form-control", "o", "max-40"]
         var arrayClase = control.className.split(" ");
         //max-40
-        var claseMin = arrayClase.filter(p => p.includes("min-"))[0];
+        var claseMin = arrayClase.filter(p => p.includes("min-"))[0]
         //40
         var valorMin = claseMin.replace("min-", "") * 1;
         if (control.value.length < valorMin) {
-            error = "El campo " + control.name + " tiene una longitud de " + control.value.length + " caracteres, no puede ser inferior a " + valorMin;
+            error = "El campo " + control.name + " tiene una longitud de "
+                + control.value.length + " , esta no puede ser menor a "
+                + valorMin + " por favor corregir";
             return error;
         }
     }
     return error;
 }
 
-function validarObligatorios(idFormulario) {
+function ValidarObligatorios(idFormulario) {
     //No hay error
     var error = "";
     var elementos = document.querySelectorAll("#" + idFormulario + " .o")
     for (var i = 0; i < elementos.length; i++) {
+        //Si esta incluido no se hace nada
         if (elementos[i].value == "") {
-            error = "Ingrese " + elementos[i].name;
+            error = "Debe ingresar el " + elementos[i].name;
             return error;
         }
+        
+            //elementos[i].value = "";
     }
     return error;
 }
 
-function generarTabla(objConfiguracion, res, objFormulario, primeravez = false) {
+
+function generarTabla(objConfiguracion, res , objFormulario,primeravez=false) {
+    // objFormulario.formulariogenerico = true
     var listaPintar = res;
-    if (objConfiguracion != null && objConfiguracion.name != undefined && primeravez == true) {
+    if (objConfiguracion != null && objConfiguracion.name != undefined && primeravez==true) {
         var nombrePropiedad = objConfiguracion.name;
         listaPintar = res[nombrePropiedad];
     }
@@ -394,22 +425,23 @@ function generarTabla(objConfiguracion, res, objFormulario, primeravez = false) 
             propiedadActual = objConfiguracion.propiedades[j]
             contenido += "<td>" + fila[propiedadActual] + "</td>";
         }
-
+        ////contenido += "<td>" + fila.id + "</td>";  //fila["id"]
+        ////contenido += "<td>" + fila.nombre + "</td>";
+        ////contenido += "<td>" + fila.descripcion + "</td>";
         if (objConfiguracion.editar == true || objConfiguracion.eliminar == true) {
             contenido += "<td>";
-
             if (objConfiguracion.editar == true) {
 
                 contenido += ` <i
              ${objConfiguracion.popup == true ?
-                        `data-bs-toggle="modal" data-bs-target="#${objConfiguracion.idpopup}"` : ""}    
+                    `data-bs-toggle="modal" data-bs-target="#${objConfiguracion.idpopup}"` : ""   }    
               class="btn btn-primary" 
-               onclick='${(objFormulario != undefined &&
+               onclick='${ (objFormulario != undefined &&
                         objFormulario.formulariogenerico != undefined &&
                         objFormulario.formulariogenerico == true) ? "EditarGenerico"
-                        : objConfiguracion.callbackeditar
+                    : objConfiguracion.callbackEditar
                     }(${fila[objConfiguracion.propiedadId]} , 
-                     "${objFormulario == undefined ? "" : objFormulario.id} " ) ' >
+                     "${objFormulario==undefined ? "" :  objFormulario.id} " ) ' >
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eyedropper" viewBox="0 0 16 16">
                     <path d="M13.354.646a1.207 1.207 0 0 0-1.708 0L8.5 3.793l-.646-.647a.5.5 0 1 0-.708.708L8.293 5l-7.147 7.146A.5.5 0 0 0 1 12.5v1.793l-.854.854a.5.5 0 1 0 .708.707L1.707 15H3.5a.5.5 0 0 0 .354-.146L11 7.707l1.146 1.147a.5.5 0 0 0 .708-.708l-.647-.646 3.147-3.146a1.207 1.207 0 0 0 0-1.708l-2-2zM2 12.707l7-7L10.293 7l-7 7H2v-1.293z" />
                 </svg></i>`
@@ -420,21 +452,24 @@ function generarTabla(objConfiguracion, res, objFormulario, primeravez = false) 
                 onclick='${(objFormulario != undefined &&
                         objFormulario.formulariogenerico != undefined
                         &&
-                        objFormulario.formulariogenerico == true) ? "EliminarGenerico"
-                        : objConfiguracion.callbackEliminar
-                    }(${fila[objConfiguracion.propiedadId]}) '  ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                        objFormulario.formulariogenerico == true )? "EliminarGenerico"
+                    : objConfiguracion.callbackEliminar
+            }(${ fila[objConfiguracion.propiedadId] }) '  ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
                        <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
                        </svg></i>`
             }
+
             contenido += "</td>";
+
         }
+     
         contenido += "</tr>";
     }
     contenido += "</table>"
     return contenido;
 }
 
-function fetchGet(url, callback) {
+function fetchGet(url,callback) {
     var raiz = document.getElementById("hdfOculto").value;
     var urlAbsoluta = window.location.protocol + "//" +
         window.location.host + raiz + url;
@@ -460,7 +495,7 @@ function fetchGetText(url, callback) {
 
 }
 
-function fetchPostText(url, frm, callback) {
+function fetchPostText(url,frm, callback) {
     var raiz = document.getElementById("hdfOculto").value;
     var urlAbsoluta = window.location.protocol + "//" +
         window.location.host + raiz + url;
@@ -473,23 +508,44 @@ function fetchPostText(url, frm, callback) {
         }).catch(err => {
             console.log(err)
         })
-
+    /*
+    fetch(urlAbsoluta).then(res => res.json())
+        .then(res => {
+            callback(res)
+        }).catch(err => {
+            console.log(err)
+        })
+        */
 }
 
 function Buscar() {
     var objConf = objConfiguracionGlobal;
     var objBus = objBusquedaGlobal;
-
     //Id del control
     var valor = get(objBus.id)
     fetchGet(`${objBus.url}/?${objBus.nombreparametro}=` + valor, function (res) {
         var rpta = generarTabla(objConf, res, objFormularioGlobal);
         document.getElementById("divContenedor").innerHTML = rpta;
     })
-
+    /*
+    fetch(`${objBus.url}/?${objBus.nombreparametro}=` + valor)
+        .then(res => res.json())
+        .then(res => {
+            var rpta = generarTabla(objConf, res);
+            document.getElementById("divContenedor").innerHTML = rpta;
+        })
+        */
+    /*
+    pintar({
+        url: `${objBus.url}/?${objBus.nombreparametro}=` + valor,
+        id: objConf.id,
+        cabeceras: objConf.cabeceras,
+        propiedades: objConf.propiedades
+    }, objBus)*/
 }
 
-function recuperarGenerico(url, idFormulario, excepciones = [], adicional = false) {
+
+function recuperarGenerico(url,idFormulario, excepciones = [],adicional=false) {
     var elementos = document.querySelectorAll("#" + idFormulario + " [name]")
     var nombreName;
     fetchGet(url, function (res) {
@@ -497,57 +553,67 @@ function recuperarGenerico(url, idFormulario, excepciones = [], adicional = fals
             nombreName = elementos[i].name
             if (!excepciones.includes(elementos[i].name)) {
                 if (elementos[i].type.toUpperCase() == "RADIO") {
-                    setChecked("[type='radio'][value='" + res[nombreName] + "']")
-                }
-                else {
+                    setC("[type='radio'][value='"+res[nombreName]+"']")
+                } else {
                     setN(nombreName, res[nombreName])
                 }
+               
             }
+               
         }
         if (adicional == true) {
             objConfiguracionGlobal.callbackeditar(res);
-            /* recuperarEspecifico(res);*/
+            //recuperarEspecifico(res);
         }
     });
 
-
+    
 }
 
 function validarSoloNumeros(e) {
     var codigoAscii = e.keyCode;
     if (codigoAscii < 48 || codigoAscii > 57) {
+        //No mostrarse
         e.preventDefault();
     }
 }
 
 function validarSoloNumerosDecimales(e) {
     var codigoAscii = e.keyCode;
-    if ((codigoAscii < 48 && codigoAscii != 46) || codigoAscii > 57) {
+    if ((codigoAscii < 48 && codigoAscii!=46) || codigoAscii > 57) {
+        //No mostrarse
         e.preventDefault();
     }
     if (String.fromCharCode(e.keyCode) == ".") {
         if (e.target.value.includes(".")) e.preventDefault();
     }
-    if (e.target.value.length == 0 && String.fromCharCode(e.keyCode) == ".") {
+    if (e.target.value.length==0 && String.fromCharCode(e.keyCode) == ".") {
         e.preventDefault();
     }
 }
 
-function encontroClase(clase, claseBuscar = "snc") {
-    var arrayClase = clase.split(" ");
+function encontroClase(clase,claseBuscar="snc") {
+   
+
+    
+        //["form-control", "o", "max-40"]
+        var arrayClase = clase.split(" ");
+        //max-40
     var numeroEncontradas = arrayClase.filter(p => p.includes(claseBuscar)).length;
     if (numeroEncontradas == 0) return false
     else return true;
-
+        
+    
 }
 
+var combosLlenar = [];
 function construirFormulario(objFormulario) {
+    console.log(objFormulario)
     var type = objFormulario.type;
     var elementos = objFormulario.formulario;
-
+    
     var contenido = "<div class='mt-3 mb-3'>";
     contenido += `<form id='${objFormulario.id}'  method='POST'>`;
-
     //FILAS
     var arrayelemento;
     var numeroarrayelemento;
@@ -557,7 +623,6 @@ function construirFormulario(objFormulario) {
         contenido += "<div class='row'>";
         for (var j = 0; j < numeroarrayelemento; j++) {
             var hijosArray = arrayelemento[j]
-
             if (hijosArray.class == undefined) {
                 hijosArray.class = "mb-3";
             }
@@ -588,9 +653,11 @@ function construirFormulario(objFormulario) {
             if (hijosArray.propiedadId == undefined) {
                 hijosArray.propiedadId = "id";
             }
+            var valorKeyPressNumero = false;
             if (hijosArray.classControl == undefined) {
                 hijosArray.classControl = "";
             }
+            //classControl
             if (hijosArray.className == undefined) {
                 hijosArray.className = "mb-3";
             }
@@ -598,66 +665,77 @@ function construirFormulario(objFormulario) {
             var encontroSNC = encontroClase(hijosArray.classControl, "snc")
             var encontroSNDC = encontroClase(hijosArray.classControl, "sndc")
 
-
+           
             var typelemento = hijosArray.type;
             var classControl = hijosArray.classControl;
             contenido += `<div class="${hijosArray.class}">`
             contenido += `<label>${hijosArray.label}</label>`
             if (typelemento == "text" || typelemento == "number" || typelemento == "date") {
-                contenido += `  <input type="text" class="form-control ${classControl}" ${encontroSNC == false ? "" : "onkeypress='validarSoloNumeros(event)'"} 
-                                  ${encontroSNDC == false ? "" : "onkeypress='validarSoloNumerosDecimales(event)'"}
+
+                contenido += `  <input type="text" class="form-control ${classControl}"
+                       ${encontroSNC == false ? "" : "onkeypress='validarSoloNumeros(event)'"}
+               ${encontroSNDC == false ? "" : "onkeypress='validarSoloNumerosDecimales(event)'"}                
                        name="${hijosArray.name}" value="${hijosArray.value}"
                    ${hijosArray.readonly == true ? "readonly" : ""}  />`
-            }
 
-            else if (typelemento == "textarea") {
-                contenido += `  <textarea name="${hijosArray.name}" class="form-control ${classControl}"
-                       rows="${hijosArray.rows}" cols="${hijosArray.cols}">
-                   ${hijosArray.value}  </textarea>`
-            }
+            } else if (typelemento == "textarea") {
+                contenido += `<textarea name="${hijosArray.name}" 
+                     class="form-control ${classControl}"
+                     rows="${hijosArray.rows}" cols="${hijosArray.cols}"
+                       >${hijosArray.value}</textarea>`
 
-            else if (typelemento == "combobox") {
+            } else if (typelemento == "combobox") {
                 contenido += `
-                            <select name="${hijosArray.name}" id="${hijosArray.id}" class="form-control ${classControl}"></select>
-                            `
+                      <select name="${hijosArray.name}" class="form-control ${classControl}"
+                                    id="${hijosArray.id}"></select>
+                   `
                 combosLlenar.push(hijosArray)
-            }
-
-            else if (typelemento == "radio") {
-                contenido += `<div>`;
+            } else if (typelemento == "radio") {
+                contenido += "<div>";
                 for (var z = 0; z < hijosArray.labels.length; z++) {
-                contenido += `
-                <input type="radio" id="${hijosArray.ids}" checked name="${hijosArray.name}" value="${hijosArray.values}" /> <label>${hijosArray.labels[z]}</label>
-               `
+                    contenido += `
+                              <input type="radio"
+                                ${hijosArray.ids[z]==hijosArray.checked ? "checked" : ""}
+                               id="${hijosArray.ids[z]}"
+                                   name="${hijosArray.name}" value="${hijosArray.values[z]}" />
+                        <label>${ hijosArray.labels[z]}</label>
+                   `
                 }
-                contenido += `</div>`;
+     
+                contenido+="</div>"
             }
             contenido += `</div>`
+
         }
+
         contenido += "</div>";
+
     }
     contenido += "</form>";
     contenido += "</div>"
+   
     return contenido;
 }
 
 function GuardarGenerico(idformulario, urlguardar) {
+   // alert(idformulario);
+   // alert(urlguardar);
+    var error = ValidarObligatorios(idformulario)
+    if (error != "") {
+        Error(error);
+        return;
+    }
+    var error = ValidarLongitudMaxima(idformulario);
+    if (error != "") {
+        Error(error);
+        return;
+    }
+    var error = ValidarLongitudMinima(idformulario);
+    if (error != "") {
+        Error(error);
+        return;
+    }
 
-    var error = validarObligatorios(idformulario)
-    if (error != "") {
-        Error(error);
-        return;
-    }
-    var error = validarLongitudMaxima(idformulario)
-    if (error != "") {
-        Error(error);
-        return;
-    }
-    var error = validarLongitudMinima(idformulario)
-    if (error != "") {
-        Error(error);
-        return;
-    }
     var error = validarSoloNumerosEnteros(idformulario)
     if (error != "") {
         Error(error);
@@ -668,68 +746,77 @@ function GuardarGenerico(idformulario, urlguardar) {
         Error(error);
         return;
     }
+    Confirmacion("" + objFormularioGlobal.tituloconfirmacionguardar, "Confirmar Guardar Datos",
+        function (res) {
+            var tipoform = objFormularioGlobal.type;
+            var idpopup = objConfiguracionGlobal.idpopup;
+            var frmGenerico = document.getElementById(idformulario);
+            var frm = new FormData(frmGenerico);
+            fetchPostText(urlguardar, frm, function (res) {
+                if (res == "1") {
 
-    Confirmacion("" + objFormularioGlobal.tituloconfirmacionguardar, "Confirmar Datos", function (res) {
+                    var objConf = objConfiguracionGlobal;
+                    var objBus = objBusquedaGlobal;
+                    //Id del control
+                    if (objBus != undefined) {
+                        var valor = get(objBus.id)
+                        fetchGet(`${objBus.url}/?${objBus.nombreparametro}=` + valor, function (res) {
+                            var rpta = generarTabla(objConf, res, objFormularioGlobal);
+                            document.getElementById("divContenedor").innerHTML = rpta;
 
-        var tipoform = objFormularioGlobal.type;
-        var idpopup = objConfiguracionGlobal.idpopup;
-        var frmGenerico = document.getElementById(idformulario);
-        var frm = new FormData(frmGenerico);
-        fetchPostText(urlguardar, frm, function (res) {
-            if (res == "1") {
+                        })
+                    } else {
+                       
+                        fetchGet(`${objConf.url}`, function (res) {
+                            if(objConf.name!=undefined && objConf.name!="")
+                            res=res[objConf.name]
+                            var rpta = generarTabla(objConf, res, objFormularioGlobal);
+                            document.getElementById("divContenedor").innerHTML = rpta;
 
-                var objConf = objConfiguracionGlobal;
-                var objBus = objBusquedaGlobal;
-
-                if (objBus != undefined) {
-                    var valor = get(objBus.id);
-
-                    fetchGet(`${objBus.url}/?${objBus.nombreparametro}=` + valor, function (res) {
-                        var rpta = generarTabla(objConf, res, objFormularioGlobal);
-                        document.getElementById("divContenedor").innerHTML = rpta;
-                    })
+                        })
+                    }
+                  
+                    if (tipoform == "popup") {
+                        document.getElementById("btnCerrar" + objConfiguracionGlobal.idpopup)
+                            .click();
+                    }
+                 
+                    LimpiarDatos(idformulario)
+                    //listarTipoHabitacion();
+                    //Limpiar();
                 }
-                else {
-                    
-                    fetchGet(`${objConf.url}`, function (res) {
-                        if(objConf.name!=undefined && objConf.name!="")
-                        res=res[objConf.name]
-                        var rpta = generarTabla(objConf, res, objFormularioGlobal);
-                        document.getElementById("divContenedor").innerHTML = rpta;
-                    })
-                }
-
-                //Id del control
-                if (tipoform == "popup") {
-                    document.getElementById("btnCerrar" + objConfiguracionGlobal.idpopup).click();
-                }
-
-
-                LimpiarDatos(idformulario)
-            }
-        })
-    })
-
+            })
+        });
+   
 }
 
 function EditarGenerico(id, idFormulario) {
+    //var idFormulario = "frmCama";
+   // var idformulario = objConfiguracionGlobal 
+    //alert(idFormulario)
     var url = objConfiguracionGlobal.urlRecuperar;
     var nombreparametro = objConfiguracionGlobal.parametroRecuperar
     if (objFormularioGlobal.type == "popup") {
         LimpiarGenerico(objFormularioGlobal.id);
         if (id == 0) {
-            document.getElementById("lbl" + objConfiguracionGlobal.idpopup).innerHTML = "Agregar " + objFormularioGlobal.title;
+            document.getElementById("lbl" + objConfiguracionGlobal.idpopup).innerHTML
+                = "Agregar " + objFormularioGlobal.titulo;
         }
-        //Editar
+        //editar
         else {
-            document.getElementById("lbl" + objConfiguracionGlobal.idpopup).innerHTML = "Editar " + objFormularioGlobal.title;
-            recuperarGenerico(`${url}/?${nombreparametro}=` + id, idFormulario, objConfiguracionGlobal.recuperarExcepcion, objConfiguracionGlobal.iscallbackeditar);
+            document.getElementById("lbl" + objConfiguracionGlobal.idpopup).innerHTML
+                = "Editar " + objFormularioGlobal.titulo;
+            recuperarGenerico(`${url}/?${nombreparametro}=` + id,
+                idFormulario, objConfiguracionGlobal.recuperarexcepcion,
+                objConfiguracionGlobal.iscallbackeditar);
         }
+    } else {
+      
+        recuperarGenerico(`${url}/?${nombreparametro}=` + id,
+            idFormulario, objConfiguracionGlobal.recuperarexcepcion,
+            objConfiguracionGlobal.iscallbackeditar);
     }
-    else {
-
-        recuperarGenerico(`${url}/?${nombreparametro}=` + id, idFormulario, objConfiguracionGlobal.recuperarExcepcion, objConfiguracionGlobal.iscallbackeditar);
-    }
+   
 }
 
 function EliminarGenerico(id) {
@@ -737,49 +824,50 @@ function EliminarGenerico(id) {
     var nombreparametro = objConfiguracionGlobal.parametroEliminar;
     var objConf = objConfiguracionGlobal;
     var objBus = objBusquedaGlobal;
-   
+  
 
-    Confirmacion("¿Desea eliminar?", "Confirmar eliminación",
+    Confirmacion("Desea eliminar el tipo habitacion?", "Confirmar eliminaciòn",
         function (res) {
 
             fetchGetText(`${url}/?${nombreparametro}=` + id,
                 function (rpta) {
-                    if (rpta == "1") {
-                        Correcto("Se eliminó correctamente");
-                        if (objBus != null && objBus != undefined) {
-                            var valor = get(objBus.id);
-                            fetchGet(`${objBus.url}/?${objBus.nombreparametro}=` + valor, function (res) {
-                                var rpta = generarTabla(objConf, res, objFormularioGlobal);
-                                document.getElementById("divContenedor").innerHTML = rpta;
-                            })
-                        }
-                        else {
-                            fetchGet(`${objConf.url}`, function (res) {
-                                if (objConf.name != undefined && objConf.name != "")
-                                    res = res[objConf.name]
-                                var rpta = generarTabla(objConf, res, objFormularioGlobal);
-                                document.getElementById("divContenedor").innerHTML = rpta;
-                            })
-                        }
-                    }
-                })
+            if (rpta == "1") {
+                Correcto("Se elimino correctamente");
+                if (objBus != null && objBus != undefined) {
+                    var valor = get(objBus.id)
+                    fetchGet(`${objBus.url}/?${objBus.nombreparametro}=` + valor, function (res) {
+                        var rpta = generarTabla(objConf, res, objFormularioGlobal);
+                        document.getElementById("divContenedor").innerHTML = rpta;
+                    })
+                } else {
+                    fetchGet(`${objConf.url}`, function (res) {
+                        if (objConf.name != undefined && objConf.name != "")
+                            res = res[objConf.name]
+                        var rpta = generarTabla(objConf, res, objFormularioGlobal);
+                        document.getElementById("divContenedor").innerHTML = rpta;
+
+                    })
+                }
+               
+               // listarTipoHabitacion();
+            }
         })
+    })
 }
 
 function LimpiarGenerico(idFormulario) {
-    LimpiarDatos(idFormulario, objFormularioGlobal.limpiarExcepcion)
+    LimpiarDatos(idFormulario, objFormularioGlobal.limpiarexcepcion)
 }
 
-function llenarCombo(data, id, propiedadMostrar, propiedadId, valueDefecto = "") {
+function llenarCombo(data,id,propiedadMostrar,propiedadId,valueDefecto="") {
     var contenido = ""
     var elemento;
-    contenido += "<option value='" + valueDefecto + "'>--Seleccione--</option>"
-
+    contenido += "<option value='" + valueDefecto+"'>--Seleccione--</option>"
     for (var j = 0; j < data.length; j++) {
         elemento = data[j];
         contenido +=
-            "<option value='" + elemento[propiedadId] + "'>" + elemento[propiedadMostrar] + "</option>"
-    }
+       "<option value='" + elemento[propiedadId] + "' >" + elemento[propiedadMostrar] + "</option>"
+    } 
 
     contenido += "";
     document.getElementById(id).innerHTML = contenido;

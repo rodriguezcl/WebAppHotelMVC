@@ -4,58 +4,86 @@
 }
 
 function listarPersona() {
-    pintar(
-        {
-            popup: true,
-            idpopup: "staticBackdrop",
-            url: "Persona/listarPersona", id: "divTabla",
-            cabeceras: ["Id", "Nombre Completo", "Sexo", "Tipo Usuario"],
-            propiedades: ["iidpersona", "nombreCompleto", "nombreSexo", "nombreTipoUsuario"],
-            editar: true,
-            eliminar: true,
-            propiedadId: "iidpersona",
-            urlEliminar: "Persona/eliminarPersona",
-            parametroEliminar: "iidpersona"
-        }
-    )
-}
-
-function listarCombo() {
-    fetchGet("TipoUsuario/listarTipoUsuario", function (data) {
-        llenarCombo(data, "cboTipoUsuario", "nombre", "iidtipousuario", "0")
-        llenarCombo(data, "cboTipoUsuarioForm", "nombre", "iidtipousuario")
-    })
-}
-
-function filtrarPersonaTipoUsuario() {
-    var iidtipousuario = get("cboTipoUsuario");
     pintar({
-        url: "Persona/filtrarPersona/?iidtipousuario=" + iidtipousuario, id: "divTabla",
-        cabeceras: ["Id", "Nombre Completo", "Sexo", "Tipo Usuario"],
-        propiedades: ["iidpersona", "nombreCompleto", "nombreSexo", "nombreTipoUsuario"],
+        popup: true,
+        idpopup:"staticBackdrop",
+        url: "Persona/listarPersona", id: "divTabla",
+        cabeceras: ["Id Persona", "Nombre Completo", "Sexo","Tipo Usuario"],
+        propiedades: ["iidpersona", "nombreCompleto", "nombreSexo",
+        "nombreTipoUsuario"],
         editar: true,
         eliminar: true,
         propiedadId: "iidpersona"
     })
 }
 
-function guardarPersona() {
+function listarCombo() {
+    fetchGet("TipoUsuario/listarTipoUsuario", function (data) {
+        llenarCombo(data, "cboTipoUsuario", "nombre", "iidtipousuario","0")
+        llenarCombo(data, "cboTipousuarioForm", "nombre", "iidtipousuario")
+    })
+}
 
-    var error = validarObligatorios("frmPersona")
+function filtrarPersonaTipousuario() {
+    var iidtipousuario = get("cboTipoUsuario");
+    pintar({
+        url: "Persona/filtrarPersona/?iidtipousuario="+iidtipousuario, id: "divTabla",
+        cabeceras: ["Id Persona", "Nombre Completo", "Sexo", "Tipo Usuario"],
+        propiedades: ["iidpersona", "nombreCompleto", "nombreSexo",
+            "nombreTipoUsuario"],
+        editar: true,
+        eliminar: true,
+        propiedadId: "iidpersona"
+    })
+   // alert(iidtipousuario);
+}
+
+
+function Editar(id) {
+    Limpiar();
+    //NUevo
+    if (id == 0) {
+        document.getElementById("staticBackdropLabel").innerHTML = "Nueva persona";
+    }
+    //editar
+    else {
+        document.getElementById("staticBackdropLabel").innerHTML = "Editar persona";
+        recuperarGenerico("Persona/recuperarPersona/?iidpersona=" + id,
+            "frmPersona", [], false);
+    }
+  
+}
+/*
+function recuperarEspecifico(res) {
+    
+    var iidsexo = res.iidsexo;
+    //Masculino
+    if (iidsexo == 1) {
+        document.getElementById("rbMas").checked = true;
+    }
+    //femenino
+    else {
+           document.getElementById("rbFem").checked = true;
+    }
+}
+*/
+function Guardar() {
+
+    var error = ValidarObligatorios("frmPersona")
     if (error != "") {
         Error(error);
         return;
     }
-    var error = validarSoloNumerosEnteros("frmPersona")
+    var error=  validarSoloNumerosEnteros("frmPersona")
     if (error != "") {
         Error(error);
         return;
     }
-
     var frmPersona = document.getElementById("frmPersona");
     var frm = new FormData(frmPersona);
-    fetchPostText("Persona/guardarPersona", frm, function (res) {
+    fetchPostText("Persona/Guardar", frm, function (res) {
         if (res == "1") {
+           // listarTipoHabitacion();
             document.getElementById("btnCerrar").click();
             listarPersona();
             Limpiar();
@@ -63,29 +91,28 @@ function guardarPersona() {
     })
 }
 
-function Limpiar() {
-    LimpiarDatos("frmPersona", ["iidsexo"])
-}
 
-function Editar(id) {
-    Limpiar();
-    //Nuevo
-    if (id == 0) {
-        document.getElementById("staticBackdropLabel").innerHTML = "Nueva Persona"
-    }
-    //Editar
-    else {
-        document.getElementById("staticBackdropLabel").innerHTML = "Editar Persona"
-        recuperarGenerico("Persona/recuperarPersona/?iidpersona=" + id, "frmPersona", [], false);
-    }
+function Limpiar() {
+    /*
+    setN("id", "")
+    setN("nombre", "")
+    setN("descripcion", "")
+    */
+    /*
+    var elementos = document.querySelectorAll("#frmTipoHabitacion [name]")
+    for (var i = 0; i < elementos.length; i++) {
+        elementos[i].value = "";
+    }*/
+    LimpiarDatos("frmPersona", ["iidsexo"])
+    //Correcto("Funciono mi alerta")
 }
 
 function Eliminar(id) {
-    Confirmacion("Desea eliminar la persona?", "Confirmar eliminación", function (res) {
+    Confirmacion("Desea eliminar la persona?", "Confirmar eliminaciòn", function (res) {
 
         fetchGetText("Persona/eliminarPersona/?iidpersona=" + id, function (rpta) {
             if (rpta == "1") {
-                Correcto("Se eliminó correctamente");
+                Correcto("Se elimino correctamente");
                 listarPersona();
             }
         })

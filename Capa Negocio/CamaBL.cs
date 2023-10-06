@@ -18,6 +18,19 @@ namespace Capa_Negocio
 
         }
 
+        public int eliminarCama(int iidcama)
+        {
+            CamaDAL oCama = new CamaDAL();
+            return oCama.eliminarCama(iidcama);
+
+        }
+
+        public CamaCLS recuperarCamaPorId(int id)
+        {
+            CamaDAL oCama = new CamaDAL();
+            return oCama.recuperarCamaPorId(id);
+        }
+
         public int guardarCama(CamaCLS oCamaCLS)
         {
             CamaDAL oCama = new CamaDAL();
@@ -28,18 +41,6 @@ namespace Capa_Negocio
         {
             CamaDAL oCama = new CamaDAL();
             return oCama.filtrarCama(nombrecama);
-        }
-
-        public CamaCLS recuperarCamaPorId(int id)
-        {
-            CamaDAL oCama = new CamaDAL();
-            return oCama.recuperarCamaPorId(id);
-        }
-
-        public int eliminarCama(int iidcama)
-        {
-            CamaDAL oCama = new CamaDAL();
-            return oCama.eliminarCama(iidcama);
         }
 
     }

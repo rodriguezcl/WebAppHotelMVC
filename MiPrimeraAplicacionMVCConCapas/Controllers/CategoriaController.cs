@@ -16,29 +16,29 @@ namespace MiPrimeraAplicacionMVCConCapas.Controllers
             return View();
         }
 
-        public JsonResult listarCategoria()
+        public JsonResult recuperarCategoria(int iidcategoria)
         {
             CategoriaBL oCategoriaBL = new CategoriaBL();
-            return Json(oCategoriaBL.listarCategoria(), JsonRequestBehavior.AllowGet);
+            return Json(oCategoriaBL.recuperarCategoria(iidcategoria), JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult recuperarCategoria(int iidCategoria)
+        public int eliminarCategoria(int iidcategoria)
         {
             CategoriaBL oCategoriaBL = new CategoriaBL();
-            return Json(oCategoriaBL.recuperarCategoria(iidCategoria),
-                JsonRequestBehavior.AllowGet);
-        }
-
-        public int eliminarCategoria(int iidCategoria)
-        {
-            CategoriaBL oCategoriaBL = new CategoriaBL();
-            return oCategoriaBL.eliminarCategoria(iidCategoria);
+            return oCategoriaBL.eliminarCategoria(iidcategoria);
         }
 
         public int guardarCategoria(CategoriaCLS oCategoriaCLS)
         {
             CategoriaBL oCategoriaBL = new CategoriaBL();
             return oCategoriaBL.guardarCategoria(oCategoriaCLS);
+        }
+
+
+        public JsonResult listarCategoria()
+        {
+            CategoriaBL oCategoriaBL = new CategoriaBL();
+            return Json(oCategoriaBL.listarCategoria(), JsonRequestBehavior.AllowGet);
         }
     }
 }

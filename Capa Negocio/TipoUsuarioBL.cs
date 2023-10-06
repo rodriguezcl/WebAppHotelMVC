@@ -8,12 +8,14 @@ using System.Threading.Tasks;
 
 namespace Capa_Negocio
 {
-    public class TipoUsuarioBL
+   public class TipoUsuarioBL
     {
         public List<TipoUsuarioCLS> listarTipoUsuario()
         {
             TipoUsuarioDAL oTipoUsuarioDAL = new TipoUsuarioDAL();
             return oTipoUsuarioDAL.listarTipoUsuario();
         }
+
+
     }
 }

@@ -9,118 +9,9 @@ using System.Threading.Tasks;
 
 namespace Capa_Datos
 {
-    public class PersonaDAL: CadenaDAL
+  public  class PersonaDAL:CadenaDAL
     {
-        public List<PersonaCLS> listarPersona()
-        {
-            List<PersonaCLS> lista = null;
-            //  string cadena = ConfigurationManager.ConnectionStrings["cn"].ConnectionString; 
-            using (SqlConnection cn = new SqlConnection(cadena))
-            {
-                try
-                {
-                    //Abro la conexion
-                    cn.Open();
-                    //Llame al procedure
-                    using (SqlCommand cmd = new SqlCommand("uspListarPersona", cn))
-                    {
-                        //Buena practica (Opcional)->Indicamos que es un procedure
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        SqlDataReader drd = cmd.ExecuteReader();
-                        if (drd != null)
-                        {
-                            lista = new List<PersonaCLS>();
-                            PersonaCLS oPersonaCLS;
-                            int posIdpersona = drd.GetOrdinal("IIDPERSONA");
-                            int posNombreCompleto = drd.GetOrdinal("NOMBRECOMPLETO");
-                            int posNombreSexo = drd.GetOrdinal("NOMBRESEXO");
-                            int posNombreTipoUsuario = drd.GetOrdinal("NOMBRETIPOUSUARIO");
-                            while (drd.Read())
-                            {
-                                oPersonaCLS = new PersonaCLS();
-                                oPersonaCLS.iidpersona = drd.IsDBNull(posIdpersona) ? 0 :
-                                    drd.GetInt32(posIdpersona);
-                                oPersonaCLS.nombreCompleto = drd.IsDBNull(posNombreCompleto) ? ""
-                                    : drd.GetString(posNombreCompleto);
-                                oPersonaCLS.nombreSexo = drd.IsDBNull(posNombreSexo) ? ""
-                                    : drd.GetString(posNombreSexo);
-                                oPersonaCLS.nombreTipoUsuario = drd.IsDBNull(posNombreTipoUsuario) ? ""
-                                    : drd.GetString(posNombreTipoUsuario);
-                                lista.Add(oPersonaCLS);
-                            }
-                        }
 
-                    }
-
-                    //Cierro una vez de traer la data
-                    cn.Close();
-                }
-                catch (Exception ex)
-                {
-                    cn.Close();
-                }
-
-            }
-            return lista;
-
-
-        }
-
-        public List<PersonaCLS> filtrarPersona(int iidtipousuario)
-        {
-            List<PersonaCLS> lista = null;
-            //  string cadena = ConfigurationManager.ConnectionStrings["cn"].ConnectionString; 
-            using (SqlConnection cn = new SqlConnection(cadena))
-            {
-                try
-                {
-                    //Abro la conexion
-                    cn.Open();
-                    //Llame al procedure
-                    using (SqlCommand cmd = new SqlCommand("uspFiltrarPersonaPorTipoUsuario", cn))
-                    {
-                        //Buena practica (Opcional)->Indicamos que es un procedure
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@idtipousuario", iidtipousuario);
-                        SqlDataReader drd = cmd.ExecuteReader();
-                        if (drd != null)
-                        {
-                            lista = new List<PersonaCLS>();
-                            PersonaCLS oPersonaCLS;
-                            int posIdpersona = drd.GetOrdinal("IIDPERSONA");
-                            int posNombreCompleto = drd.GetOrdinal("NOMBRECOMPLETO");
-                            int posNombreSexo = drd.GetOrdinal("NOMBRESEXO");
-                            int posNombreTipoUsuario = drd.GetOrdinal("NOMBRETIPOUSUARIO");
-                            while (drd.Read())
-                            {
-                                oPersonaCLS = new PersonaCLS();
-                                oPersonaCLS.iidpersona = drd.IsDBNull(posIdpersona) ? 0 :
-                                    drd.GetInt32(posIdpersona);
-                                oPersonaCLS.nombreCompleto = drd.IsDBNull(posNombreCompleto) ? ""
-                                    : drd.GetString(posNombreCompleto);
-                                oPersonaCLS.nombreSexo = drd.IsDBNull(posNombreSexo) ? ""
-                                    : drd.GetString(posNombreSexo);
-                                oPersonaCLS.nombreTipoUsuario = drd.IsDBNull(posNombreTipoUsuario) ? ""
-                                    : drd.GetString(posNombreTipoUsuario);
-                                lista.Add(oPersonaCLS);
-                            }
-                        }
-
-                    }
-
-                    //Cierro una vez de traer la data
-                    cn.Close();
-                }
-                catch (Exception ex)
-                {
-                    cn.Close();
-                }
-
-            }
-            return lista;
-
-
-        }
 
         public PersonaCLS recuperarPersona(int iidpersona)
         {
@@ -133,7 +24,8 @@ namespace Capa_Datos
                     //Abro la conexion
                     cn.Open();
                     //Llame al procedure
-                    using (SqlCommand cmd = new SqlCommand("uspRecuperarPersona", cn))
+                    using (SqlCommand cmd = new SqlCommand("uspRecuperarPersona",
+                        cn))
                     {
                         //Buena practica (Opcional)->Indicamos que es un procedure
                         cmd.CommandType = CommandType.StoredProcedure;
@@ -141,15 +33,15 @@ namespace Capa_Datos
                         SqlDataReader drd = cmd.ExecuteReader();
                         if (drd != null)
                         {
-                           
+                            
                            
                             int posIdpersona = drd.GetOrdinal("IIDPERSONA");
                             int posNombre = drd.GetOrdinal("NOMBRE");
-                            int posApPaterno = drd.GetOrdinal("APPATERNO");
-                            int posApMaterno = drd.GetOrdinal("APMATERNO");
-                            int posTelefonoFijo = drd.GetOrdinal("TELEFONOFIJO");
-                            int posIdSexo = drd.GetOrdinal("IIDSEXO");
-                            int posIdTipoUsuario = drd.GetOrdinal("IIDTIPOUSUARIO");
+                            int posAppaterno = drd.GetOrdinal("APPATERNO");
+                            int posApmaterno = drd.GetOrdinal("APMATERNO");
+                            int posTelefono = drd.GetOrdinal("TELEFONOFIJO");
+                            int posidsexo = drd.GetOrdinal("IIDSEXO");
+                            int posiidusuario = drd.GetOrdinal("IIDTIPOUSUARIO");
                             while (drd.Read())
                             {
                                 oPersonaCLS = new PersonaCLS();
@@ -157,16 +49,17 @@ namespace Capa_Datos
                                     drd.GetInt32(posIdpersona);
                                 oPersonaCLS.nombre = drd.IsDBNull(posNombre) ? ""
                                     : drd.GetString(posNombre);
-                                oPersonaCLS.apellidopaterno = drd.IsDBNull(posApPaterno) ? ""
-                                    : drd.GetString(posApPaterno);
-                                oPersonaCLS.apellidomaterno = drd.IsDBNull(posApMaterno) ? ""
-                                    : drd.GetString(posApMaterno);
-                                oPersonaCLS.telefono = drd.IsDBNull(posTelefonoFijo) ? ""
-                                    : drd.GetString(posTelefonoFijo);
-                                oPersonaCLS.iidsexo = drd.IsDBNull(posIdSexo) ? 0
-                                    : drd.GetInt32(posIdSexo);
-                                oPersonaCLS.iidtipousuario = drd.IsDBNull(posIdTipoUsuario) ? 0
-                                     : drd.GetInt32(posIdTipoUsuario);
+                                oPersonaCLS.apellidopaterno = drd.IsDBNull(posAppaterno) ? ""
+                                    : drd.GetString(posAppaterno);
+                                oPersonaCLS.apellidomaterno = drd.IsDBNull(posApmaterno) ? ""
+                                  : drd.GetString(posApmaterno);
+                                oPersonaCLS.telefono = drd.IsDBNull(posTelefono) ? ""
+                                  : drd.GetString(posTelefono);
+                                oPersonaCLS.iidsexo = drd.IsDBNull(posidsexo) ? 0 :
+                                    drd.GetInt32(posidsexo);
+                                oPersonaCLS.iidtipousuario = drd.IsDBNull(posiidusuario) ? 0 :
+                                  drd.GetInt32(posiidusuario);
+
                             }
                         }
 
@@ -182,6 +75,39 @@ namespace Capa_Datos
 
             }
             return oPersonaCLS;
+
+
+        }
+
+        public int eliminarPersona(int iidpersona)
+        {
+            int rpta = 0;
+            //  string cadena = ConfigurationManager.ConnectionStrings["cn"].ConnectionString; 
+            using (SqlConnection cn = new SqlConnection(cadena))
+            {
+                try
+                {
+                    //Abro la conexion
+                    cn.Open();
+                    //Llame al procedure
+                    using (SqlCommand cmd = new SqlCommand("uspEliminarPersona", cn))
+                    {
+                        //Buena practica (Opcional)->Indicamos que es un procedure
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@iidpersona", iidpersona);
+                        rpta = cmd.ExecuteNonQuery();
+                    }
+
+                    //Cierro una vez de traer la data
+                    cn.Close();
+                }
+                catch (Exception ex)
+                {
+                    cn.Close();
+                }
+
+            }
+            return rpta;
 
 
         }
@@ -206,8 +132,8 @@ namespace Capa_Datos
                         cmd.Parameters.AddWithValue("@appaterno", oPersonaCLS.apellidopaterno);
                         cmd.Parameters.AddWithValue("@apmaterno", oPersonaCLS.apellidomaterno);
                         cmd.Parameters.AddWithValue("@telefonofijo", oPersonaCLS.telefono);
-                        cmd.Parameters.AddWithValue("@iidsexo", oPersonaCLS.iidtipousuario);
-                        cmd.Parameters.AddWithValue("@iidtipousuario", oPersonaCLS.iidsexo);
+                        cmd.Parameters.AddWithValue("@iidsexo", oPersonaCLS.iidsexo);
+                        cmd.Parameters.AddWithValue("@iidtipousuario", oPersonaCLS.iidtipousuario);
                         rpta = cmd.ExecuteNonQuery();
                     }
 
@@ -225,35 +151,122 @@ namespace Capa_Datos
 
         }
 
-        public int eliminarPersona(int iidpersona)
+
+        public List<PersonaCLS> filtrarPersona(int iidtipousuario)
         {
-            //error
-            int rpta = 0;
+            List<PersonaCLS> lista = null;
+            //  string cadena = ConfigurationManager.ConnectionStrings["cn"].ConnectionString; 
             using (SqlConnection cn = new SqlConnection(cadena))
             {
                 try
                 {
                     //Abro la conexion
                     cn.Open();
-                    using (SqlCommand cmd = new SqlCommand("uspEliminarPersona", cn))
+                    //Llame al procedure
+                    using (SqlCommand cmd = new SqlCommand("uspFiltrarPersonaPorTipoUsuario",
+                        cn))
                     {
+                        //Buena practica (Opcional)->Indicamos que es un procedure
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@iidpersona", iidpersona);
+                        cmd.Parameters.AddWithValue("@idtipousuario", iidtipousuario);
+                        SqlDataReader drd = cmd.ExecuteReader();
+                        if (drd != null)
+                        {
+                            lista = new List<PersonaCLS>();
+                            PersonaCLS oPersonaCLS;
+                            int posIdpersona = drd.GetOrdinal("IIDPERSONA");
+                            int posNombreCompleto = drd.GetOrdinal("NOMBRECOMPLETO");
+                            int posNombreSexo = drd.GetOrdinal("NOMBRESEXO");
+                            int posNombreTipousuario = drd.GetOrdinal("NOMBRETIPOUSUARIO");
+                            while (drd.Read())
+                            {
+                                oPersonaCLS = new PersonaCLS();
+                                oPersonaCLS.iidpersona = drd.IsDBNull(posIdpersona) ? 0 :
+                                    drd.GetInt32(posIdpersona);
+                                oPersonaCLS.nombreCompleto = drd.IsDBNull(posNombreCompleto) ? ""
+                                    : drd.GetString(posNombreCompleto);
+                                oPersonaCLS.nombreSexo = drd.IsDBNull(posNombreSexo) ? ""
+                                    : drd.GetString(posNombreSexo);
+                                oPersonaCLS.nombreTipoUsuario = drd.IsDBNull(posNombreTipousuario) ? ""
+                                  : drd.GetString(posNombreTipousuario);
+                                lista.Add(oPersonaCLS);
+                            }
+                        }
 
-                        rpta = cmd.ExecuteNonQuery();
-                        cn.Close();
                     }
+
+                    //Cierro una vez de traer la data
+                    cn.Close();
                 }
                 catch (Exception ex)
                 {
-                    rpta = 0;
                     cn.Close();
                 }
 
             }
+            return lista;
 
-            return rpta;
 
         }
+
+
+        public List<PersonaCLS> listarPersona()
+        {
+            List<PersonaCLS> lista = null;
+            //  string cadena = ConfigurationManager.ConnectionStrings["cn"].ConnectionString; 
+            using (SqlConnection cn = new SqlConnection(cadena))
+            {
+                try
+                {
+                    //Abro la conexion
+                    cn.Open();
+                    //Llame al procedure
+                    using (SqlCommand cmd = new SqlCommand("uspListarPersona", cn))
+                    {
+                        //Buena practica (Opcional)->Indicamos que es un procedure
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        SqlDataReader drd = cmd.ExecuteReader();
+                        if (drd != null)
+                        {
+                            lista = new List<PersonaCLS>();
+                            PersonaCLS oPersonaCLS;
+                            int posIdpersona = drd.GetOrdinal("IIDPERSONA");
+                            int posNombreCompleto = drd.GetOrdinal("NOMBRECOMPLETO");
+                            int posNombreSexo = drd.GetOrdinal("NOMBRESEXO");
+                            int posNombreTipousuario = drd.GetOrdinal("NOMBRETIPOUSUARIO");
+                            while (drd.Read())
+                            {
+                                oPersonaCLS = new PersonaCLS();
+                                oPersonaCLS.iidpersona = drd.IsDBNull(posIdpersona) ? 0 :
+                                    drd.GetInt32(posIdpersona);
+                                oPersonaCLS.nombreCompleto = drd.IsDBNull(posNombreCompleto) ? ""
+                                    : drd.GetString(posNombreCompleto);
+                                oPersonaCLS.nombreSexo = drd.IsDBNull(posNombreSexo) ? ""
+                                    : drd.GetString(posNombreSexo);
+                                oPersonaCLS.nombreTipoUsuario = drd.IsDBNull(posNombreTipousuario) ? ""
+                                  : drd.GetString(posNombreTipousuario);
+                                lista.Add(oPersonaCLS);
+                            }
+                        }
+
+                    }
+
+                    //Cierro una vez de traer la data
+                    cn.Close();
+                }
+                catch (Exception ex)
+                {
+                    cn.Close();
+                }
+
+            }
+            return lista;
+
+
+        }
+
+
+
+
     }
 }

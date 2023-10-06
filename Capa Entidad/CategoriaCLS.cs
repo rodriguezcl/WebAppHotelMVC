@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Capa_Entidad
 {
-    public class CategoriaCLS
+   public class CategoriaCLS
     {
-        public int iidCategoria { get; set; }
-        public string nombreCategoria { get; set; }
-        public string descripcionCategoria { get; set; }
+        public int iidcategoria { get; set; }
+        public string nombre { get; set; }
+        public string descripcion { get; set; }
     }
 }

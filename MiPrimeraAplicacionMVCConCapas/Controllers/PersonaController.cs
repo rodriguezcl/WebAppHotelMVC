@@ -21,17 +21,11 @@ namespace MiPrimeraAplicacionMVCConCapas.Controllers
             PersonaBL oPersonaBL = new PersonaBL();
             return Json(oPersonaBL.listarPersona(), JsonRequestBehavior.AllowGet);
         }
-
         public JsonResult filtrarPersona(int iidtipousuario)
         {
             PersonaBL oPersonaBL = new PersonaBL();
-            return Json(oPersonaBL.filtrarPersona(iidtipousuario), JsonRequestBehavior.AllowGet);
-        }
-
-        public JsonResult recuperarPersona(int iidpersona)
-        {
-            PersonaBL oPersonaBL = new PersonaBL();
-            return Json(oPersonaBL.recuperarPersona(iidpersona), JsonRequestBehavior.AllowGet);
+            return Json(oPersonaBL.filtrarPersona(iidtipousuario),
+                JsonRequestBehavior.AllowGet);
         }
 
         public int eliminarPersona(int iidpersona)
@@ -40,7 +34,14 @@ namespace MiPrimeraAplicacionMVCConCapas.Controllers
             return oPersonaBL.eliminarPersona(iidpersona);
         }
 
-        public int guardarPersona(PersonaCLS oPersona)
+        public JsonResult recuperarPersona(int iidpersona)
+        {
+            PersonaBL oPersonaBL = new PersonaBL();
+            return Json(oPersonaBL.recuperarPersona(iidpersona),
+                JsonRequestBehavior.AllowGet);
+        }
+
+        public int Guardar(PersonaCLS oPersona)
         {
             PersonaBL oPersonaBL = new PersonaBL();
             return oPersonaBL.guardarPersona(oPersona);

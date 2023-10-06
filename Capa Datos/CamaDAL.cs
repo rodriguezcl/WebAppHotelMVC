@@ -8,11 +8,12 @@ using System.Data;
 using Capa_Datos;
 using Capa_Entidad;
 
-public class CamaDAL : CadenaDAL
-{
-    public List<CamaCLS> listarCama()
+public class CamaDAL:CadenaDAL
     {
-        List<CamaCLS> lista = null;
+
+    public CamaCLS recuperarCamaPorId(int id)
+    {
+        CamaCLS oCamaCLS=null;
         //  string cadena = ConfigurationManager.ConnectionStrings["cn"].ConnectionString; 
         using (SqlConnection cn = new SqlConnection(cadena))
         {
@@ -21,15 +22,16 @@ public class CamaDAL : CadenaDAL
                 //Abro la conexion
                 cn.Open();
                 //Llame al procedure
-                using (SqlCommand cmd = new SqlCommand("uspListarCama", cn))
+                using (SqlCommand cmd = new SqlCommand("uspRecuperarCama", cn))
                 {
                     //Buena practica (Opcional)->Indicamos que es un procedure
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@id",id);
                     SqlDataReader drd = cmd.ExecuteReader();
                     if (drd != null)
                     {
-                        lista = new List<CamaCLS>();
-                        CamaCLS oCamaCLS;
+                      
+                        
                         int posId = drd.GetOrdinal("IIDCAMA");
                         int posNombre = drd.GetOrdinal("NOMBRE");
                         int posDescripcion = drd.GetOrdinal("DESCRIPCION");
@@ -42,7 +44,7 @@ public class CamaDAL : CadenaDAL
                                 : drd.GetString(posNombre);
                             oCamaCLS.descripcion = drd.IsDBNull(posDescripcion) ? ""
                                 : drd.GetString(posDescripcion);
-                            lista.Add(oCamaCLS);
+                           
                         }
                     }
 
@@ -57,7 +59,96 @@ public class CamaDAL : CadenaDAL
             }
 
         }
-        return lista;
+        return oCamaCLS;
+
+
+    }
+
+
+
+    public List<CamaCLS> listarCama()
+        {
+            List<CamaCLS> lista = null;
+            //  string cadena = ConfigurationManager.ConnectionStrings["cn"].ConnectionString; 
+            using (SqlConnection cn = new SqlConnection(cadena))
+            {
+                try
+                {
+                    //Abro la conexion
+                    cn.Open();
+                    //Llame al procedure
+                    using (SqlCommand cmd = new SqlCommand("uspListarCama", cn))
+                    {
+                        //Buena practica (Opcional)->Indicamos que es un procedure
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        SqlDataReader drd = cmd.ExecuteReader();
+                        if (drd != null)
+                        {
+                            lista = new List<CamaCLS>();
+                            CamaCLS oCamaCLS;
+                            int posId = drd.GetOrdinal("IIDCAMA");
+                            int posNombre = drd.GetOrdinal("NOMBRE");
+                            int posDescripcion = drd.GetOrdinal("DESCRIPCION");
+                            while (drd.Read())
+                            {
+                                oCamaCLS = new CamaCLS();
+                            oCamaCLS.idcama = drd.IsDBNull(posId) ? 0:
+                                drd.GetInt32(posId);
+                            oCamaCLS.nombre = drd.IsDBNull(posNombre)?""
+                                : drd.GetString(posNombre);
+                            oCamaCLS.descripcion = drd.IsDBNull(posDescripcion) ? "" 
+                                :drd.GetString(posDescripcion);
+                                lista.Add(oCamaCLS);
+                            }
+                        }
+
+                    }
+
+                    //Cierro una vez de traer la data
+                    cn.Close();
+                }
+                catch (Exception ex)
+                {
+                    cn.Close();
+                }
+
+            }
+            return lista;
+
+
+        }
+
+
+
+    public int eliminarCama(int iidcama)
+    {
+        int rpta = 0;
+        //  string cadena = ConfigurationManager.ConnectionStrings["cn"].ConnectionString; 
+        using (SqlConnection cn = new SqlConnection(cadena))
+        {
+            try
+            {
+                //Abro la conexion
+                cn.Open();
+                //Llame al procedure
+                using (SqlCommand cmd = new SqlCommand("uspEliminarCama", cn))
+                {
+                    //Buena practica (Opcional)->Indicamos que es un procedure
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@id", iidcama);
+                    rpta = cmd.ExecuteNonQuery();
+                }
+
+                //Cierro una vez de traer la data
+                cn.Close();
+            }
+            catch (Exception ex)
+            {
+                cn.Close();
+            }
+
+        }
+        return rpta;
 
 
     }
@@ -80,6 +171,8 @@ public class CamaDAL : CadenaDAL
                     cmd.Parameters.AddWithValue("@id", oCamaCLS.idcama);
                     cmd.Parameters.AddWithValue("@nombre", oCamaCLS.nombre);
                     cmd.Parameters.AddWithValue("@descripcion", oCamaCLS.descripcion);
+                    //@iidestado
+                    cmd.Parameters.AddWithValue("@iidestado", oCamaCLS.iidestado);
                     rpta = cmd.ExecuteNonQuery();
                 }
 
@@ -96,6 +189,7 @@ public class CamaDAL : CadenaDAL
 
 
     }
+
 
     public List<CamaCLS> filtrarCama(string nombrecama)
     {
@@ -149,91 +243,6 @@ public class CamaDAL : CadenaDAL
 
 
     }
-
-    public CamaCLS recuperarCamaPorId(int id)
-    {
-        CamaCLS oCamaCLS=null;
-        //  string cadena = ConfigurationManager.ConnectionStrings["cn"].ConnectionString; 
-        using (SqlConnection cn = new SqlConnection(cadena))
-        {
-            try
-            {
-                //Abro la conexion
-                cn.Open();
-                //Llame al procedure
-                using (SqlCommand cmd = new SqlCommand("uspRecuperarCama", cn))
-                {
-                    //Buena practica (Opcional)->Indicamos que es un procedure
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@id",id);
-                    SqlDataReader drd = cmd.ExecuteReader();
-                    if (drd != null)
-                    {
-                      
-                        
-                        int posId = drd.GetOrdinal("IIDCAMA");
-                        int posNombre = drd.GetOrdinal("NOMBRE");
-                        int posDescripcion = drd.GetOrdinal("DESCRIPCION");
-                        while (drd.Read())
-                        {
-                            oCamaCLS = new CamaCLS();
-                            oCamaCLS.idcama = drd.IsDBNull(posId) ? 0 :
-                                drd.GetInt32(posId);
-                            oCamaCLS.nombre = drd.IsDBNull(posNombre) ? ""
-                                : drd.GetString(posNombre);
-                            oCamaCLS.descripcion = drd.IsDBNull(posDescripcion) ? ""
-                                : drd.GetString(posDescripcion);
-                          
-                        }
-                    }
-
-                }
-
-                //Cierro una vez de traer la data
-                cn.Close();
-            }
-            catch (Exception ex)
-            {
-                cn.Close();
-            }
-
-        }
-        return oCamaCLS;
-
-
-    }
-
-    public int eliminarCama(int iidcama)
-    {
-        //error
-        int rpta = 0;
-        using (SqlConnection cn = new SqlConnection(cadena))
-        {
-            try
-            {
-                //Abro la conexion
-                cn.Open();
-                using (SqlCommand cmd = new SqlCommand("uspEliminarCama", cn))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@id", iidcama);
-
-                    rpta = cmd.ExecuteNonQuery();
-                    cn.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                rpta = 0;
-                cn.Close();
-            }
-
-        }
-
-        return rpta;
-
-    }
-
 
 }
 

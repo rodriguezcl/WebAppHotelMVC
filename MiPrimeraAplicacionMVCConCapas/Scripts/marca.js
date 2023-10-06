@@ -4,20 +4,19 @@
 
 
 function listarMarca() {
-    pintar(
-        {
-            url: "Marca/listarMarca",
-            id: "divTabla",
-            cabeceras: ["Id Marca", "Nombre", "Descripcion"],
-            propiedades: ["iidMarca", "nombreMarca", "descripcionMarca"],
-            editar: true,
-            eliminar: true,
-            propiedadId: "iidMarca",
-            urlEliminar: "Marca/eliminarMarca",
-            parametroEliminar: "iidmarca",
-            urlRecuperar: "Marca/recuperarMarca",
-            parametroRecuperar: "iidmarca"
-        },
+    pintar({
+        url: "Marca/listarMarca",
+        id: "divTabla",
+        cabeceras: ["Id Marca", "Nombre", "Descripcion"],
+        propiedades: ["iidMarca", "nombreMarca", "descripcionMarca"],
+        editar: true,
+        eliminar: true,
+        propiedadId: "iidMarca",
+        urlEliminar: "Marca/eliminarMarca",
+        parametroEliminar: "iidmarca",
+        urlRecuperar: "Marca/recuperarMarca",
+        parametroRecuperar: "iidmarca"
+    },
         {
             busqueda: true,
             url: "Marca/filtrarMarca",
@@ -25,7 +24,6 @@ function listarMarca() {
             type: "text",
             button: false,
             id: "txtnombremarca"
-
         },
         {
             id: "frmMarca",
@@ -35,14 +33,14 @@ function listarMarca() {
             formulario: [
                 [
                     {
-                        class: "mb-3 col-md-5",
+                        class: "mb-3 col-md-6",
                         label: "Id Marca",
                         name: "iidMarca",
                         value: 0,
                         readonly: true
                     },
                     {
-                        class: "mb-3 col-md-7",
+                        class: "mb-3 col-md-6",
                         label: "Nombre marca",
                         name: "nombreMarca"
                     }

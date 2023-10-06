@@ -11,6 +11,7 @@ namespace Capa_Negocio
    public class MarcaBL
     {
 
+
         public List<MarcaCLS> filtrarMarca(string nombremarca)
         {
             MarcaDAL oMarcaDAL = new MarcaDAL();

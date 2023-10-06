@@ -9,8 +9,10 @@ using System.Threading.Tasks;
 
 namespace Capa_Datos
 {
-    public class TipoUsuarioDAL: CadenaDAL
+   public  class TipoUsuarioDAL:CadenaDAL
     {
+
+
         public List<TipoUsuarioCLS> listarTipoUsuario()
         {
             List<TipoUsuarioCLS> lista = null;
@@ -62,5 +64,7 @@ namespace Capa_Datos
 
 
         }
+
+
     }
 }
