@@ -20,7 +20,7 @@ function Correcto(texto="Se realizó correctamente") {
     })
 }
 
-function Confirmacion(texto = "Desea guardar los cambios?", title = "Confirmación",
+function Confirmacion(texto = "¿Desea guardar los cambios?", title = "Confirmación",
 callback) {
   return  Swal.fire({
         title: title,
@@ -114,7 +114,7 @@ function pintar(objConfiguracion, objBusqueda,objFormulario) {
                     objFormulario.tituloconfirmacionguardar = "Desea guardar los cambios?"
                 var type = objFormulario.type;
                 if (type == "fieldset") {
-                    contenido += "<fieldset class='container'>";
+                    contenido += "<fieldset class='container mb-3'>";
                     if (objFormulario.legend != undefined) {
                         contenido += "<legend>" + objFormulario.legend + "</legend>"
                     }

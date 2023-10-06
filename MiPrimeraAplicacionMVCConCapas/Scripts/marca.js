@@ -7,7 +7,7 @@ function listarMarca() {
     pintar({
         url: "Marca/listarMarca",
         id: "divTabla",
-        cabeceras: ["Id Marca", "Nombre", "Descripcion"],
+        cabeceras: ["Id Marca", "Nombre", "Descripción"],
         propiedades: ["iidMarca", "nombreMarca", "descripcionMarca"],
         editar: true,
         eliminar: true,
@@ -41,7 +41,7 @@ function listarMarca() {
                     },
                     {
                         class: "mb-3 col-md-6",
-                        label: "Nombre marca",
+                        label: "Nombre Marca",
                         name: "nombreMarca"
                     }
 
