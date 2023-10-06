@@ -64,7 +64,7 @@ function listarCama() {
                 ],
                 [
                     {
-                        class: "col-md-12",
+                        class: "mt-3 col-md-12",
                         label: "Seleccione una Opción",
                         type: "radio",
                         labels: ["Excelente Estado", "Buen Estado", "Mal estado"],

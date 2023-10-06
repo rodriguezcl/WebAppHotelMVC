@@ -5,7 +5,7 @@ var objetoConf;
 function listarTipoHabitacion() {
     objetoConf = {
         url: "TipoHabitacion/lista", id: "divTabla",
-        cabeceras: ["Id", "Nombre", "Descripcion"],
+        cabeceras: ["Id", "Nombre", "Descripción"],
         propiedades: ["id", "nombre", "descripcion"],
         editar: true,
         eliminar: true,
@@ -71,7 +71,7 @@ function GuardarDatos() {
         return;
     }
     */
-    Confirmacion("Desea guardar datos de tipo habitacion?", "Confirmar Guardar Datos",
+    Confirmacion("¿Desea guardar datos de tipo habitación?", "Confirmar Guardar Datos",
         function (res) {
         var frmTipoHabitacion = document.getElementById("frmTipoHabitacion");
         var frm = new FormData(frmTipoHabitacion);
@@ -112,11 +112,11 @@ function Editar(id) {
 
 
 function Eliminar(id) {
-    Confirmacion("Desea eliminar el tipo habitacion?", "Confirmar eliminaciòn", function (res) {
+    Confirmacion("¿Desea eliminar el tipo habitación?", "Confirmar eliminación", function (res) {
 
         fetchGetText("TipoHabitacion/eliminarTipoHabitacion/?id=" + id, function (rpta) {
             if (rpta == "1") {
-                Correcto("Se elimino correctamente");
+                Correcto("Se eliminó correctamente");
                 listarTipoHabitacion();
             }
         })
