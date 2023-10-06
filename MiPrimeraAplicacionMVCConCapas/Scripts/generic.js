@@ -622,6 +622,16 @@ function construirFormulario(objFormulario) {
                             `
                 combosLlenar.push(hijosArray)
             }
+
+            else if (typelemento == "radio") {
+                contenido += `<div>`;
+                for (var z = 0; z < hijosArray.labels.length; z++) {
+                contenido += `
+                <input type="radio" id="${hijosArray.ids}" checked name="${hijosArray.name}" value="${hijosArray.values}" /> <label>${hijosArray.labels[z]}</label>
+               `
+                }
+                contenido += `</div>`;
+            }
             contenido += `</div>`
         }
         contenido += "</div>";

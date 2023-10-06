@@ -58,6 +58,19 @@ function listarCama() {
                         cols: "20",
                         classControl: "o max-70 min-10"
                     }
+                ],
+                [
+                    {
+                        label: "Seleccione una opción",
+                        class: "col-md-12",
+                        type: "radio",
+                        labels: ["Excelente estado", "Buen estado"],
+                        values: ["1", "2"],
+                        name: "iidestado",
+                        ids: ["rbExcelente", "rbBueno"],
+                        checked: "rbExcelente"
+
+                    }
                 ]
             ]
 
