@@ -614,6 +614,7 @@ function encontroClase(clase, claseBuscar = "snc") {
 
 var combosLlenar = [];
 var radioLimpiar = [];
+var radioNames = [];
 
 function construirFormulario(objFormulario) {
     console.log(objFormulario)
@@ -710,6 +711,7 @@ function construirFormulario(objFormulario) {
                    `
                 }
                 radioLimpiar.push(hijosArray.checked);
+                radioNames.push(hijosArray.name);
 
                 contenido += "</div>"
             }
@@ -790,7 +792,7 @@ function GuardarGenerico(idformulario, urlguardar) {
                             .click();
                     }
 
-                    LimpiarDatos(idformulario, objFormularioGlobal.limpiarexcepcion)
+                    LimpiarDatos(idformulario, objFormularioGlobal.limpiarexcepcion.concat(radioNames))
                     //listarTipoHabitacion();
                     //Limpiar();
                 }
@@ -865,7 +867,7 @@ function EliminarGenerico(id) {
 }
 
 function LimpiarGenerico(idFormulario) {
-    LimpiarDatos(idFormulario, objFormularioGlobal.limpiarexcepcion)
+    LimpiarDatos(idFormulario, objFormularioGlobal.limpiarexcepcion.concat(radioNames))
 }
 
 function llenarCombo(data, id, propiedadMostrar, propiedadId, valueDefecto = "") {
