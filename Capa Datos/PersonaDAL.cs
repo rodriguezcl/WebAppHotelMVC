@@ -134,6 +134,8 @@ namespace Capa_Datos
                         cmd.Parameters.AddWithValue("@telefonofijo", oPersonaCLS.telefono);
                         cmd.Parameters.AddWithValue("@iidsexo", oPersonaCLS.iidsexo);
                         cmd.Parameters.AddWithValue("@iidtipousuario", oPersonaCLS.iidtipousuario);
+                        cmd.Parameters.AddWithValue("@foto", oPersonaCLS.foto);
+                        cmd.Parameters.AddWithValue("@nombrefoto", oPersonaCLS.nombrefoto);
                         rpta = cmd.ExecuteNonQuery();
                     }
 

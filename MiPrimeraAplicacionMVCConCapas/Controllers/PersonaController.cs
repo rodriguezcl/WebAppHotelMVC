@@ -2,6 +2,7 @@
 using Capa_Negocio;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -41,8 +42,20 @@ namespace MiPrimeraAplicacionMVCConCapas.Controllers
                 JsonRequestBehavior.AllowGet);
         }
 
-        public int Guardar(PersonaCLS oPersona)
+        public int Guardar(PersonaCLS oPersona, HttpPostedFileBase fotopersona)
         {
+            string nombreFoto = "";
+            byte[] bufferfoto;
+            //Llenar la foto y el nombre foto
+            if (fotopersona!=null)
+            {
+                nombreFoto = fotopersona.FileName;
+                BinaryReader lector = new BinaryReader(fotopersona.InputStream);
+                bufferfoto = lector.ReadBytes((int)fotopersona.ContentLength);
+                oPersona.foto = bufferfoto;
+                oPersona.nombrefoto = nombreFoto;
+            }
+
             PersonaBL oPersonaBL = new PersonaBL();
             return oPersonaBL.guardarPersona(oPersona);
         }
