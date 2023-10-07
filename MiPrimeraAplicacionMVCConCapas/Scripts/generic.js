@@ -266,8 +266,6 @@ function llenarComboBusqueda(res) {
 
 function LimpiarDatos(idFormulario, excepciones = []) {
 
-
-
     var elementos = document.querySelectorAll("#" + idFormulario + " [name]")
     for (var j = 0; j < radioLimpiar.length; j++) {
         document.getElementById(radioLimpiar[j]).checked = true;
@@ -513,7 +511,7 @@ function fetchPostText(url, frm, callback) {
     var raiz = document.getElementById("hdfOculto").value;
     var urlAbsoluta = window.location.protocol + "//" +
         window.location.host + raiz + url;
-    fetch(url, {
+    fetch(urlAbsoluta, {
         method: "POST",
         body: frm
     }).then(res => res.text())
@@ -565,17 +563,20 @@ function recuperarGenerico(url, idFormulario, excepciones = [], adicional = fals
         for (var i = 0; i < elementos.length; i++) {
             nombreName = elementos[i].name
             if (!excepciones.includes(elementos[i].name)) {
-                if (elementos[i].type.toUpperCase() == "RADIO") {
+                if (elementos[i].type != undefined && elementos[i].type.toUpperCase() == "RADIO") {
                     setC("[type='radio'][value='" + res[nombreName] + "']")
                 } else {
-                    if (elementos[i].type.toUpperCase() != "FILE")
-                    setN(nombreName, res[nombreName])
+                    if (elementos[i].type != undefined && elementos[i].type.toUpperCase() != "FILE")
+                        setN(nombreName, res[nombreName])
+                    else if (elementos[i].tagName.toUpperCase() == "IMG") {
+                        setSRC(nombreName, res[nombreName])
+                    }
                 }
             }
         }
         if (adicional == true) {
             objConfiguracionGlobal.callbackeditar(res);
-            //recuperarEspecifico(res);
+            /*recuperarespecifico(res);*/
         }
     });
 
