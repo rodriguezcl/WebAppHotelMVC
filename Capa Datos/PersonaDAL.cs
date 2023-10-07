@@ -3,19 +3,20 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Capa_Datos
 {
-  public  class PersonaDAL:CadenaDAL
+    public class PersonaDAL : CadenaDAL
     {
 
 
         public PersonaCLS recuperarPersona(int iidpersona)
         {
-            PersonaCLS oPersonaCLS=null;
+            PersonaCLS oPersonaCLS = null;
             //  string cadena = ConfigurationManager.ConnectionStrings["cn"].ConnectionString; 
             using (SqlConnection cn = new SqlConnection(cadena))
             {
@@ -33,8 +34,8 @@ namespace Capa_Datos
                         SqlDataReader drd = cmd.ExecuteReader();
                         if (drd != null)
                         {
-                            
-                           
+
+
                             int posIdpersona = drd.GetOrdinal("IIDPERSONA");
                             int posNombre = drd.GetOrdinal("NOMBRE");
                             int posAppaterno = drd.GetOrdinal("APPATERNO");
@@ -65,14 +66,20 @@ namespace Capa_Datos
                                   drd.GetString(posNombreFoto);
                                 if (!drd.IsDBNull(posFoto))
                                 {
-                                    oPersonaCLS.foto = (byte[])drd.GetValue(posFoto);
+                                    string nomfoto = oPersonaCLS.nombrefoto;
+                                    //.jpg .png
+                                    string extension = Path.GetExtension(nomfoto);
+                                    string nombresinextension = extension.Substring(1);
+                                    byte[] fotobyte = (byte[])drd.GetValue(posFoto);
+                                    //mime data: image/formato;base64,
+                                    //data:image/jpg;base64,
+                                    //data:image/png;base64,
+                                    string mime = "data:image/" + nombresinextension + ";base64,";
+                                    string fotobase = Convert.ToBase64String(fotobyte);
+                                    oPersonaCLS.fotobase64 = mime + fotobase;
                                 }
-                                //oPersonaCLS.foto = drd.IsDBNull(posFoto) ? "" :
-                                //  drd.GetString(posFoto);
-
                             }
                         }
-
                     }
 
                     //Cierro una vez de traer la data
@@ -82,11 +89,8 @@ namespace Capa_Datos
                 {
                     cn.Close();
                 }
-
             }
             return oPersonaCLS;
-
-
         }
 
         public int eliminarPersona(int iidpersona)
@@ -115,11 +119,8 @@ namespace Capa_Datos
                 {
                     cn.Close();
                 }
-
             }
             return rpta;
-
-
         }
 
         public int guardarPersona(PersonaCLS oPersonaCLS)
@@ -156,11 +157,8 @@ namespace Capa_Datos
                 {
                     cn.Close();
                 }
-
             }
             return rpta;
-
-
         }
 
 
@@ -204,9 +202,7 @@ namespace Capa_Datos
                                 lista.Add(oPersonaCLS);
                             }
                         }
-
                     }
-
                     //Cierro una vez de traer la data
                     cn.Close();
                 }
@@ -214,11 +210,8 @@ namespace Capa_Datos
                 {
                     cn.Close();
                 }
-
             }
             return lista;
-
-
         }
 
 
@@ -260,9 +253,7 @@ namespace Capa_Datos
                                 lista.Add(oPersonaCLS);
                             }
                         }
-
                     }
-
                     //Cierro una vez de traer la data
                     cn.Close();
                 }
@@ -270,15 +261,8 @@ namespace Capa_Datos
                 {
                     cn.Close();
                 }
-
             }
             return lista;
-
-
         }
-
-
-
-
     }
 }

@@ -63,10 +63,14 @@ function Editar(id) {
     //editar
     else {
         document.getElementById("staticBackdropLabel").innerHTML = "Editar persona";
-        recuperarGenerico("Persona/recuperarPersona/?iidpersona=" + id,
-            "frmPersona", [], false);
+        recuperarGenericoEspecifico("Persona/recuperarPersona/?iidpersona=" + id,
+            "frmPersona", [], true);
     }
   
+}
+
+function recuperarEspecifico(res) {
+    document.getElementById("imgFoto").src = res.fotobase64;
 }
 /*
 function recuperarEspecifico(res) {
