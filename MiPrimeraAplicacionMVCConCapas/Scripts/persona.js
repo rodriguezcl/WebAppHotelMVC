@@ -1,6 +1,21 @@
 ﻿window.onload = function () {
     listarPersona();
     listarCombo();
+    previewImagen();
+
+}
+
+function previewImagen() {
+    var fubFoto = document.getElementById("fupFoto");
+    var imgFoto = document.getElementById("imgFoto");
+    fubFoto.onchange = function () {
+        var file = fubFoto.files[0];
+        var reader = new FileReader();
+        reader.onloadend = function () {
+            document.getElementById("imgFoto").src = reader.result;
+        }
+        reader.readAsDataURL(file);
+    }
 }
 
 function listarPersona() {

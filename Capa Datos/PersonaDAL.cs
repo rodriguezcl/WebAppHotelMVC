@@ -42,6 +42,8 @@ namespace Capa_Datos
                             int posTelefono = drd.GetOrdinal("TELEFONOFIJO");
                             int posidsexo = drd.GetOrdinal("IIDSEXO");
                             int posiidusuario = drd.GetOrdinal("IIDTIPOUSUARIO");
+                            int posNombreFoto = drd.GetOrdinal("nombrefoto");
+                            int posFoto = drd.GetOrdinal("foto");
                             while (drd.Read())
                             {
                                 oPersonaCLS = new PersonaCLS();
@@ -59,6 +61,14 @@ namespace Capa_Datos
                                     drd.GetInt32(posidsexo);
                                 oPersonaCLS.iidtipousuario = drd.IsDBNull(posiidusuario) ? 0 :
                                   drd.GetInt32(posiidusuario);
+                                oPersonaCLS.nombrefoto = drd.IsDBNull(posNombreFoto) ? "" :
+                                  drd.GetString(posNombreFoto);
+                                if (!drd.IsDBNull(posFoto))
+                                {
+                                    oPersonaCLS.foto = (byte[])drd.GetValue(posFoto);
+                                }
+                                //oPersonaCLS.foto = drd.IsDBNull(posFoto) ? "" :
+                                //  drd.GetString(posFoto);
 
                             }
                         }
