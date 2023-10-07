@@ -53,6 +53,10 @@ function setN(id, valor) {
     document.getElementsByName(id)[0].value = valor;
 }
 
+function setSRC(id, valor) {
+    document.getElementsByName(id)[0].src = valor;
+}
+
 function getN(id, valor) {
     return document.getElementsByName(id)[0].value;
 }
@@ -271,8 +275,14 @@ function LimpiarDatos(idFormulario, excepciones = []) {
     for (var i = 0; i < elementos.length; i++) {
         //Si esta incluido no se hace nada
 
-        if (!excepciones.includes(elementos[i].name))
+        if (!excepciones.includes(elementos[i].name)) {
+            if (elementos[i].tagName.toUpperCase()=="IMG") {
+                elementos[i].src = "";
+            }
+            else {
             elementos[i].value = "";
+            }
+        }
     }
 }
 
@@ -561,9 +571,7 @@ function recuperarGenerico(url, idFormulario, excepciones = [], adicional = fals
                     if (elementos[i].type.toUpperCase() != "FILE")
                     setN(nombreName, res[nombreName])
                 }
-
             }
-
         }
         if (adicional == true) {
             objConfiguracionGlobal.callbackeditar(res);
@@ -581,23 +589,22 @@ function recuperarGenericoEspecifico(url, idFormulario, excepciones = [], adicio
         for (var i = 0; i < elementos.length; i++) {
             nombreName = elementos[i].name
             if (!excepciones.includes(elementos[i].name)) {
-                if (elementos[i].type.toUpperCase() == "RADIO") {
+                if (elementos[i].type != undefined  && elementos[i].type.toUpperCase() == "RADIO") {
                     setC("[type='radio'][value='" + res[nombreName] + "']")
                 } else {
-                    if (elementos[i].type.toUpperCase()!="FILE")
-                    setN(nombreName, res[nombreName])
+                    if (elementos[i].type != undefined && elementos[i].type.toUpperCase() != "FILE")
+                        setN(nombreName, res[nombreName])
+                    else if (elementos[i].tagName.toUpperCase() == "IMG") {
+                        setSRC(nombreName, res[nombreName])
+                    }
                 }
-
             }
-
         }
         if (adicional == true) {
             //objConfiguracionGlobal.callbackeditar(res);
             recuperarEspecifico(res);
         }
     });
-
-
 }
 
 function validarSoloNumeros(e) {

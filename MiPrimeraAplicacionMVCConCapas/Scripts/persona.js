@@ -64,14 +64,14 @@ function Editar(id) {
     else {
         document.getElementById("staticBackdropLabel").innerHTML = "Editar persona";
         recuperarGenericoEspecifico("Persona/recuperarPersona/?iidpersona=" + id,
-            "frmPersona", [], true);
+            "frmPersona", [], false);
     }
   
 }
 
-function recuperarEspecifico(res) {
-    document.getElementById("imgFoto").src = res.fotobase64;
-}
+//function recuperarEspecifico(res) {
+//    document.getElementById("imgFoto").src = res.fotobase64;
+//}
 /*
 function recuperarEspecifico(res) {
     
