@@ -65,9 +65,9 @@ function listarCama() {
                         class: "mt-3 col-md-12",
                         label: "Seleccione una Opción",
                         type: "radio",
-                        labels: ["Excelente Estado", "Buen Estado", "Mal estado"],
-                        values: ["1", "2", "3"],
-                        ids: ["rbExcelente", "rbBuen", "rbMal"],
+                        labels: ["Excelente Estado", "Buen Estado", "Mal estado","Pesimo estado (malogrado)"],
+                        values: ["1", "2", "3","4"],
+                        ids: ["rbExcelente", "rbBuen", "rbMal", "rbPes"],
                         name: "iidestado",
                         checked: "rbBuen"
                     }

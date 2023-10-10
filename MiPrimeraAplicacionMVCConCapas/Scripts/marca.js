@@ -42,7 +42,8 @@ function listarMarca() {
                     {
                         class: "mb-3 col-md-6",
                         label: "Nombre Marca",
-                        name: "nombreMarca"
+                        name: "nombreMarca",
+                        classControl: "o max-100 min-3"
                     }
 
                 ],
@@ -51,8 +52,8 @@ function listarMarca() {
                         class: "col-md-12",
                         type: "text",
                         label: "Descripcion Marca",
-                        name: "descripcionMarca"
-
+                        name: "descripcionMarca",
+                        classControl: "o max-200 min-6"
 
                     }
                 ]
