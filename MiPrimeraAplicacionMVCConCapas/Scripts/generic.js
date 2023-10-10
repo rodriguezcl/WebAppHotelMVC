@@ -49,6 +49,11 @@ function set(id, valor) {
     document.getElementById(id).value = valor;
 }
 //No sirve por que los input radio tienen check
+
+function setD (id, valor){
+    document.getElementById(id).style.display = valor;
+}
+
 function setN(id, valor) {
     document.getElementsByName(id)[0].value = valor;
 }
@@ -475,10 +480,13 @@ function fetchGet(url, callback) {
     var raiz = document.getElementById("hdfOculto").value;
     var urlAbsoluta = window.location.protocol + "//" +
         window.location.host + raiz + url;
+    setD("cargando", "block");
     fetch(urlAbsoluta).then(res => res.json())
         .then(res => {
+            setD("cargando", "none");
             callback(res)
         }).catch(err => {
+            setD("cargando", "none");
             console.log(err)
         })
 
@@ -488,10 +496,13 @@ function fetchGetText(url, callback) {
     var raiz = document.getElementById("hdfOculto").value;
     var urlAbsoluta = window.location.protocol + "//" +
         window.location.host + raiz + url;
+    setD("cargando", "block");
     fetch(urlAbsoluta).then(res => res.text())
         .then(res => {
+            setD("cargando", "none");
             callback(res)
         }).catch(err => {
+            setD("cargando", "none");
             console.log(err)
         })
 
@@ -501,13 +512,16 @@ function fetchPostText(url, frm, callback) {
     var raiz = document.getElementById("hdfOculto").value;
     var urlAbsoluta = window.location.protocol + "//" +
         window.location.host + raiz + url;
+    setD("cargando", "block");
     fetch(urlAbsoluta, {
         method: "POST",
         body: frm
     }).then(res => res.text())
         .then(res => {
+            setD("cargando", "none");
             callback(res)
         }).catch(err => {
+            setD("cargando", "none");
             console.log(err)
         })
 }
