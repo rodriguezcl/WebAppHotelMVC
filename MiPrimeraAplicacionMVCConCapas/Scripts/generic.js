@@ -67,11 +67,10 @@ function setC(selector) {
 
 function pintar(objConfiguracion, objBusqueda, objFormulario) {
 
-    //URL Absolute  https://localhos
     var raiz = document.getElementById("hdfOculto").value;
     var urlAbsoluta = window.location.protocol + "//" +
         window.location.host + raiz + objConfiguracion.url;
-    // alert(urlAbsoluta)
+
     //Controles//accion
     fetch(urlAbsoluta)
         .then(res => res.json())
@@ -97,9 +96,9 @@ function pintar(objConfiguracion, objBusqueda, objFormulario) {
                     objConfiguracion.recuperarexcepcion = [];
                 if (objConfiguracion.iscallbackeditar == undefined)
                     objConfiguracion.iscallbackeditar = false;
-
                 objConfiguracionGlobal = objConfiguracion;
             }
+
             if (objFormulario != undefined) {
                 objFormularioGlobal = objFormulario;
                 if (objFormulario.guardar == undefined)
@@ -186,7 +185,6 @@ function pintar(objConfiguracion, objBusqueda, objFormulario) {
             }
 
 
-
             if (objBusqueda != undefined && objBusqueda.busqueda == true) {
                 if (objBusqueda.placeholder == undefined)
                     objBusqueda.placeholder = "Ingrese un valor"
@@ -246,8 +244,6 @@ function pintar(objConfiguracion, objBusqueda, objFormulario) {
                         item.propiedadId)
                 }
             }
-
-
         })
 
 }
@@ -261,7 +257,6 @@ function llenarComboBusqueda(res) {
         var data = res[name]
         llenarCombo(data, id, propiedadMostrar, propiedadId)
     }
-
 }
 
 function LimpiarDatos(idFormulario, excepciones = []) {
@@ -274,11 +269,11 @@ function LimpiarDatos(idFormulario, excepciones = []) {
         //Si esta incluido no se hace nada
 
         if (!excepciones.includes(elementos[i].name)) {
-            if (elementos[i].tagName.toUpperCase()=="IMG") {
+            if (elementos[i].tagName.toUpperCase() == "IMG") {
                 elementos[i].src = "";
             }
             else {
-            elementos[i].value = "";
+                elementos[i].value = "";
             }
         }
     }
@@ -404,14 +399,12 @@ function ValidarObligatorios(idFormulario) {
             error = "Debe ingresar el " + elementos[i].name;
             return error;
         }
-
-        //elementos[i].value = "";
     }
     return error;
 }
 
 function generarTabla(objConfiguracion, res, objFormulario, primeravez = false) {
-    // objFormulario.formulariogenerico = true
+
     var listaPintar = res;
     if (objConfiguracion != null && objConfiguracion.name != undefined && primeravez == true) {
         var nombrePropiedad = objConfiguracion.name;
@@ -437,9 +430,6 @@ function generarTabla(objConfiguracion, res, objFormulario, primeravez = false) 
             propiedadActual = objConfiguracion.propiedades[j]
             contenido += "<td>" + fila[propiedadActual] + "</td>";
         }
-        ////contenido += "<td>" + fila.id + "</td>";  //fila["id"]
-        ////contenido += "<td>" + fila.nombre + "</td>";
-        ////contenido += "<td>" + fila.descripcion + "</td>";
         if (objConfiguracion.editar == true || objConfiguracion.eliminar == true) {
             contenido += "<td>";
             if (objConfiguracion.editar == true) {
@@ -520,14 +510,6 @@ function fetchPostText(url, frm, callback) {
         }).catch(err => {
             console.log(err)
         })
-    /*
-    fetch(urlAbsoluta).then(res => res.json())
-        .then(res => {
-            callback(res)
-        }).catch(err => {
-            console.log(err)
-        })
-        */
 }
 
 function Buscar() {
@@ -539,21 +521,6 @@ function Buscar() {
         var rpta = generarTabla(objConf, res, objFormularioGlobal);
         document.getElementById("divContenedor").innerHTML = rpta;
     })
-    /*
-    fetch(`${objBus.url}/?${objBus.nombreparametro}=` + valor)
-        .then(res => res.json())
-        .then(res => {
-            var rpta = generarTabla(objConf, res);
-            document.getElementById("divContenedor").innerHTML = rpta;
-        })
-        */
-    /*
-    pintar({
-        url: `${objBus.url}/?${objBus.nombreparametro}=` + valor,
-        id: objConf.id,
-        cabeceras: objConf.cabeceras,
-        propiedades: objConf.propiedades
-    }, objBus)*/
 }
 
 function recuperarGenerico(url, idFormulario, excepciones = [], adicional = false) {
@@ -576,11 +543,8 @@ function recuperarGenerico(url, idFormulario, excepciones = [], adicional = fals
         }
         if (adicional == true) {
             objConfiguracionGlobal.callbackeditar(res);
-            /*recuperarespecifico(res);*/
         }
     });
-
-
 }
 
 function recuperarGenericoEspecifico(url, idFormulario, excepciones = [], adicional = false) {
@@ -590,7 +554,7 @@ function recuperarGenericoEspecifico(url, idFormulario, excepciones = [], adicio
         for (var i = 0; i < elementos.length; i++) {
             nombreName = elementos[i].name
             if (!excepciones.includes(elementos[i].name)) {
-                if (elementos[i].type != undefined  && elementos[i].type.toUpperCase() == "RADIO") {
+                if (elementos[i].type != undefined && elementos[i].type.toUpperCase() == "RADIO") {
                     setC("[type='radio'][value='" + res[nombreName] + "']")
                 } else {
                     if (elementos[i].type != undefined && elementos[i].type.toUpperCase() != "FILE")
@@ -602,7 +566,6 @@ function recuperarGenericoEspecifico(url, idFormulario, excepciones = [], adicio
             }
         }
         if (adicional == true) {
-            //objConfiguracionGlobal.callbackeditar(res);
             recuperarEspecifico(res);
         }
     });
@@ -631,17 +594,12 @@ function validarSoloNumerosDecimales(e) {
 }
 
 function encontroClase(clase, claseBuscar = "snc") {
-
-
-
     //["form-control", "o", "max-40"]
     var arrayClase = clase.split(" ");
     //max-40
     var numeroEncontradas = arrayClase.filter(p => p.includes(claseBuscar)).length;
     if (numeroEncontradas == 0) return false
     else return true;
-
-
 }
 
 function construirFormulario(objFormulario) {
@@ -757,8 +715,6 @@ function construirFormulario(objFormulario) {
 }
 
 function GuardarGenerico(idformulario, urlguardar) {
-    // alert(idformulario);
-    // alert(urlguardar);
     var error = ValidarObligatorios(idformulario)
     if (error != "") {
         Error(error);
@@ -821,8 +777,6 @@ function GuardarGenerico(idformulario, urlguardar) {
                     }
 
                     LimpiarDatos(idformulario, objFormularioGlobal.limpiarexcepcion.concat(radioNames))
-                    //listarTipoHabitacion();
-                    //Limpiar();
                 }
             })
         });
@@ -830,9 +784,6 @@ function GuardarGenerico(idformulario, urlguardar) {
 }
 
 function EditarGenerico(id, idFormulario) {
-    //var idFormulario = "frmCama";
-    // var idformulario = objConfiguracionGlobal 
-    //alert(idFormulario)
     var url = objConfiguracionGlobal.urlRecuperar;
     var nombreparametro = objConfiguracionGlobal.parametroRecuperar
     if (objFormularioGlobal.type == "popup") {
@@ -887,8 +838,6 @@ function EliminarGenerico(id) {
 
                             })
                         }
-
-                        // listarTipoHabitacion();
                     }
                 })
         })

@@ -50,7 +50,6 @@ function filtrarPersonaTipousuario() {
         eliminar: true,
         propiedadId: "iidpersona"
     })
-   // alert(iidtipousuario);
 }
 
 
@@ -69,23 +68,6 @@ function Editar(id) {
   
 }
 
-//function recuperarEspecifico(res) {
-//    document.getElementById("imgFoto").src = res.fotobase64;
-//}
-/*
-function recuperarEspecifico(res) {
-    
-    var iidsexo = res.iidsexo;
-    //Masculino
-    if (iidsexo == 1) {
-        document.getElementById("rbMas").checked = true;
-    }
-    //femenino
-    else {
-           document.getElementById("rbFem").checked = true;
-    }
-}
-*/
 function Guardar() {
 
     var error = ValidarObligatorios("frmPersona")
@@ -102,7 +84,7 @@ function Guardar() {
     var frm = new FormData(frmPersona);
     fetchPostText("Persona/Guardar", frm, function (res) {
         if (res == "1") {
-           // listarTipoHabitacion();
+    
             document.getElementById("btnCerrar").click();
             listarPersona();
             Limpiar();
@@ -112,18 +94,7 @@ function Guardar() {
 
 
 function Limpiar() {
-    /*
-    setN("id", "")
-    setN("nombre", "")
-    setN("descripcion", "")
-    */
-    /*
-    var elementos = document.querySelectorAll("#frmTipoHabitacion [name]")
-    for (var i = 0; i < elementos.length; i++) {
-        elementos[i].value = "";
-    }*/
     LimpiarDatos("frmPersona", ["iidsexo"])
-    //Correcto("Funciono mi alerta")
 }
 
 function Eliminar(id) {

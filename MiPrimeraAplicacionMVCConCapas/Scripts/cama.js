@@ -32,7 +32,6 @@ function listarCama() {
             type: "fieldset",
             urlGuardar: "Cama/guardarCama",
             legend: "Datos de la Cama",
-           /* limpiarexcepcion: ["iidestado"],*/
             formulario: [
                 [
                     {
@@ -40,7 +39,6 @@ function listarCama() {
                         label: "Id Cama",
                         name: "idcama",
                         value: 0,
-
                         readonly: true
                     },
                     {
@@ -60,7 +58,6 @@ function listarCama() {
                         rows: "5",
                         cols: "20",
                         classControl: "o max-70 min-10"
-
                     }
                 ],
                 [
