@@ -20,7 +20,9 @@ namespace MiPrimeraAplicacionMVCConCapas.Controllers
         public JsonResult listarPersona()
         {
             PersonaBL oPersonaBL = new PersonaBL();
-            return Json(oPersonaBL.listarPersona(), JsonRequestBehavior.AllowGet);
+            var json = Json(oPersonaBL.listarPersona(), JsonRequestBehavior.AllowGet);
+            json.MaxJsonLength = 500000000;
+            return json;
         }
         public JsonResult filtrarPersona(int iidtipousuario)
         {

@@ -241,6 +241,8 @@ namespace Capa_Datos
                             int posNombreCompleto = drd.GetOrdinal("NOMBRECOMPLETO");
                             int posNombreSexo = drd.GetOrdinal("NOMBRESEXO");
                             int posNombreTipousuario = drd.GetOrdinal("NOMBRETIPOUSUARIO");
+                            int posNombreFoto = drd.GetOrdinal("nombrefoto");
+                            int posFoto = drd.GetOrdinal("foto");
                             while (drd.Read())
                             {
                                 oPersonaCLS = new PersonaCLS();
@@ -252,6 +254,27 @@ namespace Capa_Datos
                                     : drd.GetString(posNombreSexo);
                                 oPersonaCLS.nombreTipoUsuario = drd.IsDBNull(posNombreTipousuario) ? ""
                                   : drd.GetString(posNombreTipousuario);
+                                oPersonaCLS.nombrefoto = drd.IsDBNull(posNombreFoto) ? "" :
+                                 drd.GetString(posNombreFoto);
+                                if (!drd.IsDBNull(posFoto))
+                                {
+                                    string nomfoto = oPersonaCLS.nombrefoto;
+                                    //.jpg .png
+                                    string extension = Path.GetExtension(nomfoto);
+                                    string nombresinextension = extension.Substring(1);
+                                    byte[] fotobyte = (byte[])drd.GetValue(posFoto);
+                                    //mime data: image/formato;base64,
+                                    //data:image/jpg;base64,
+                                    //data:image/png;base64,
+                                    string mime = "data:image/" + nombresinextension + ";base64,";
+                                    string fotobase = Convert.ToBase64String(fotobyte);
+                                    oPersonaCLS.fotobase64 = mime + fotobase;
+                                }
+
+                                else
+                                {
+                                    oPersonaCLS.fotobase64 = "";
+                                }
                                 lista.Add(oPersonaCLS);
                             }
                         }

@@ -101,6 +101,8 @@ function pintar(objConfiguracion, objBusqueda, objFormulario) {
                     objConfiguracion.recuperarexcepcion = [];
                 if (objConfiguracion.iscallbackeditar == undefined)
                     objConfiguracion.iscallbackeditar = false;
+                if (objConfiguracion.columnaimg == undefined)
+                    objConfiguracion.columnaimg = [];
                 objConfiguracionGlobal = objConfiguracion;
             }
 
@@ -433,7 +435,13 @@ function generarTabla(objConfiguracion, res, objFormulario, primeravez = false) 
         contenido += "<tr>";
         for (var j = 0; j < objConfiguracion.propiedades.length; j++) {
             propiedadActual = objConfiguracion.propiedades[j]
+            if (objConfiguracion.columnaimg.includes(propiedadActual)) {
+                contenido += "<td> <img width='100px' height='100px' src= '" + fila[propiedadActual] +"'/> </td>";
+            }
+            else {
             contenido += "<td>" + fila[propiedadActual] + "</td>";
+
+            }
         }
         if (objConfiguracion.editar == true || objConfiguracion.eliminar == true) {
             contenido += "<td>";

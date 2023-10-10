@@ -23,12 +23,12 @@ function listarPersona() {
         popup: true,
         idpopup:"staticBackdrop",
         url: "Persona/listarPersona", id: "divTabla",
-        cabeceras: ["Id Persona", "Nombre Completo", "Sexo","Tipo Usuario"],
-        propiedades: ["iidpersona", "nombreCompleto", "nombreSexo",
-        "nombreTipoUsuario"],
+        cabeceras: ["Id Persona", "Nombre Completo", "Sexo","Tipo Usuario","Foto"],
+        propiedades: ["iidpersona", "nombreCompleto", "nombreSexo","nombreTipoUsuario","fotobase64"],
         editar: true,
         eliminar: true,
-        propiedadId: "iidpersona"
+        propiedadId: "iidpersona",
+        columnaimg: ["fotobase64"]
     })
 }
 
