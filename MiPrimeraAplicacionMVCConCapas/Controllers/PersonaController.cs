@@ -2,7 +2,7 @@
 using Capa_Negocio;
 using System;
 using System.Collections.Generic;
-using System.IO;
+using io=System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -20,7 +20,14 @@ namespace MiPrimeraAplicacionMVCConCapas.Controllers
         public JsonResult listarPersona()
         {
             PersonaBL oPersonaBL = new PersonaBL();
-            var json = Json(oPersonaBL.listarPersona(), JsonRequestBehavior.AllowGet);
+            //ruta
+            string rutaAbsolutaNoFoto = Server.MapPath("~/img/nofoto.jpg");
+            //como leo sus bytes
+            byte[] bufferNoFoto = io.File.ReadAllBytes(rutaAbsolutaNoFoto);
+            string baseNoFoto = Convert.ToBase64String(bufferNoFoto);
+            string mime = "data:image/jpg;base64,";
+            string fotoFinal = mime + baseNoFoto;
+            var json = Json(oPersonaBL.listarPersona(fotoFinal), JsonRequestBehavior.AllowGet);
             json.MaxJsonLength = 500000000;
             return json;
         }
@@ -52,7 +59,7 @@ namespace MiPrimeraAplicacionMVCConCapas.Controllers
             if (fotopersona!=null)
             {
                 nombreFoto = fotopersona.FileName;
-                BinaryReader lector = new BinaryReader(fotopersona.InputStream);
+                io.BinaryReader lector = new io.BinaryReader(fotopersona.InputStream);
                 bufferfoto = lector.ReadBytes((int)fotopersona.ContentLength);
                 oPersona.foto = bufferfoto;
                 oPersona.nombrefoto = nombreFoto;

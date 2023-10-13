@@ -35,10 +35,10 @@ namespace Capa_Negocio
             return oPersonaDAL.recuperarPersona(iidpersona);
         }
 
-        public List<PersonaCLS> listarPersona()
+        public List<PersonaCLS> listarPersona(string fotofinal)
         {
             PersonaDAL oPersonaDAL = new PersonaDAL();
-            return oPersonaDAL.listarPersona();
+            return oPersonaDAL.listarPersona(fotofinal);
 
         }
 

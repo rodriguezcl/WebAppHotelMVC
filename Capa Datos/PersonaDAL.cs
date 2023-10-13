@@ -217,7 +217,7 @@ namespace Capa_Datos
         }
 
 
-        public List<PersonaCLS> listarPersona()
+        public List<PersonaCLS> listarPersona(string fotofinal)
         {
             List<PersonaCLS> lista = null;
             //  string cadena = ConfigurationManager.ConnectionStrings["cn"].ConnectionString; 
@@ -273,7 +273,7 @@ namespace Capa_Datos
 
                                 else
                                 {
-                                    oPersonaCLS.fotobase64 = "";
+                                    oPersonaCLS.fotobase64 = fotofinal;
                                 }
                                 lista.Add(oPersonaCLS);
                             }
