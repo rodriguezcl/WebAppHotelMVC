@@ -51,7 +51,7 @@ namespace MiPrimeraAplicacionMVCConCapas.Controllers
                 JsonRequestBehavior.AllowGet);
         }
 
-        public int Guardar(PersonaCLS oPersona, HttpPostedFileBase fotopersona)
+        public int Guardar(PersonaCLS oPersona, HttpPostedFileBase fotopersona,int[] valor )
         {
             string nombreFoto = "";
             byte[] bufferfoto;

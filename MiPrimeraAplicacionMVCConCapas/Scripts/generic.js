@@ -578,7 +578,11 @@ function recuperarGenericoEspecifico(url, idFormulario, excepciones = [], adicio
             if (!excepciones.includes(elementos[i].name)) {
                 if (elementos[i].type != undefined && elementos[i].type.toUpperCase() == "RADIO") {
                     setC("[type='radio'][value='" + res[nombreName] + "']")
-                } else {
+                }
+                else if (elementos[i].type != undefined && elementos[i].type.toUpperCase() == "CHECKBOX") {
+                    //Recuperamos
+                }
+                else {
                     if (elementos[i].type != undefined && elementos[i].type.toUpperCase() != "FILE")
                         setN(nombreName, res[nombreName])
                     else if (elementos[i].tagName.toUpperCase() == "IMG") {

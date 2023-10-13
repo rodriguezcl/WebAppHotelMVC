@@ -94,7 +94,7 @@ function Guardar() {
 
 
 function Limpiar() {
-    LimpiarDatos("frmPersona", ["iidsexo"])
+    LimpiarDatos("frmPersona", ["iidsexo","valor[]"])
 }
 
 function Eliminar(id) {
