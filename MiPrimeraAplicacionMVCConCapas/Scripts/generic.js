@@ -741,11 +741,11 @@ function construirFormulario(objFormulario) {
                 }
                 if (hijosArray.preview == true) {
                     contenido += `
-                              <img width="${hijosArray.imgwidth}" height="${hijosArray.imgheight}" id="img${hijosArray.name}" name="${hijosArray.name}" style="display:block" />
+                              <img width="${hijosArray.imgwidth}" height="${hijosArray.imgheight}" id="img${hijosArray.name}" name="${hijosArray.namefoto}" style="display:block" />
                    `
                 }
                 contenido += `
-                              <input type="file" id="fup${hijosArray.name}" name="${hijosArray.name}" ${hijosArray.preview==true? "onchange='previewImage()'" : ""} />
+                              <input type="file" id="fup${hijosArray.name}" name="${hijosArray.name}" ${hijosArray.preview == true ? `onchange='previewImage(this,"img${hijosArray.name}")'` : ""} />
                    `
 
             }
@@ -760,6 +760,16 @@ function construirFormulario(objFormulario) {
     contenido += "</div>"
 
     return contenido;
+}
+
+function previewImage(control, img) {
+    var file = control.files[0];
+    var imgFoto = document.getElementById(img);
+    var reader = new FileReader();
+    reader.onloadend = function () {
+        imgFoto.src = reader.result;
+    }
+    reader.readAsDataURL(file);
 }
 
 function GuardarGenerico(idformulario, urlguardar) {

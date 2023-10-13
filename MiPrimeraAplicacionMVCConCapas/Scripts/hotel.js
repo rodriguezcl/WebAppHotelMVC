@@ -5,6 +5,8 @@
 function listarHotel() {
     pintar(
         {
+            popup: true,
+
             url: "Hotel/listarHotel",
             id: "divTabla",
             cabeceras: ["Id Hotel", "Nombre", "Dirección"],
@@ -15,21 +17,23 @@ function listarHotel() {
             parametroEliminar: "idcama",
             urlRecuperar: "Cama/recuperarCama",
             parametroRecuperar: "idcamita",
-            propiedadId: "idcama"
-        },
-        {
-            busqueda: true,
-            url: "Cama/filtrarCama",
-            nombreparametro: "nombre",
-            type: "text",
-            button: false,
-            id: "txtnombrecama"
+            propiedadId: "iidhotel"
+        },null
+        //{
+        //    busqueda: true,
+        //    url: "Cama/filtrarCama",
+        //    nombreparametro: "nombre",
+        //    type: "text",
+        //    button: false,
+        //    id: "txtnombrecama"
 
-        }
+        //}
         ,
         {
             id: "frmHotel",
-            type: "fieldset",
+            type: "popup",
+            titulo: "Hotel",
+            tituloconfirmacionguardar: "Desea guardar el hotel?",
             urlGuardar: "Hotel/guardarHotel",
             legend: "Datos del Hotel",
             formulario: [
@@ -71,7 +75,7 @@ function listarHotel() {
                 ],
                 [
                     {
-                        
+                        class: "col-md-6",
                         label: "Foto Hotel",
                         type: "file",
                         name: "fotodata",
