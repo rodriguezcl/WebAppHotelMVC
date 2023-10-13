@@ -19,8 +19,11 @@ namespace MiPrimeraAplicacionMVCConCapas.Controllers
 
         public JsonResult listarHotel()
         {
+            string ruta = Server.MapPath("~/Files");
             HotelBL oHotelBL = new HotelBL();
-            return Json(oHotelBL.listarHotel(), JsonRequestBehavior.AllowGet);
+            var json = Json(oHotelBL.listarHotel(ruta), JsonRequestBehavior.AllowGet);
+            json.MaxJsonLength = 500000000;
+            return json;
         }
 
         public int guardarHotel(HotelCLS oHotelCLS, HttpPostedFileBase fotodata)

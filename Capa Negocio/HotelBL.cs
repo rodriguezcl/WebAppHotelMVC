@@ -10,10 +10,10 @@ namespace Capa_Negocio
 {
     public class HotelBL
     {
-        public List<HotelCLS> listarHotel()
+        public List<HotelCLS> listarHotel(string ruta)
         {
             HotelDAL oHotel = new HotelDAL();
-            return oHotel.listarHotel();
+            return oHotel.listarHotel(ruta);
         }
 
         public int guardarHotel(HotelCLS oHotelCLS)

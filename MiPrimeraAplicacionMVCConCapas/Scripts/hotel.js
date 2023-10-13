@@ -9,15 +9,16 @@ function listarHotel() {
             sizepopup: "modal-lg",
             url: "Hotel/listarHotel",
             id: "divTabla",
-            cabeceras: ["Id Hotel", "Nombre", "Dirección"],
-            propiedades: ["iidhotel", "nombre", "direccion"],
+            cabeceras: ["Id Hotel", "Nombre", "Dirección","Foto Hotel"],
+            propiedades: ["iidhotel", "nombre", "direccion","fotobase64"],
             editar: true,
             eliminar: true,
             urlEliminar: "Cama/eliminarCama",
             parametroEliminar: "idcama",
             urlRecuperar: "Cama/recuperarCama",
             parametroRecuperar: "idcamita",
-            propiedadId: "iidhotel"
+            propiedadId: "iidhotel",
+            columnaimg: ["fotobase64"]
         },null
         //{
         //    busqueda: true,

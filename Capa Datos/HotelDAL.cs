@@ -54,7 +54,7 @@ namespace Capa_Datos
 
         }
 
-        public List<HotelCLS> listarHotel()
+        public List<HotelCLS> listarHotel(string ruta)
         {
             List<HotelCLS> lista = null;
             //  string cadena = ConfigurationManager.ConnectionStrings["cn"].ConnectionString; 
@@ -77,6 +77,7 @@ namespace Capa_Datos
                             int posId = drd.GetOrdinal("IIDHOTEL");
                             int posNombre = drd.GetOrdinal("NOMBRE");
                             int posDireccion = drd.GetOrdinal("DIRECCION");
+                            int posNombreArchivo = drd.GetOrdinal("NOMBREARCHIVO");
                             while (drd.Read())
                             {
                                 oHotelCLS = new HotelCLS();
@@ -86,6 +87,29 @@ namespace Capa_Datos
                                     : drd.GetString(posNombre);
                                 oHotelCLS.direccion = drd.IsDBNull(posDireccion) ? ""
                                     : drd.GetString(posDireccion);
+                                oHotelCLS.nombrearchivo = drd.IsDBNull(posNombreArchivo) ? ""
+                                    : drd.GetString(posNombreArchivo);
+                                //No hay
+                                if(oHotelCLS.nombrearchivo == "")
+                                {
+                                    string mime = "data:image/jpg;base64,";
+                                    string rutaA = Path.Combine(ruta, "nofoto.jpg");
+                                    byte[] archivoByte = File.ReadAllBytes(rutaA);
+                                    string archivoBase = Convert.ToBase64String(archivoByte);
+                                    oHotelCLS.fotobase64 = mime+archivoBase;
+                                }
+                                //Si hay
+                                else
+                                {
+                                    string extension = Path.GetExtension(oHotelCLS.nombrearchivo);
+                                    string nombresinextension = extension.Substring(1);
+                                    string rutaArchivo = Path.Combine(ruta, oHotelCLS.nombrearchivo);
+                                    byte[] archivoByte = File.ReadAllBytes(rutaArchivo);
+                                    string archivoBase = Convert.ToBase64String(archivoByte);
+                                    string mime = "data:image/" + nombresinextension + ";base64,";
+                                    oHotelCLS.fotobase64 = mime + archivoBase;
+                                }
+
                                 lista.Add(oHotelCLS);
                             }
                         }
