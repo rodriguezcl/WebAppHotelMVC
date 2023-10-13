@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using io=System.IO;
 
 namespace MiPrimeraAplicacionMVCConCapas.Controllers
 {
@@ -22,8 +23,24 @@ namespace MiPrimeraAplicacionMVCConCapas.Controllers
             return Json(oHotelBL.listarHotel(), JsonRequestBehavior.AllowGet);
         }
 
-        public int guardarHotel(HotelCLS oHotelCLS)
+        public int guardarHotel(HotelCLS oHotelCLS, HttpPostedFileBase fotodata)
         {
+            string nombreFoto = "";
+            byte[] bufferfoto;
+            //Llenar la foto y el nombre foto
+            if (fotodata != null)
+            {
+                string fechaActual = DateTime.Now.ToString("ddmmyyyyhhmmss");
+                nombreFoto = fechaActual+"-"+fotodata.FileName;
+                io.BinaryReader lector = new io.BinaryReader(fotodata.InputStream);
+                bufferfoto = lector.ReadBytes((int)fotodata.ContentLength);
+                oHotelCLS.foto = bufferfoto;
+                oHotelCLS.nombrearchivo = nombreFoto;
+                string ruta = Server.MapPath("~/Files");
+
+                oHotelCLS.rutaGuardar = ruta;
+            }
+
             HotelBL oHotelBL = new HotelBL();
             return oHotelBL.guardarHotel(oHotelCLS);
         }

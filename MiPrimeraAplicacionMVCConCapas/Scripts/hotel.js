@@ -6,7 +6,7 @@ function listarHotel() {
     pintar(
         {
             popup: true,
-
+            sizepopup: "modal-lg",
             url: "Hotel/listarHotel",
             id: "divTabla",
             cabeceras: ["Id Hotel", "Nombre", "Dirección"],

@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace Capa_Datos
 {
@@ -30,7 +31,12 @@ namespace Capa_Datos
                         cmd.Parameters.AddWithValue("@nombre", oHotelCLS.nombre);
                         cmd.Parameters.AddWithValue("@descripcion", oHotelCLS.descripcion);
                         cmd.Parameters.AddWithValue("@direccion", oHotelCLS.direccion);
-                        cmd.Parameters.AddWithValue("@nombreArchivo", oHotelCLS.nombrearchivo);
+                        cmd.Parameters.AddWithValue("@nombreArchivo", oHotelCLS.nombrearchivo == null ? "" : oHotelCLS.nombrearchivo);
+                        if(oHotelCLS.nombrearchivo != null)
+                        {
+                            File.WriteAllBytes(Path.Combine( oHotelCLS.rutaGuardar, oHotelCLS.nombrearchivo),oHotelCLS.foto);
+                        }
+                        //cmd.Parameters.AddWithValue("@foto", oHotelCLS.foto == null ? System.Data.SqlTypes.SqlBinary.Null : oHotelCLS.foto);
                         rpta = cmd.ExecuteNonQuery();
                     }
 
