@@ -679,6 +679,8 @@ function construirFormulario(objFormulario) {
                 hijosArray.className = "mb-3";
             }
 
+           
+
             var encontroSNC = encontroClase(hijosArray.classControl, "snc")
             var encontroSNDC = encontroClase(hijosArray.classControl, "sndc")
 
@@ -722,6 +724,30 @@ function construirFormulario(objFormulario) {
                 radioNames.push(hijosArray.name);
 
                 contenido += "</div>"
+            }
+
+            else if (typelemento == "file") {
+                if (hijosArray.imgwidth == undefined) {
+                    hijosArray.imgwidth = "100";
+                }
+                if (hijosArray.imgheight == undefined) {
+                    hijosArray.imgheight = "100";
+                }
+                if (hijosArray.preview == undefined) {
+                    hijosArray.preview = true;
+                }
+                if (hijosArray.preview == undefined) {
+                    hijosArray.preview = true;
+                }
+                if (hijosArray.preview == true) {
+                    contenido += `
+                              <img width="${hijosArray.imgwidth}" height="${hijosArray.imgheight}" id="img${hijosArray.name}" name="${hijosArray.name}" style="display:block" />
+                   `
+                }
+                contenido += `
+                              <input type="file" id="fup${hijosArray.name}" name="${hijosArray.name}" ${hijosArray.preview==true? "onchange='previewImage()'" : ""} />
+                   `
+
             }
             contenido += `</div>`
 
