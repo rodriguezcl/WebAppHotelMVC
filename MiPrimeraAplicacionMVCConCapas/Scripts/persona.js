@@ -21,10 +21,10 @@ function previewImagen() {
 function listarPersona() {
     pintar({
         popup: true,
-        idpopup:"staticBackdrop",
+        idpopup: "staticBackdrop",
         url: "Persona/listarPersona", id: "divTabla",
-        cabeceras: ["Id Persona", "Nombre Completo", "Sexo","Tipo Usuario","Foto"],
-        propiedades: ["iidpersona", "nombreCompleto", "nombreSexo","nombreTipoUsuario","fotobase64"],
+        cabeceras: ["Id Persona", "Nombre Completo", "Sexo", "Tipo Usuario", "Foto"],
+        propiedades: ["iidpersona", "nombreCompleto", "nombreSexo", "nombreTipoUsuario", "fotobase64"],
         editar: true,
         eliminar: true,
         propiedadId: "iidpersona",
@@ -34,7 +34,7 @@ function listarPersona() {
 
 function listarCombo() {
     fetchGet("TipoUsuario/listarTipoUsuario", function (data) {
-        llenarCombo(data, "cboTipoUsuario", "nombre", "iidtipousuario","0")
+        llenarCombo(data, "cboTipoUsuario", "nombre", "iidtipousuario", "0")
         llenarCombo(data, "cboTipousuarioForm", "nombre", "iidtipousuario")
     })
 }
@@ -42,7 +42,7 @@ function listarCombo() {
 function filtrarPersonaTipousuario() {
     var iidtipousuario = get("cboTipoUsuario");
     pintar({
-        url: "Persona/filtrarPersona/?iidtipousuario="+iidtipousuario, id: "divTabla",
+        url: "Persona/filtrarPersona/?iidtipousuario=" + iidtipousuario, id: "divTabla",
         cabeceras: ["Id Persona", "Nombre Completo", "Sexo", "Tipo Usuario"],
         propiedades: ["iidpersona", "nombreCompleto", "nombreSexo",
             "nombreTipoUsuario"],
@@ -65,7 +65,7 @@ function Editar(id) {
         recuperarGenericoEspecifico("Persona/recuperarPersona/?iidpersona=" + id,
             "frmPersona", [], false);
     }
-  
+
 }
 
 function Guardar() {
@@ -75,26 +75,28 @@ function Guardar() {
         Error(error);
         return;
     }
-    var error=  validarSoloNumerosEnteros("frmPersona")
+    var error = validarSoloNumerosEnteros("frmPersona")
     if (error != "") {
         Error(error);
         return;
     }
     var frmPersona = document.getElementById("frmPersona");
     var frm = new FormData(frmPersona);
-    fetchPostText("Persona/Guardar", frm, function (res) {
-        if (res == "1") {
-    
-            document.getElementById("btnCerrar").click();
-            listarPersona();
-            Limpiar();
-        }
+    Confirmacion(undefined, "¿Desea guardar los cambios de la persona?", function () {
+        fetchPostText("Persona/Guardar", frm, function (res) {
+            if (res == "1") {
+
+                document.getElementById("btnCerrar").click();
+                listarPersona();
+                Limpiar();
+            }
+        })
     })
 }
 
 
 function Limpiar() {
-    LimpiarDatos("frmPersona", ["iidsexo","valor[]"])
+    LimpiarDatos("frmPersona", ["iidsexo", "valor[]"])
 }
 
 function Eliminar(id) {

@@ -401,9 +401,14 @@ function ValidarObligatorios(idFormulario) {
     var error = "";
     var elementos = document.querySelectorAll("#" + idFormulario + " .o")
     for (var i = 0; i < elementos.length; i++) {
-        //Si esta incluido no se hace nada
-        if (elementos[i].value == "") {
+        //Si esta incluido no se hace nada (input controles de entrada)
+        if (elementos[i].tagName.toUpperCase() == "INPUT" && elementos[i].value == "") {
             error = "Debe ingresar el " + elementos[i].name;
+            return error;
+        }
+        //imagenes
+        else if (elementos[i].tagName.toUpperCase() == "IMG" && elementos[i].src == window.location.href) {
+            error = "Debe ingresar la " + elementos[i].name.replace("base64","");
             return error;
         }
     }
