@@ -272,6 +272,10 @@ function LimpiarDatos(idFormulario, excepciones = []) {
     for (var j = 0; j < radioLimpiar.length; j++) {
         document.getElementById(radioLimpiar[j]).checked = true;
     }
+    var checkboxs = document.querySelectorAll("#" + idFormulario + " [type*='checkbox']")
+    for (var j = 0; j < checkboxs.length; j++) {
+        checkboxs[j].checked = false;
+    }
     for (var i = 0; i < elementos.length; i++) {
         //Si esta incluido no se hace nada
 
@@ -758,14 +762,14 @@ function construirFormulario(objFormulario) {
                                     id="${hijosArray.id}"></select>
                    `
                 combosLlenar.push(hijosArray)
-            } else if (typelemento == "radio") {
+            } else if (typelemento == "radio" || typelemento == "checkbox") {
                 contenido += "<div>";
                 for (var z = 0; z < hijosArray.labels.length; z++) {
                     contenido += `
-                              <input type="radio"
-                                ${hijosArray.ids[z] == hijosArray.checked ? "checked" : ""}
-                               id="${hijosArray.ids[z]}"
-                                   name="${hijosArray.name}" value="${hijosArray.values[z]}" />
+                              <input type="${typelemento}"
+                                ${hijosArray.ids != undefined && hijosArray.ids[z] == hijosArray.checked ? "checked" : ""}
+                               id="${hijosArray.ids==undefined ? z : hijosArray.ids[z]}"
+                                   name="${hijosArray.name}${typelemento == "checkbox" ? '[]': '' }" value="${hijosArray.values[z]}" />
                         <label>${hijosArray.labels[z]}</label>
                    `
                 }
