@@ -400,6 +400,17 @@ function ValidarObligatorios(idFormulario) {
     //No hay error
     var error = "";
     var elementos = document.querySelectorAll("#" + idFormulario + " .o")
+    var contenedorcheckbox = document.querySelectorAll("#" + idFormulario + " [class*='o-']")
+    console.log(contenedorcheckbox)
+    for (var i = 0; i < contenedorcheckbox.length; i++) {
+        //contenedor div <div class="o-1">
+        var contenedor = contenedorcheckbox[i];
+        var arrayClase = contenedor.className.split(" ");
+        //clase maxima
+        var claseMaxima = arrayClase.filter(p => p.includes("o-"))[0]
+        var minimoseleccionable = claseMaxima.replace("o-", "") * 1;
+        console.log(minimoseleccionable);
+    }
     for (var i = 0; i < elementos.length; i++) {
         //Si esta incluido no se hace nada (input controles de entrada)
         if (elementos[i].tagName.toUpperCase() == "INPUT" && elementos[i].value == "") {
