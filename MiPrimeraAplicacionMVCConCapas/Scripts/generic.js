@@ -405,11 +405,32 @@ function ValidarObligatorios(idFormulario) {
     for (var i = 0; i < contenedorcheckbox.length; i++) {
         //contenedor div <div class="o-1">
         var contenedor = contenedorcheckbox[i];
+        //Todas las clases "o-2 input pantalla"
         var arrayClase = contenedor.className.split(" ");
         //clase maxima
         var claseMaxima = arrayClase.filter(p => p.includes("o-"))[0]
+        //Saco solo el numero 1234
         var minimoseleccionable = claseMaxima.replace("o-", "") * 1;
+        //Inicializo en cero
+        var numeroMarcado = 0;
         console.log(minimoseleccionable);
+        var hijos = contenedor.children;
+        var hijo;
+        console.log(hijos);
+        var nhijos = hijos.length;
+        for (var j = 0; j < nhijos; j++) {
+            hijo = hijos[j];
+            if (hijo.type != undefined && hijo.type.toUpperCase() == "CHECKBOX") {
+                if (hijo.checked == true) {
+                    numeroMarcado++;
+                }
+            }
+        }
+        if (minimoseleccionable > numeroMarcado) {
+            error = "Debe seleccionar al menos " + minimoseleccionable + " opción con un check";
+            return error;
+        }
+
     }
     for (var i = 0; i < elementos.length; i++) {
         //Si esta incluido no se hace nada (input controles de entrada)
@@ -419,7 +440,7 @@ function ValidarObligatorios(idFormulario) {
         }
         //imagenes
         else if (elementos[i].tagName.toUpperCase() == "IMG" && elementos[i].src == window.location.href) {
-            error = "Debe ingresar la " + elementos[i].name.replace("base64","");
+            error = "Debe ingresar la " + elementos[i].name.replace("base64","").replace("data","");
             return error;
         }
     }
@@ -759,9 +780,14 @@ function construirFormulario(objFormulario) {
                 if (hijosArray.preview == undefined) {
                     hijosArray.preview = true;
                 }
+                //imgclass
+                if (hijosArray.imgclass == undefined) {
+                    hijosArray.imgclass = "";
+                }
+
                 if (hijosArray.preview == true) {
                     contenido += `
-                              <img width="${hijosArray.imgwidth}" height="${hijosArray.imgheight}" id="img${hijosArray.name}" name="${hijosArray.namefoto}" style="display:block" />
+                              <img width="${hijosArray.imgwidth}"  class="${hijosArray.imgclass}" height="${hijosArray.imgheight}" id="img${hijosArray.name}" name="${hijosArray.namefoto}" style="display:block" />
                    `
                 }
                 contenido += `

@@ -83,7 +83,8 @@ function listarHotel() {
                         preview: true,
                         imgwidth: 200,
                         imgheight: 200,
-                        namefoto: "fotobase64data"
+                        namefoto: "fotobase64data",
+                        imgclass: "o"
                         
                     }
                 ]
