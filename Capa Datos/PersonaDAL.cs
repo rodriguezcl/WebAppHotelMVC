@@ -79,6 +79,15 @@ namespace Capa_Datos
                                     oPersonaCLS.fotobase64 = mime + fotobase;
                                 }
                             }
+                            //Viene el detalle
+                            if (drd.NextResult())
+                            {
+                                oPersonaCLS.valor = new List<int>();
+                                while (drd.Read())
+                                {
+                                    oPersonaCLS.valor.Add(drd.GetInt32(0));
+                                }
+                            }
                         }
                     }
 
