@@ -43,6 +43,8 @@
   <ItemGroup>
     <Compile Include="CamaCLS.cs" />
     <Compile Include="CategoriaCLS.cs" />
+    <Compile Include="HabitacionCLS.cs" />
+    <Compile Include="HabitacionListCLS.cs" />
     <Compile Include="HotelCLS.cs" />
     <Compile Include="MarcaCLS.cs" />
     <Compile Include="PersonaCLS.cs" />
