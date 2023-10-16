@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="CamaBL.cs" />
     <Compile Include="CategoriaBL.cs" />
+    <Compile Include="HabitacionBL.cs" />
     <Compile Include="HotelBL.cs" />
     <Compile Include="TipoUsuarioBL.cs" />
     <Compile Include="MarcaBL.cs" />

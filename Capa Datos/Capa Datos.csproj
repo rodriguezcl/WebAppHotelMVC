@@ -45,6 +45,7 @@
     <Compile Include="CadenaDAL.cs" />
     <Compile Include="CamaDAL.cs" />
     <Compile Include="CategoriaDAL.cs" />
+    <Compile Include="HabitacionDAL.cs" />
     <Compile Include="HotelDAL.cs" />
     <Compile Include="MarcaDAL.cs" />
     <Compile Include="PersonaDAL.cs" />
