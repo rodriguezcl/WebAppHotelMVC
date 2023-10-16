@@ -128,6 +128,7 @@ namespace Capa_Datos
             }
             return rpta;
         }
+        //Comienza como cero 
         public int guardarPersona(PersonaCLS oPersonaCLS)
         {
             int rpta = 0;
@@ -138,6 +139,8 @@ namespace Capa_Datos
                 {
                     //Abro la conexion
                     cn.Open();
+
+                    //Inicia la transaccion
                     using (SqlTransaction transaction = cn.BeginTransaction())
                     {
                         //Llame al procedure
@@ -152,11 +155,21 @@ namespace Capa_Datos
                             cmd.Parameters.AddWithValue("@telefonofijo", oPersonaCLS.telefono);
                             cmd.Parameters.AddWithValue("@iidsexo", oPersonaCLS.iidsexo);
                             cmd.Parameters.AddWithValue("@iidtipousuario", oPersonaCLS.iidtipousuario);
-
-
                             cmd.Parameters.AddWithValue("@foto", oPersonaCLS.foto == null ? System.Data.SqlTypes.SqlBinary.Null : oPersonaCLS.foto);
                             cmd.Parameters.AddWithValue("@nombrefoto", oPersonaCLS.nombrefoto == null ? "" : oPersonaCLS.nombrefoto);
+                            //Nuevo
+                            SqlParameter parametro=null;
+                            if (oPersonaCLS.iidpersona == 0)
+                            {
+                                parametro = cmd.Parameters.Add("@@identity", SqlDbType.Int);
+                                parametro.Direction = ParameterDirection.ReturnValue;
+                            }
                             rpta = cmd.ExecuteNonQuery();
+                            //Solo en agregar
+                            if (oPersonaCLS.iidpersona == 0)
+                            {
+                                oPersonaCLS.iidpersona = (int)parametro.Value;
+                            }
                         }
                         using (SqlCommand cmd = new SqlCommand("uspEliminarGustos", cn, transaction))
                         {
@@ -166,14 +179,13 @@ namespace Capa_Datos
                         }
                         for (int i = 0; i < oPersonaCLS.valor.Count; i++)
                         {
-                        using (SqlCommand cmd = new SqlCommand("uspAgregarHabilitarGusto", cn, transaction))
-                        {
-                            cmd.CommandType = CommandType.StoredProcedure;
-                            cmd.Parameters.AddWithValue("@idpersona", oPersonaCLS.iidpersona);
+                            using (SqlCommand cmd = new SqlCommand("uspAgregarHabilitarGusto", cn, transaction))
+                            {
+                                cmd.CommandType = CommandType.StoredProcedure;
+                                cmd.Parameters.AddWithValue("@idpersona", oPersonaCLS.iidpersona);
                                 cmd.Parameters.AddWithValue("@idgusto", oPersonaCLS.valor[i]);
                                 cmd.ExecuteNonQuery();
-                        }
-
+                            }
                         }
                         transaction.Commit();
                         transaction.Rollback();
