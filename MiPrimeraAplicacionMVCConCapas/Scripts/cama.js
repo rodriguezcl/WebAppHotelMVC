@@ -69,7 +69,8 @@ function listarCama() {
                         values: ["1", "2", "3","4"],
                         ids: ["rbExcelente", "rbBuen", "rbMal", "rbPes"],
                         name: "iidestado",
-                        checked: "rbBuen"
+                        classControl: "o-1"
+                        /*checked: "rbBuen"*/
                     }
                 ]
             ]

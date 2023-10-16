@@ -424,7 +424,7 @@ function ValidarObligatorios(idFormulario) {
         var nhijos = hijos.length;
         for (var j = 0; j < nhijos; j++) {
             hijo = hijos[j];
-            if (hijo.type != undefined && hijo.type.toUpperCase() == "CHECKBOX") {
+            if (hijo.type != undefined && (hijo.type.toUpperCase() == "CHECKBOX" || hijo.type.toUpperCase() == "RADIO")) {
                 if (hijo.checked == true) {
                     numeroMarcado++;
                 }
@@ -731,7 +731,10 @@ function construirFormulario(objFormulario) {
             if (hijosArray.className == undefined) {
                 hijosArray.className = "mb-3";
             }
-
+            //checked
+            if (hijosArray.checked == undefined) {
+                hijosArray.checked = "rbExcelente";
+            }
            
 
             var encontroSNC = encontroClase(hijosArray.classControl, "snc")
@@ -763,7 +766,7 @@ function construirFormulario(objFormulario) {
                    `
                 combosLlenar.push(hijosArray)
             } else if (typelemento == "radio" || typelemento == "checkbox") {
-                contenido += "<div>";
+                contenido += "<div class='" + classControl +"'>";
                 for (var z = 0; z < hijosArray.labels.length; z++) {
                     contenido += `
                               <input type="${typelemento}"
@@ -773,7 +776,7 @@ function construirFormulario(objFormulario) {
                         <label>${hijosArray.labels[z]}</label>
                    `
                 }
-                radioLimpiar.push(hijosArray.checked);
+                radioLimpiar.push(hijosArray.checked); //Se reemplazo esta linea de "checked" a "checkedName" para que siga limpiando, por cambios realizados en el video 118.
                 radioNames.push(hijosArray.name);
 
                 contenido += "</div>"
