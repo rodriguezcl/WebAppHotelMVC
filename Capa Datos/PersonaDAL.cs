@@ -12,8 +12,6 @@ namespace Capa_Datos
 {
     public class PersonaDAL : CadenaDAL
     {
-
-
         public PersonaCLS recuperarPersona(int iidpersona)
         {
             PersonaCLS oPersonaCLS = null;
@@ -101,7 +99,6 @@ namespace Capa_Datos
             }
             return oPersonaCLS;
         }
-
         public int eliminarPersona(int iidpersona)
         {
             int rpta = 0;
@@ -131,7 +128,6 @@ namespace Capa_Datos
             }
             return rpta;
         }
-
         public int guardarPersona(PersonaCLS oPersonaCLS)
         {
             int rpta = 0;
@@ -142,23 +138,46 @@ namespace Capa_Datos
                 {
                     //Abro la conexion
                     cn.Open();
-                    //Llame al procedure
-                    using (SqlCommand cmd = new SqlCommand("uspGuardarPersona", cn))
+                    using (SqlTransaction transaction = cn.BeginTransaction())
                     {
-                        //Buena practica (Opcional)->Indicamos que es un procedure
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@iidpersona", oPersonaCLS.iidpersona);
-                        cmd.Parameters.AddWithValue("@nombre", oPersonaCLS.nombre);
-                        cmd.Parameters.AddWithValue("@appaterno", oPersonaCLS.apellidopaterno);
-                        cmd.Parameters.AddWithValue("@apmaterno", oPersonaCLS.apellidomaterno);
-                        cmd.Parameters.AddWithValue("@telefonofijo", oPersonaCLS.telefono);
-                        cmd.Parameters.AddWithValue("@iidsexo", oPersonaCLS.iidsexo);
-                        cmd.Parameters.AddWithValue("@iidtipousuario", oPersonaCLS.iidtipousuario);
+                        //Llame al procedure
+                        using (SqlCommand cmd = new SqlCommand("uspGuardarPersona", cn, transaction))
+                        {
+                            //Buena practica (Opcional)->Indicamos que es un procedure
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@iidpersona", oPersonaCLS.iidpersona);
+                            cmd.Parameters.AddWithValue("@nombre", oPersonaCLS.nombre);
+                            cmd.Parameters.AddWithValue("@appaterno", oPersonaCLS.apellidopaterno);
+                            cmd.Parameters.AddWithValue("@apmaterno", oPersonaCLS.apellidomaterno);
+                            cmd.Parameters.AddWithValue("@telefonofijo", oPersonaCLS.telefono);
+                            cmd.Parameters.AddWithValue("@iidsexo", oPersonaCLS.iidsexo);
+                            cmd.Parameters.AddWithValue("@iidtipousuario", oPersonaCLS.iidtipousuario);
 
 
-                        cmd.Parameters.AddWithValue("@foto", oPersonaCLS.foto == null ? System.Data.SqlTypes.SqlBinary.Null : oPersonaCLS.foto);
-                        cmd.Parameters.AddWithValue("@nombrefoto", oPersonaCLS.nombrefoto==null? "" : oPersonaCLS.nombrefoto);
-                        rpta = cmd.ExecuteNonQuery();
+                            cmd.Parameters.AddWithValue("@foto", oPersonaCLS.foto == null ? System.Data.SqlTypes.SqlBinary.Null : oPersonaCLS.foto);
+                            cmd.Parameters.AddWithValue("@nombrefoto", oPersonaCLS.nombrefoto == null ? "" : oPersonaCLS.nombrefoto);
+                            rpta = cmd.ExecuteNonQuery();
+                        }
+                        using (SqlCommand cmd = new SqlCommand("uspEliminarGustos", cn, transaction))
+                        {
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@idpersona", oPersonaCLS.iidpersona);
+                            cmd.ExecuteNonQuery();
+                        }
+                        for (int i = 0; i < oPersonaCLS.valor.Count; i++)
+                        {
+                        using (SqlCommand cmd = new SqlCommand("uspAgregarHabilitarGusto", cn, transaction))
+                        {
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@idpersona", oPersonaCLS.iidpersona);
+                                cmd.Parameters.AddWithValue("@idgusto", oPersonaCLS.valor[i]);
+                                cmd.ExecuteNonQuery();
+                        }
+
+                        }
+                        transaction.Commit();
+                        transaction.Rollback();
+
                     }
 
                     //Cierro una vez de traer la data
@@ -171,8 +190,6 @@ namespace Capa_Datos
             }
             return rpta;
         }
-
-
         public List<PersonaCLS> filtrarPersona(int iidtipousuario)
         {
             List<PersonaCLS> lista = null;
@@ -224,8 +241,6 @@ namespace Capa_Datos
             }
             return lista;
         }
-
-
         public List<PersonaCLS> listarPersona(string fotofinal)
         {
             List<PersonaCLS> lista = null;
