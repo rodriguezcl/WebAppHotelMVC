@@ -668,6 +668,9 @@ function Buscar() {
     fetchGet(`${objBus.url}/?${objBus.nombreparametro}=` + valor, function (res) {
         var rpta = generarTabla(objConf, res, objFormularioGlobal);
         document.getElementById("divContenedor").innerHTML = rpta;
+        if (objConf.paginar==true) {
+            $("#tablita").DataTable();
+        }
     })
     /*
     fetch(`${objBus.url}/?${objBus.nombreparametro}=` + valor)

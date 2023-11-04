@@ -54,6 +54,7 @@
     <Compile Include="TipoHabitacionCLS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TipoUsuarioCLS.cs" />
+    <Compile Include="UsuarioCLS.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

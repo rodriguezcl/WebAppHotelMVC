@@ -33,3 +33,9 @@ C:\Users\leoro\OneDrive\Escritorio\MiPrimeraAplicacionMVCConCapas\Capa Entidad\o
 C:\Users\leoro\OneDrive\Escritorio\MiPrimeraAplicacionMVCConCapas\Capa Entidad\obj\Debug\Capa Entidad.csproj.CoreCompileInputs.cache
 C:\Users\leoro\OneDrive\Escritorio\MiPrimeraAplicacionMVCConCapas\Capa Entidad\obj\Debug\Capa Entidad.dll
 C:\Users\leoro\OneDrive\Escritorio\MiPrimeraAplicacionMVCConCapas\Capa Entidad\obj\Debug\Capa Entidad.pdb
+C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Entidad\bin\Debug\Capa Entidad.dll
+C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Entidad\bin\Debug\Capa Entidad.pdb
+C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Entidad\obj\Debug\Capa Entidad.csproj.AssemblyReference.cache
+C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Entidad\obj\Debug\Capa Entidad.csproj.CoreCompileInputs.cache
+C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Entidad\obj\Debug\Capa Entidad.dll
+C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Entidad\obj\Debug\Capa Entidad.pdb
