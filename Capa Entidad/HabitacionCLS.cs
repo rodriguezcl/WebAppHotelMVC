@@ -15,5 +15,9 @@ namespace Capa_Entidad
         public string textotienepiscina { get; set; }
         public string textotienewifi { get; set; }
         public string textotienevistaalmar { get; set; }
+
+        public int iidtipohabitacion { get; set; }
+        public int iidcama { get; set; }
+        public int iidhotel { get; set; }
     }
 }

@@ -67,6 +67,34 @@ namespace Capa_Datos
                             ohabitacionListCLS.listaTipoHabitacion = listaTipoHabitacion;
                         }
 
+                        if (drd.NextResult())
+                        {
+                            List<CamaCLS> listaCama = new List<CamaCLS>();
+                            CamaCLS oCamaCLS = new CamaCLS();
+                            while (drd.Read())
+                            {
+                                oCamaCLS = new CamaCLS();
+                                oCamaCLS.idcama = drd.IsDBNull(0) ? 0 : drd.GetInt32(0);
+                                oCamaCLS.nombre = drd.IsDBNull(1) ? "" : drd.GetString(1);
+                                listaCama.Add(oCamaCLS);
+                            }
+                            ohabitacionListCLS.listaCama = listaCama;
+                        }
+
+                        if (drd.NextResult())
+                        {
+                            List<HotelCLS> listaHotel = new List<HotelCLS>();
+                            HotelCLS oHotelCLS = new HotelCLS();
+                            while (drd.Read())
+                            {
+                                oHotelCLS = new HotelCLS();
+                                oHotelCLS.iidhotel = drd.IsDBNull(0) ? 0 : drd.GetInt32(0);
+                                oHotelCLS.nombre = drd.IsDBNull(1) ? "" : drd.GetString(1);
+                                listaHotel.Add(oHotelCLS);
+                            }
+                            ohabitacionListCLS.listaHotel = listaHotel;
+                        }
+
                     }
 
                     //Cierro una vez de traer la data
