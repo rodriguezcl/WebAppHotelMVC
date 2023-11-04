@@ -256,6 +256,9 @@ function ConfigurarDatos(res,objConfiguracion, objBusqueda,objFormulario) {
     }
 
     document.getElementById(objConfiguracion.id).innerHTML = contenido;
+    if (objConfiguracion.paginar==true) {
+        $("#tablita").DataTable();
+    }
 
    
     if (objBusqueda != null) {
@@ -522,7 +525,8 @@ function generarTabla(objConfiguracion, res , objFormulario,primeravez=false,tie
         listaPintar = res[nombrePropiedad];
     }
     var contenido = "";
-    contenido += "<table class='table'>";
+    contenido += "<table id='tablita' class='table'>";
+    contenido += "<thead>";
     contenido += "<tr>";
     if (tienecheck==true) {
         contenido += "<th>Check</th>";
@@ -535,6 +539,9 @@ function generarTabla(objConfiguracion, res , objFormulario,primeravez=false,tie
         contenido += "<th>Operaciones</th>";
     }
     contenido += "</tr>";
+    contenido += "</thead>";
+
+
     var fila;
     var propiedadActual;
     for (var i = 0; i < listaPintar.length; i++) {

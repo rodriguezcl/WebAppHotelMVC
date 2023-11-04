@@ -14,7 +14,8 @@ function listarCama() {
         parametroEliminar: "idcama",
         urlRecuperar: "Cama/recuperarCama",
         parametroRecuperar:"idcamita",
-        propiedadId:"idcama"
+        propiedadId: "idcama",
+        paginar: true
     },
         {
             busqueda: true,
