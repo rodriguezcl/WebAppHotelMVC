@@ -45,6 +45,7 @@
     <Compile Include="CategoriaBL.cs" />
     <Compile Include="HabitacionBL.cs" />
     <Compile Include="HotelBL.cs" />
+    <Compile Include="PaginaBL.cs" />
     <Compile Include="TipoUsuarioBL.cs" />
     <Compile Include="MarcaBL.cs" />
     <Compile Include="PersonaBL.cs" />

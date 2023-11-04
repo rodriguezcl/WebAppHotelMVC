@@ -65,6 +65,8 @@ namespace Capa_Datos
 
         }
 
+
+
         public int eliminarMarca(int iidmarca)
         {
             int rpta = 0;
@@ -134,6 +136,7 @@ namespace Capa_Datos
 
         }
 
+
         public MarcaCLS recuperarMarca(int iidmarca)
         {
             MarcaCLS oMarcaCLS=null;
@@ -186,6 +189,7 @@ namespace Capa_Datos
 
 
         }
+
 
         public List<MarcaCLS> listarMarca()
         {

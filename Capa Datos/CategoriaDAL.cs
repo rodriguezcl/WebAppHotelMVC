@@ -105,9 +105,9 @@ namespace Capa_Datos
                         {
                            
                            
-                            int posId = drd.GetOrdinal("IIDCATEGORIA");
-                            int posNombre = drd.GetOrdinal("NOMBRE");
-                            int posDescripcion = drd.GetOrdinal("DESCRIPCION");
+                            int posId = drd.GetOrdinal("iidcategoria");
+                            int posNombre = drd.GetOrdinal("nombre");
+                            int posDescripcion = drd.GetOrdinal("descripcion");
                             while (drd.Read())
                             {
                                 oCategoriaCLS = new CategoriaCLS();

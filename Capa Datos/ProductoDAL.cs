@@ -75,6 +75,8 @@ namespace Capa_Datos
 
         public int guardarProducto(ProductoCLS oProductoCLS)
         {
+          
+
             int rpta = 0;
             //  string cadena = ConfigurationManager.ConnectionStrings["cn"].ConnectionString; 
             using (SqlConnection cn = new SqlConnection(cadena))

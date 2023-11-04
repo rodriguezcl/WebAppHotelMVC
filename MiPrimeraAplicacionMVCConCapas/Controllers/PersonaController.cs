@@ -21,11 +21,11 @@ namespace MiPrimeraAplicacionMVCConCapas.Controllers
         {
             PersonaBL oPersonaBL = new PersonaBL();
             //ruta
-            string rutaAbsolutaNoFoto = Server.MapPath("~/img/nofoto.jpg");
+            string rutaAbsolutaNoFoto = Server.MapPath("~/img/nofoto.png");
             //como leo sus bytes
-            byte[] bufferNoFoto = io.File.ReadAllBytes(rutaAbsolutaNoFoto);
+            byte[] bufferNoFoto= io.File.ReadAllBytes(rutaAbsolutaNoFoto);
             string baseNoFoto = Convert.ToBase64String(bufferNoFoto);
-            string mime = "data:image/jpg;base64,";
+            string mime = "data:image/png;base64,";
             string fotoFinal = mime + baseNoFoto;
             var json = Json(oPersonaBL.listarPersona(fotoFinal), JsonRequestBehavior.AllowGet);
             json.MaxJsonLength = 500000000;
@@ -51,12 +51,12 @@ namespace MiPrimeraAplicacionMVCConCapas.Controllers
                 JsonRequestBehavior.AllowGet);
         }
 
-        public int Guardar(PersonaCLS oPersona, HttpPostedFileBase fotopersona,List<int> valor )
+        public int Guardar(PersonaCLS oPersona,HttpPostedFileBase fotopersona,List<int> valor)
         {
             string nombreFoto = "";
             byte[] bufferfoto;
             //Llenar la foto y el nombre foto
-            if (fotopersona!=null)
+            if (fotopersona != null)
             {
                 nombreFoto = fotopersona.FileName;
                 io.BinaryReader lector = new io.BinaryReader(fotopersona.InputStream);
@@ -64,7 +64,6 @@ namespace MiPrimeraAplicacionMVCConCapas.Controllers
                 oPersona.foto = bufferfoto;
                 oPersona.nombrefoto = nombreFoto;
             }
-
             PersonaBL oPersonaBL = new PersonaBL();
             oPersona.valor = valor;
             return oPersonaBL.guardarPersona(oPersona);

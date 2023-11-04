@@ -1,5 +1,6 @@
 ﻿window.onload = function () {
     listarProductos();
+   // llenarComboMarca();
 }
 
 function llenarComboMarca() {
@@ -14,48 +15,47 @@ function listarProductos() {
         popup: true,
         editar: true,
         eliminar: true,
-
+       
         idpopup: "staticBackdrop1",
-        sizepopup: "modal-lg",
+        sizepopup:"modal-lg",
         url: "Producto/listarProductoMarca", id: "divTabla",
         cabeceras: ["Id Producto", "Nombre", "Nombre Marca", "Precio",
             "Stock", "Denominacion"],
-        name: "listaProducto",
-        propiedades: ["iidproducto", "nombreproducto", "nombremarca",
+        name:"listaProducto",
+        propiedades: ["iidproducto", "nombreproducto","nombremarca",
             "precioventa", "stock", "denominacion"],
         //Modficarlo
         urlEliminar: "Cama/eliminarCama",
         parametroEliminar: "idcama",
         urlRecuperar: "Producto/recuperarProducto",
+        //recuperarexcepcion: ["iidproducto"],
         iscallbackeditar: true,
         callbackeditar: function (res) {
-            //Cosas adicionales
+            //COsas adicionales
             document.getElementById("lblTituloForm").innerHTML = "Producto";
         },
         parametroRecuperar: "iidproducto",
         propiedadId: "iidproducto"
-    },
-        {
+    }, {
             busqueda: true,
-            //filtro
+        //filtro
             url: "Producto/filtrarProductoPorCategoria",
             nombreparametro: "iidcategoria",
             type: "combobox",
             name: "listaCategoria",
             displaymember: "nombre",
-            valuemember: "iidcategoria",
-            button: true,
+            valuemember:"iidcategoria",
+        button: true,
             id: "cboCategoriaBusqueda"
 
-        },
-        {
-            type: "popup",
-            titulo: "Producto",
-            tituloconfirmacionguardar: "Desea guardar el producto?",
-            id: "frmProducto",
-            // limpiarexcepcion: ["iidproducto"],
-            urlGuardar: "Producto/guardarProducto",
-            formulario: [
+    }, {
+             type: "popup",
+             titulo: "Producto",
+             tituloconfirmacionguardar:"Desea guardar el producto?",
+             id: "frmProducto",
+           // limpiarexcepcion: ["iidproducto"],
+             urlGuardar: "Producto/guardarProducto",
+             formulario: [
                 [
                     {
                         class: "mb-3 col-md-5",
@@ -112,7 +112,7 @@ function listarProductos() {
                 ],
                 [
                     {
-                        type: "number",
+                        type:"number",
                         class: "mb-3 col-md-4",
                         label: "Precio compra producto",
                         name: "preciocontra",
@@ -132,12 +132,12 @@ function listarProductos() {
                         name: "stock",
                         classControl: "o snc"
                     }
-
+                  
                 ]
             ]
+           
 
-
-        }
+    }
     )
 }
 /*

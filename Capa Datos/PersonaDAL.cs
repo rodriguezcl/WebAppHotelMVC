@@ -10,11 +10,13 @@ using System.Threading.Tasks;
 
 namespace Capa_Datos
 {
-    public class PersonaDAL : CadenaDAL
+  public  class PersonaDAL:CadenaDAL
     {
+
+
         public PersonaCLS recuperarPersona(int iidpersona)
         {
-            PersonaCLS oPersonaCLS = null;
+            PersonaCLS oPersonaCLS=null;
             //  string cadena = ConfigurationManager.ConnectionStrings["cn"].ConnectionString; 
             using (SqlConnection cn = new SqlConnection(cadena))
             {
@@ -28,12 +30,12 @@ namespace Capa_Datos
                     {
                         //Buena practica (Opcional)->Indicamos que es un procedure
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@iidpersona", iidpersona);
+                        cmd.Parameters.AddWithValue("@idpersona", iidpersona);
                         SqlDataReader drd = cmd.ExecuteReader();
                         if (drd != null)
                         {
-
-
+                            
+                           
                             int posIdpersona = drd.GetOrdinal("IIDPERSONA");
                             int posNombre = drd.GetOrdinal("NOMBRE");
                             int posAppaterno = drd.GetOrdinal("APPATERNO");
@@ -41,8 +43,9 @@ namespace Capa_Datos
                             int posTelefono = drd.GetOrdinal("TELEFONOFIJO");
                             int posidsexo = drd.GetOrdinal("IIDSEXO");
                             int posiidusuario = drd.GetOrdinal("IIDTIPOUSUARIO");
-                            int posNombreFoto = drd.GetOrdinal("nombrefoto");
-                            int posFoto = drd.GetOrdinal("foto");
+                            int posNombreFoto = drd.GetOrdinal("NOMBREFOTO");
+                            int posFoto = drd.GetOrdinal("FOTO");
+
                             while (drd.Read())
                             {
                                 oPersonaCLS = new PersonaCLS();
@@ -61,7 +64,7 @@ namespace Capa_Datos
                                 oPersonaCLS.iidtipousuario = drd.IsDBNull(posiidusuario) ? 0 :
                                   drd.GetInt32(posiidusuario);
                                 oPersonaCLS.nombrefoto = drd.IsDBNull(posNombreFoto) ? "" :
-                                  drd.GetString(posNombreFoto);
+                            drd.GetString(posNombreFoto);
                                 if (!drd.IsDBNull(posFoto))
                                 {
                                     string nomfoto = oPersonaCLS.nombrefoto;
@@ -69,15 +72,19 @@ namespace Capa_Datos
                                     string extension = Path.GetExtension(nomfoto);
                                     string nombresinextension = extension.Substring(1);
                                     byte[] fotobyte = (byte[])drd.GetValue(posFoto);
-                                    //mime data: image/formato;base64,
-                                    //data:image/jpg;base64,
-                                    //data:image/png;base64,
+                                    //mime  data:image/formato;base64,
+                                    // data:image/jpg;base64,
+                                    // data:image/png;base64,
+                                    // data:image/jpeg;base64,
                                     string mime = "data:image/" + nombresinextension + ";base64,";
                                     string fotobase = Convert.ToBase64String(fotobyte);
                                     oPersonaCLS.fotobase64 = mime + fotobase;
-                                }
+
+                                } 
+
+
                             }
-                            //Viene el detalle
+                            //Viene el detalle (Para ver si hay otro select abajo)
                             if (drd.NextResult())
                             {
                                 oPersonaCLS.valor = new List<int>();
@@ -87,6 +94,7 @@ namespace Capa_Datos
                                 }
                             }
                         }
+
                     }
 
                     //Cierro una vez de traer la data
@@ -96,9 +104,13 @@ namespace Capa_Datos
                 {
                     cn.Close();
                 }
+
             }
             return oPersonaCLS;
+
+
         }
+
         public int eliminarPersona(int iidpersona)
         {
             int rpta = 0;
@@ -114,7 +126,7 @@ namespace Capa_Datos
                     {
                         //Buena practica (Opcional)->Indicamos que es un procedure
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@iidpersona", iidpersona);
+                        cmd.Parameters.AddWithValue("@idpersona", iidpersona);
                         rpta = cmd.ExecuteNonQuery();
                     }
 
@@ -125,10 +137,13 @@ namespace Capa_Datos
                 {
                     cn.Close();
                 }
+
             }
             return rpta;
+
+
         }
-        //Comienza como cero 
+        //Comienza como 0
         public int guardarPersona(PersonaCLS oPersonaCLS)
         {
             int rpta = 0;
@@ -139,12 +154,9 @@ namespace Capa_Datos
                 {
                     //Abro la conexion
                     cn.Open();
-
-                    //Inicia la transaccion
-                    using (SqlTransaction transaction = cn.BeginTransaction())
+                    using(SqlTransaction transaccion= cn.BeginTransaction())
                     {
-                        //Llame al procedure
-                        using (SqlCommand cmd = new SqlCommand("uspGuardarPersona", cn, transaction))
+                        using (SqlCommand cmd = new SqlCommand("uspGuardarPersona", cn, transaccion))
                         {
                             //Buena practica (Opcional)->Indicamos que es un procedure
                             cmd.CommandType = CommandType.StoredProcedure;
@@ -155,8 +167,12 @@ namespace Capa_Datos
                             cmd.Parameters.AddWithValue("@telefonofijo", oPersonaCLS.telefono);
                             cmd.Parameters.AddWithValue("@iidsexo", oPersonaCLS.iidsexo);
                             cmd.Parameters.AddWithValue("@iidtipousuario", oPersonaCLS.iidtipousuario);
-                            cmd.Parameters.AddWithValue("@foto", oPersonaCLS.foto == null ? System.Data.SqlTypes.SqlBinary.Null : oPersonaCLS.foto);
-                            cmd.Parameters.AddWithValue("@nombrefoto", oPersonaCLS.nombrefoto == null ? "" : oPersonaCLS.nombrefoto);
+
+                            cmd.Parameters.AddWithValue("@foto",
+                                oPersonaCLS.foto == null ? System.Data.SqlTypes.SqlBinary.Null
+                                : oPersonaCLS.foto);
+                            cmd.Parameters.AddWithValue("@nombrefoto",
+                                oPersonaCLS.nombrefoto == null ? "" : oPersonaCLS.nombrefoto);
                             //Nuevo
                             SqlParameter parametro=null;
                             if (oPersonaCLS.iidpersona == 0)
@@ -164,33 +180,38 @@ namespace Capa_Datos
                                 parametro = cmd.Parameters.Add("@@identity", SqlDbType.Int);
                                 parametro.Direction = ParameterDirection.ReturnValue;
                             }
+
                             rpta = cmd.ExecuteNonQuery();
                             //Solo en agregar
                             if (oPersonaCLS.iidpersona == 0)
                             {
                                 oPersonaCLS.iidpersona = (int)parametro.Value;
                             }
+
                         }
-                        using (SqlCommand cmd = new SqlCommand("uspEliminarGustos", cn, transaction))
+                        using (SqlCommand cmd = new SqlCommand("uspEliminarGustos", cn, transaccion))
                         {
                             cmd.CommandType = CommandType.StoredProcedure;
                             cmd.Parameters.AddWithValue("@idpersona", oPersonaCLS.iidpersona);
                             cmd.ExecuteNonQuery();
                         }
-                        for (int i = 0; i < oPersonaCLS.valor.Count; i++)
+                        for(int i=0;i < oPersonaCLS.valor.Count;i++)
                         {
-                            using (SqlCommand cmd = new SqlCommand("uspAgregarHabilitarGusto", cn, transaction))
+                            using (SqlCommand cmd = new SqlCommand("uspAgregarHabilitarGusto", cn, transaccion))
                             {
                                 cmd.CommandType = CommandType.StoredProcedure;
                                 cmd.Parameters.AddWithValue("@idpersona", oPersonaCLS.iidpersona);
                                 cmd.Parameters.AddWithValue("@idgusto", oPersonaCLS.valor[i]);
                                 cmd.ExecuteNonQuery();
                             }
+
                         }
-                        transaction.Commit();
-                        transaction.Rollback();
+                      
+                        transaccion.Commit();
+                       
 
                     }
+                    //Llame al procedure
 
                     //Cierro una vez de traer la data
                     cn.Close();
@@ -199,9 +220,14 @@ namespace Capa_Datos
                 {
                     cn.Close();
                 }
+
             }
             return rpta;
+
+
         }
+
+
         public List<PersonaCLS> filtrarPersona(int iidtipousuario)
         {
             List<PersonaCLS> lista = null;
@@ -242,7 +268,9 @@ namespace Capa_Datos
                                 lista.Add(oPersonaCLS);
                             }
                         }
+
                     }
+
                     //Cierro una vez de traer la data
                     cn.Close();
                 }
@@ -250,9 +278,14 @@ namespace Capa_Datos
                 {
                     cn.Close();
                 }
+
             }
             return lista;
+
+
         }
+
+
         public List<PersonaCLS> listarPersona(string fotofinal)
         {
             List<PersonaCLS> lista = null;
@@ -277,8 +310,8 @@ namespace Capa_Datos
                             int posNombreCompleto = drd.GetOrdinal("NOMBRECOMPLETO");
                             int posNombreSexo = drd.GetOrdinal("NOMBRESEXO");
                             int posNombreTipousuario = drd.GetOrdinal("NOMBRETIPOUSUARIO");
-                            int posNombreFoto = drd.GetOrdinal("nombrefoto");
-                            int posFoto = drd.GetOrdinal("foto");
+                            int posFoto = drd.GetOrdinal("FOTO");
+                            int posNombreFoto = drd.GetOrdinal("NOMBREFOTO");
                             while (drd.Read())
                             {
                                 oPersonaCLS = new PersonaCLS();
@@ -291,7 +324,7 @@ namespace Capa_Datos
                                 oPersonaCLS.nombreTipoUsuario = drd.IsDBNull(posNombreTipousuario) ? ""
                                   : drd.GetString(posNombreTipousuario);
                                 oPersonaCLS.nombrefoto = drd.IsDBNull(posNombreFoto) ? "" :
-                                 drd.GetString(posNombreFoto);
+                                            drd.GetString(posNombreFoto);
                                 if (!drd.IsDBNull(posFoto))
                                 {
                                     string nomfoto = oPersonaCLS.nombrefoto;
@@ -299,22 +332,24 @@ namespace Capa_Datos
                                     string extension = Path.GetExtension(nomfoto);
                                     string nombresinextension = extension.Substring(1);
                                     byte[] fotobyte = (byte[])drd.GetValue(posFoto);
-                                    //mime data: image/formato;base64,
-                                    //data:image/jpg;base64,
-                                    //data:image/png;base64,
+                                    //mime  data:image/formato;base64,
+                                    // data:image/jpg;base64,
+                                    // data:image/png;base64,
+                                    // data:image/jpeg;base64,
                                     string mime = "data:image/" + nombresinextension + ";base64,";
                                     string fotobase = Convert.ToBase64String(fotobyte);
                                     oPersonaCLS.fotobase64 = mime + fotobase;
-                                }
 
-                                else
-                                {
+                                }
+                                else {
                                     oPersonaCLS.fotobase64 = fotofinal;
                                 }
                                 lista.Add(oPersonaCLS);
                             }
                         }
+
                     }
+
                     //Cierro una vez de traer la data
                     cn.Close();
                 }
@@ -322,8 +357,15 @@ namespace Capa_Datos
                 {
                     cn.Close();
                 }
+
             }
             return lista;
+
+
         }
+
+
+
+
     }
 }

@@ -2,34 +2,34 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-// La información general sobre un ensamblado se controla mediante el siguiente 
+// La información general sobre un ensamblado se controla mediante lo siguiente
 // conjunto de atributos. Cambie los valores de estos atributos para modificar la información
-// asociada a un ensamblado.
+// asociada con un ensamblado.
 [assembly: AssemblyTitle("MiPrimeraAplicacionMVCConCapas")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Hewlett-Packard")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("MiPrimeraAplicacionMVCConCapas")]
-[assembly: AssemblyCopyright("Copyright © Hewlett-Packard 2021")]
+[assembly: AssemblyCopyright("Copyright ©  2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
-// Si ComVisible se establece en false, los componentes COM no verán los 
-// tipos de este ensamblado. Si necesita obtener acceso a un tipo de este ensamblado desde 
-// COM, establezca el atributo ComVisible en true en este tipo.
+// Si configura ComVisible como falso, los tipos de este ensamblado no se hacen visibles
+// para componentes COM.  Si necesita acceder a un tipo de este ensamblado desde
+// COM, establezca el atributo ComVisible en True en este tipo.
 [assembly: ComVisible(false)]
 
-// El siguiente GUID es para el Id. typelib cuando este proyecto esté expuesto a COM
-[assembly: Guid("bae2a693-7da7-44a0-a261-a40b62b3c537")]
+// El siguiente GUID sirve como ID de typelib si este proyecto se expone a COM
+[assembly: Guid("4535879f-e604-47c3-92ee-4dcbd7e7002f")]
 
 // La información de versión de un ensamblado consta de los siguientes cuatro valores:
 //
 //      Versión principal
-//      Versión secundaria 
+//      Versión secundaria
 //      Número de compilación
 //      Revisión
 //
-// Puede especificar todos los valores o usar los valores predeterminados de número de compilación y de revisión 
+// Puede especificar todos los valores o puede predeterminar los números de compilación y de revisión
 // mediante el carácter '*', como se muestra a continuación:
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]

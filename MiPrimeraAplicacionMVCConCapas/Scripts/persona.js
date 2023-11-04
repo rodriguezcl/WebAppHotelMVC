@@ -2,29 +2,30 @@
     listarPersona();
     listarCombo();
     previewImagen();
-
 }
 
 function previewImagen() {
-    var fubFoto = document.getElementById("fupFoto");
+
+    var fupFoto = document.getElementById("fupFoto");
     var imgFoto = document.getElementById("imgFoto");
-    fubFoto.onchange = function () {
-        var file = fubFoto.files[0];
+    fupFoto.onchange = function () {
+        var file = fupFoto.files[0];
         var reader = new FileReader();
         reader.onloadend = function () {
             document.getElementById("imgFoto").src = reader.result;
         }
-        reader.readAsDataURL(file);
+        reader.readAsDataURL(file)
     }
 }
 
 function listarPersona() {
     pintar({
         popup: true,
-        idpopup: "staticBackdrop",
+        idpopup:"staticBackdrop",
         url: "Persona/listarPersona", id: "divTabla",
-        cabeceras: ["Id Persona", "Nombre Completo", "Sexo", "Tipo Usuario", "Foto"],
-        propiedades: ["iidpersona", "nombreCompleto", "nombreSexo", "nombreTipoUsuario", "fotobase64"],
+        cabeceras: ["Id Persona", "Nombre Completo", "Sexo","Tipo Usuario","Foto"],
+        propiedades: ["iidpersona", "nombreCompleto", "nombreSexo",
+        "nombreTipoUsuario","fotobase64"],
         editar: true,
         eliminar: true,
         propiedadId: "iidpersona",
@@ -34,7 +35,7 @@ function listarPersona() {
 
 function listarCombo() {
     fetchGet("TipoUsuario/listarTipoUsuario", function (data) {
-        llenarCombo(data, "cboTipoUsuario", "nombre", "iidtipousuario", "0")
+        llenarCombo(data, "cboTipoUsuario", "nombre", "iidtipousuario","0")
         llenarCombo(data, "cboTipousuarioForm", "nombre", "iidtipousuario")
     })
 }
@@ -42,7 +43,7 @@ function listarCombo() {
 function filtrarPersonaTipousuario() {
     var iidtipousuario = get("cboTipoUsuario");
     pintar({
-        url: "Persona/filtrarPersona/?iidtipousuario=" + iidtipousuario, id: "divTabla",
+        url: "Persona/filtrarPersona/?iidtipousuario="+iidtipousuario, id: "divTabla",
         cabeceras: ["Id Persona", "Nombre Completo", "Sexo", "Tipo Usuario"],
         propiedades: ["iidpersona", "nombreCompleto", "nombreSexo",
             "nombreTipoUsuario"],
@@ -50,6 +51,7 @@ function filtrarPersonaTipousuario() {
         eliminar: true,
         propiedadId: "iidpersona"
     })
+   // alert(iidtipousuario);
 }
 
 
@@ -65,9 +67,27 @@ function Editar(id) {
         recuperarGenericoEspecifico("Persona/recuperarPersona/?iidpersona=" + id,
             "frmPersona", [], false);
     }
-
+  
 }
-
+/*
+function recuperarEspecifico(res) {
+    document.getElementById("imgFoto").src = res.fotobase64;
+}
+*/
+/*
+function recuperarEspecifico(res) {
+    
+    var iidsexo = res.iidsexo;
+    //Masculino
+    if (iidsexo == 1) {
+        document.getElementById("rbMas").checked = true;
+    }
+    //femenino
+    else {
+           document.getElementById("rbFem").checked = true;
+    }
+}
+*/
 function Guardar() {
 
     var error = ValidarObligatorios("frmPersona")
@@ -75,28 +95,40 @@ function Guardar() {
         Error(error);
         return;
     }
-    var error = validarSoloNumerosEnteros("frmPersona")
+    var error=  validarSoloNumerosEnteros("frmPersona")
     if (error != "") {
         Error(error);
         return;
     }
     var frmPersona = document.getElementById("frmPersona");
     var frm = new FormData(frmPersona);
-    Confirmacion(undefined, "¿Desea guardar los cambios de la persona?", function () {
+    Confirmacion(undefined, "Desea guardar los cambios de la persona", function () {
         fetchPostText("Persona/Guardar", frm, function (res) {
             if (res == "1") {
-
+                // listarTipoHabitacion();
                 document.getElementById("btnCerrar").click();
                 listarPersona();
                 Limpiar();
             }
         })
     })
+   
 }
 
 
 function Limpiar() {
-    LimpiarDatos("frmPersona", ["iidsexo", "valor[]"])
+    /*
+    setN("id", "")
+    setN("nombre", "")
+    setN("descripcion", "")
+    */
+    /*
+    var elementos = document.querySelectorAll("#frmTipoHabitacion [name]")
+    for (var i = 0; i < elementos.length; i++) {
+        elementos[i].value = "";
+    }*/
+    LimpiarDatos("frmPersona", ["iidsexo","valor[]"])
+    //Correcto("Funciono mi alerta")
 }
 
 function Eliminar(id) {

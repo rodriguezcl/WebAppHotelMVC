@@ -31,25 +31,47 @@ C:\Users\USUARIO\Documents\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVC
 C:\Users\USUARIO\Documents\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\Capa Negocio\obj\Debug\Capa Negocio.csproj.CopyComplete
 C:\Users\USUARIO\Documents\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\Capa Negocio\obj\Debug\Capa Negocio.dll
 C:\Users\USUARIO\Documents\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\Capa Negocio\obj\Debug\Capa Negocio.pdb
-C:\Users\leoro\OneDrive\Escritorio\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\Capa Negocio\bin\Debug\Capa Negocio.dll
-C:\Users\leoro\OneDrive\Escritorio\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\Capa Negocio\bin\Debug\Capa Negocio.pdb
-C:\Users\leoro\OneDrive\Escritorio\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\Capa Negocio\bin\Debug\Capa Datos.dll
-C:\Users\leoro\OneDrive\Escritorio\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\Capa Negocio\bin\Debug\Capa Entidad.dll
-C:\Users\leoro\OneDrive\Escritorio\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\Capa Negocio\bin\Debug\Capa Datos.pdb
-C:\Users\leoro\OneDrive\Escritorio\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\Capa Negocio\bin\Debug\Capa Entidad.pdb
-C:\Users\leoro\OneDrive\Escritorio\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\Capa Negocio\obj\Debug\Capa Negocio.csproj.AssemblyReference.cache
-C:\Users\leoro\OneDrive\Escritorio\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\Capa Negocio\obj\Debug\Capa Negocio.csproj.CoreCompileInputs.cache
-C:\Users\leoro\OneDrive\Escritorio\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\Capa Negocio\obj\Debug\Capa Negocio.csproj.CopyComplete
-C:\Users\leoro\OneDrive\Escritorio\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\Capa Negocio\obj\Debug\Capa Negocio.dll
-C:\Users\leoro\OneDrive\Escritorio\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\Capa Negocio\obj\Debug\Capa Negocio.pdb
-C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Negocio\bin\Debug\Capa Negocio.dll
-C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Negocio\bin\Debug\Capa Negocio.pdb
-C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Negocio\bin\Debug\Capa Datos.dll
-C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Negocio\bin\Debug\Capa Entidad.dll
-C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Negocio\bin\Debug\Capa Datos.pdb
-C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Negocio\bin\Debug\Capa Entidad.pdb
-C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Negocio\obj\Debug\Capa Negocio.csproj.AssemblyReference.cache
-C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Negocio\obj\Debug\Capa Negocio.csproj.CoreCompileInputs.cache
-C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Negocio\obj\Debug\Capa Negocio.csproj.CopyComplete
-C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Negocio\obj\Debug\Capa Negocio.dll
-C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Negocio\obj\Debug\Capa Negocio.pdb
+G:\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\Capa Negocio\bin\Debug\Capa Negocio.dll
+G:\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\Capa Negocio\bin\Debug\Capa Negocio.pdb
+G:\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\Capa Negocio\bin\Debug\Capa Datos.dll
+G:\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\Capa Negocio\bin\Debug\Capa Entidad.dll
+G:\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\Capa Negocio\bin\Debug\Capa Datos.pdb
+G:\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\Capa Negocio\bin\Debug\Capa Entidad.pdb
+G:\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\Capa Negocio\obj\Debug\Capa Negocio.csprojAssemblyReference.cache
+G:\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\Capa Negocio\obj\Debug\Capa Negocio.csproj.CoreCompileInputs.cache
+G:\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\Capa Negocio\obj\Debug\Capa Negocio.csproj.CopyComplete
+G:\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\Capa Negocio\obj\Debug\Capa Negocio.dll
+G:\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\Capa Negocio\obj\Debug\Capa Negocio.pdb
+C:\Users\elifi\Documents\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\Capa Negocio\bin\Debug\Capa Negocio.dll
+C:\Users\elifi\Documents\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\Capa Negocio\bin\Debug\Capa Negocio.pdb
+C:\Users\elifi\Documents\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\Capa Negocio\bin\Debug\Capa Datos.dll
+C:\Users\elifi\Documents\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\Capa Negocio\bin\Debug\Capa Entidad.dll
+C:\Users\elifi\Documents\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\Capa Negocio\bin\Debug\Capa Datos.pdb
+C:\Users\elifi\Documents\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\Capa Negocio\bin\Debug\Capa Entidad.pdb
+C:\Users\elifi\Documents\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\Capa Negocio\obj\Debug\Capa Negocio.csprojAssemblyReference.cache
+C:\Users\elifi\Documents\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\Capa Negocio\obj\Debug\Capa Negocio.csproj.CoreCompileInputs.cache
+C:\Users\elifi\Documents\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\Capa Negocio\obj\Debug\Capa Negocio.csproj.CopyComplete
+C:\Users\elifi\Documents\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\Capa Negocio\obj\Debug\Capa Negocio.dll
+C:\Users\elifi\Documents\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\Capa Negocio\obj\Debug\Capa Negocio.pdb
+C:\Users\elifi\Desktop\MiPrimeraAplicacionMVCConCapas\Capa Negocio\bin\Debug\Capa Negocio.dll
+C:\Users\elifi\Desktop\MiPrimeraAplicacionMVCConCapas\Capa Negocio\bin\Debug\Capa Negocio.pdb
+C:\Users\elifi\Desktop\MiPrimeraAplicacionMVCConCapas\Capa Negocio\bin\Debug\Capa Datos.dll
+C:\Users\elifi\Desktop\MiPrimeraAplicacionMVCConCapas\Capa Negocio\bin\Debug\Capa Entidad.dll
+C:\Users\elifi\Desktop\MiPrimeraAplicacionMVCConCapas\Capa Negocio\bin\Debug\Capa Datos.pdb
+C:\Users\elifi\Desktop\MiPrimeraAplicacionMVCConCapas\Capa Negocio\bin\Debug\Capa Entidad.pdb
+C:\Users\elifi\Desktop\MiPrimeraAplicacionMVCConCapas\Capa Negocio\obj\Debug\Capa Negocio.csprojAssemblyReference.cache
+C:\Users\elifi\Desktop\MiPrimeraAplicacionMVCConCapas\Capa Negocio\obj\Debug\Capa Negocio.csproj.CoreCompileInputs.cache
+C:\Users\elifi\Desktop\MiPrimeraAplicacionMVCConCapas\Capa Negocio\obj\Debug\Capa Negocio.csproj.CopyComplete
+C:\Users\elifi\Desktop\MiPrimeraAplicacionMVCConCapas\Capa Negocio\obj\Debug\Capa Negocio.dll
+C:\Users\elifi\Desktop\MiPrimeraAplicacionMVCConCapas\Capa Negocio\obj\Debug\Capa Negocio.pdb
+C:\Users\leoro\OneDrive\Escritorio\MiPrimeraAplicacionMVCConCapas\Capa Negocio\bin\Debug\Capa Negocio.dll
+C:\Users\leoro\OneDrive\Escritorio\MiPrimeraAplicacionMVCConCapas\Capa Negocio\bin\Debug\Capa Negocio.pdb
+C:\Users\leoro\OneDrive\Escritorio\MiPrimeraAplicacionMVCConCapas\Capa Negocio\bin\Debug\Capa Datos.dll
+C:\Users\leoro\OneDrive\Escritorio\MiPrimeraAplicacionMVCConCapas\Capa Negocio\bin\Debug\Capa Entidad.dll
+C:\Users\leoro\OneDrive\Escritorio\MiPrimeraAplicacionMVCConCapas\Capa Negocio\bin\Debug\Capa Datos.pdb
+C:\Users\leoro\OneDrive\Escritorio\MiPrimeraAplicacionMVCConCapas\Capa Negocio\bin\Debug\Capa Entidad.pdb
+C:\Users\leoro\OneDrive\Escritorio\MiPrimeraAplicacionMVCConCapas\Capa Negocio\obj\Debug\Capa Negocio.csproj.AssemblyReference.cache
+C:\Users\leoro\OneDrive\Escritorio\MiPrimeraAplicacionMVCConCapas\Capa Negocio\obj\Debug\Capa Negocio.csproj.CoreCompileInputs.cache
+C:\Users\leoro\OneDrive\Escritorio\MiPrimeraAplicacionMVCConCapas\Capa Negocio\obj\Debug\Capa Negocio.csproj.CopyComplete
+C:\Users\leoro\OneDrive\Escritorio\MiPrimeraAplicacionMVCConCapas\Capa Negocio\obj\Debug\Capa Negocio.dll
+C:\Users\leoro\OneDrive\Escritorio\MiPrimeraAplicacionMVCConCapas\Capa Negocio\obj\Debug\Capa Negocio.pdb

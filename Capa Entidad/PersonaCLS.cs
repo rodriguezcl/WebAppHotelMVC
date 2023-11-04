@@ -19,12 +19,13 @@ namespace Capa_Entidad
         public string apellidomaterno { get; set; }
         public string telefono { get; set; }
         public int iidsexo { get; set; }
-
         //Propiedades foto
         public string nombrefoto { get; set; }
         public byte[] foto { get; set; }
+
         public string fotobase64 { get; set; }
 
         public List<int> valor { get; set; }
+
     }
 }

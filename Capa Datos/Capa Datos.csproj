@@ -34,6 +34,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,6 +49,7 @@
     <Compile Include="HabitacionDAL.cs" />
     <Compile Include="HotelDAL.cs" />
     <Compile Include="MarcaDAL.cs" />
+    <Compile Include="PaginaDAL.cs" />
     <Compile Include="PersonaDAL.cs" />
     <Compile Include="ProductoDAL.cs" />
     <Compile Include="TipoHabitacionDAL.cs" />

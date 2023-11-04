@@ -7,7 +7,7 @@ function listarMarca() {
     pintar({
         url: "Marca/listarMarca",
         id: "divTabla",
-        cabeceras: ["Id Marca", "Nombre", "Descripción"],
+        cabeceras: ["Id Marca", "Nombre", "Descripcion"],
         propiedades: ["iidMarca", "nombreMarca", "descripcionMarca"],
         editar: true,
         eliminar: true,
@@ -24,6 +24,7 @@ function listarMarca() {
             type: "text",
             button: false,
             id: "txtnombremarca"
+
         },
         {
             id: "frmMarca",
@@ -33,17 +34,18 @@ function listarMarca() {
             formulario: [
                 [
                     {
-                        class: "mb-3 col-md-6",
+                        class: "mb-3 col-md-5",
                         label: "Id Marca",
                         name: "iidMarca",
                         value: 0,
                         readonly: true
                     },
                     {
-                        class: "mb-3 col-md-6",
-                        label: "Nombre Marca",
+                        class: "mb-3 col-md-7",
+                        label: "Nombre marca",
                         name: "nombreMarca",
-                        classControl: "o max-100 min-3"
+                        classControl:"o max-100 min-3",
+                        
                     }
 
                 ],
@@ -53,18 +55,19 @@ function listarMarca() {
                         type: "text",
                         label: "Descripcion Marca",
                         name: "descripcionMarca",
-                        classControl: "o max-200 min-6"
+                        classControl:"o max-200 min-6"
+
 
                     }
                 ],
                 [
                     {
-                        class: "mt-3 col-md-12",
-                        label: "Seleccione una Opción",
+                        class: "col-md-12",
+                        label: "Seleccione una Opciòn",
                         type: "checkbox",
-                        labels: ["Excelente Estado", "Buen Estado", "Mal estado", "Pesimo estado (malogrado)"],
+                        labels: ["Excelente Estado", "Buen Estado", "Mal estado", "Malogrado"],
                         values: ["1", "2", "3", "4"],
-                        //ids: ["rbExcelente", "rbBuen", "rbMal", "rbPes"],
+                     
                         name: "iidestado",
                         checked: "rbBuen"
                     }

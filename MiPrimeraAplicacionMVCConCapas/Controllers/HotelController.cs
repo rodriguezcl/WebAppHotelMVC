@@ -6,7 +6,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using io=System.IO;
-
 namespace MiPrimeraAplicacionMVCConCapas.Controllers
 {
     public class HotelController : Controller
@@ -20,19 +19,23 @@ namespace MiPrimeraAplicacionMVCConCapas.Controllers
         public JsonResult listarHotel()
         {
             string ruta = Server.MapPath("~/Files");
+
             HotelBL oHotelBL = new HotelBL();
             var json = Json(oHotelBL.listarHotel(ruta), JsonRequestBehavior.AllowGet);
             json.MaxJsonLength = 500000000;
-            return json;
+
+            return json ;
         }
+
 
         public int guardarHotel(HotelCLS oHotelCLS, HttpPostedFileBase fotodata)
         {
+            HotelBL oHotelBL = new HotelBL();
             string nombreFoto = "";
             byte[] bufferfoto;
-            //Llenar la foto y el nombre foto
             if (fotodata != null)
             {
+                //fotodata.FileName= 
                 string fechaActual = DateTime.Now.ToString("ddmmyyyyhhmmss");
                 nombreFoto = fechaActual+"-"+fotodata.FileName;
                 io.BinaryReader lector = new io.BinaryReader(fotodata.InputStream);
@@ -44,8 +47,8 @@ namespace MiPrimeraAplicacionMVCConCapas.Controllers
                 oHotelCLS.rutaGuardar = ruta;
             }
 
-            HotelBL oHotelBL = new HotelBL();
             return oHotelBL.guardarHotel(oHotelCLS);
         }
+
     }
 }

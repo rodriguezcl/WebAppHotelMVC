@@ -8,12 +8,27 @@ using System.Threading.Tasks;
 
 namespace Capa_Negocio
 {
-    public class HabitacionBL
+  public  class HabitacionBL
     {
+
+
+        public int guardarHabitacion(HabitacionCLS oHabitacionCLS)
+        {
+            HabitacionDAL obj = new HabitacionDAL();
+            return obj.guardarHabitacion(oHabitacionCLS);
+        }
+        public HabitacionCLS recuperarHabitacion(int idhabitacion)
+        {
+            HabitacionDAL obj = new HabitacionDAL();
+            return obj.recuperarHabitacion(idhabitacion);
+        }
         public HabitacionListCLS listarHabitacionList()
         {
+
             HabitacionDAL obj = new HabitacionDAL();
             return obj.listarHabitacionList();
         }
+
+
     }
 }

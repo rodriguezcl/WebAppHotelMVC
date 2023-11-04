@@ -1,4 +1,5 @@
-﻿using Capa_Negocio;
+﻿using Capa_Entidad;
+using Capa_Negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,20 @@ namespace MiPrimeraAplicacionMVCConCapas.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+
+        public int guardarTipoUsuario(TipoUsuarioCLS oTipoUsuarioCLS)
+        {
+           // oTipoUsuarioCLS.idpaginaTipousuarios = idpaginas;
+            TipoUsuarioBL oTipoUsuarioBL = new TipoUsuarioBL();
+            return oTipoUsuarioBL.guardarTipousuario(oTipoUsuarioCLS);
+        }
+
+        public JsonResult recuperarTipoUsuario(int iidtipousuario)
+        {
+            TipoUsuarioBL oTipoUsuarioBL = new TipoUsuarioBL();
+            return Json(oTipoUsuarioBL.recuperarTipousuario(iidtipousuario),
+                JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult listarTipoUsuario()

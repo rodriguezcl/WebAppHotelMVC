@@ -47,6 +47,7 @@
     <Compile Include="HabitacionListCLS.cs" />
     <Compile Include="HotelCLS.cs" />
     <Compile Include="MarcaCLS.cs" />
+    <Compile Include="PaginaCLS.cs" />
     <Compile Include="PersonaCLS.cs" />
     <Compile Include="ProductoCLS.cs" />
     <Compile Include="ProductoMarcaCLS.cs" />

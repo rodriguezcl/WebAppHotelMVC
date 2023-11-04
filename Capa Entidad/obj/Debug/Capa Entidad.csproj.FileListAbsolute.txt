@@ -15,15 +15,21 @@ C:\Users\USUARIO\Documents\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVC
 C:\Users\USUARIO\Documents\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\Capa Entidad\obj\Debug\Capa Entidad.csproj.CoreCompileInputs.cache
 C:\Users\USUARIO\Documents\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\Capa Entidad\obj\Debug\Capa Entidad.dll
 C:\Users\USUARIO\Documents\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\Capa Entidad\obj\Debug\Capa Entidad.pdb
-C:\Users\leoro\OneDrive\Escritorio\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\Capa Entidad\bin\Debug\Capa Entidad.dll
-C:\Users\leoro\OneDrive\Escritorio\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\Capa Entidad\bin\Debug\Capa Entidad.pdb
-C:\Users\leoro\OneDrive\Escritorio\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\Capa Entidad\obj\Debug\Capa Entidad.csproj.AssemblyReference.cache
-C:\Users\leoro\OneDrive\Escritorio\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\Capa Entidad\obj\Debug\Capa Entidad.csproj.CoreCompileInputs.cache
-C:\Users\leoro\OneDrive\Escritorio\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\Capa Entidad\obj\Debug\Capa Entidad.dll
-C:\Users\leoro\OneDrive\Escritorio\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\Capa Entidad\obj\Debug\Capa Entidad.pdb
-C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Entidad\bin\Debug\Capa Entidad.dll
-C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Entidad\bin\Debug\Capa Entidad.pdb
-C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Entidad\obj\Debug\Capa Entidad.csproj.AssemblyReference.cache
-C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Entidad\obj\Debug\Capa Entidad.csproj.CoreCompileInputs.cache
-C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Entidad\obj\Debug\Capa Entidad.dll
-C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Entidad\obj\Debug\Capa Entidad.pdb
+G:\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\Capa Entidad\bin\Debug\Capa Entidad.dll
+G:\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\Capa Entidad\bin\Debug\Capa Entidad.pdb
+G:\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\Capa Entidad\obj\Debug\Capa Entidad.csprojAssemblyReference.cache
+G:\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\Capa Entidad\obj\Debug\Capa Entidad.csproj.CoreCompileInputs.cache
+G:\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\Capa Entidad\obj\Debug\Capa Entidad.dll
+G:\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\Capa Entidad\obj\Debug\Capa Entidad.pdb
+C:\Users\elifi\Documents\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\Capa Entidad\bin\Debug\Capa Entidad.dll
+C:\Users\elifi\Documents\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\Capa Entidad\bin\Debug\Capa Entidad.pdb
+C:\Users\elifi\Documents\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\Capa Entidad\obj\Debug\Capa Entidad.csprojAssemblyReference.cache
+C:\Users\elifi\Documents\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\Capa Entidad\obj\Debug\Capa Entidad.csproj.CoreCompileInputs.cache
+C:\Users\elifi\Documents\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\Capa Entidad\obj\Debug\Capa Entidad.dll
+C:\Users\elifi\Documents\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\Capa Entidad\obj\Debug\Capa Entidad.pdb
+C:\Users\leoro\OneDrive\Escritorio\MiPrimeraAplicacionMVCConCapas\Capa Entidad\bin\Debug\Capa Entidad.dll
+C:\Users\leoro\OneDrive\Escritorio\MiPrimeraAplicacionMVCConCapas\Capa Entidad\bin\Debug\Capa Entidad.pdb
+C:\Users\leoro\OneDrive\Escritorio\MiPrimeraAplicacionMVCConCapas\Capa Entidad\obj\Debug\Capa Entidad.csproj.AssemblyReference.cache
+C:\Users\leoro\OneDrive\Escritorio\MiPrimeraAplicacionMVCConCapas\Capa Entidad\obj\Debug\Capa Entidad.csproj.CoreCompileInputs.cache
+C:\Users\leoro\OneDrive\Escritorio\MiPrimeraAplicacionMVCConCapas\Capa Entidad\obj\Debug\Capa Entidad.dll
+C:\Users\leoro\OneDrive\Escritorio\MiPrimeraAplicacionMVCConCapas\Capa Entidad\obj\Debug\Capa Entidad.pdb

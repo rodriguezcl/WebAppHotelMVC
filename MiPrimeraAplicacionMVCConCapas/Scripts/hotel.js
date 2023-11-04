@@ -3,51 +3,42 @@
 }
 
 function listarHotel() {
-    pintar(
-        {
-            popup: true,
-            sizepopup: "modal-lg",
-            url: "Hotel/listarHotel",
-            id: "divTabla",
-            cabeceras: ["Id Hotel", "Nombre", "Dirección","Foto Hotel"],
-            propiedades: ["iidhotel", "nombre", "direccion","fotobase64"],
-            editar: true,
-            eliminar: true,
-            urlEliminar: "Cama/eliminarCama",
-            parametroEliminar: "idcama",
-            urlRecuperar: "Cama/recuperarCama",
-            parametroRecuperar: "idcamita",
-            propiedadId: "iidhotel",
-            columnaimg: ["fotobase64"]
-        },null
-        //{
-        //    busqueda: true,
-        //    url: "Cama/filtrarCama",
-        //    nombreparametro: "nombre",
-        //    type: "text",
-        //    button: false,
-        //    id: "txtnombrecama"
+    pintar({
+        popup: true,
+        url: "Hotel/listarHotel",
+        id: "divTabla",
+        cabeceras: ["Id Hotel", "Nombre Hotel", "Direccion","Foto Hotel"],
+        propiedades: ["iidhotel", "nombre", "direccion","fotobase64"],
+        editar: true,
+        sizepopup: "modal-lg",
+        eliminar: true,
+        urlEliminar: "Cama/eliminarCama",
+        parametroEliminar: "idcama",
+        urlRecuperar: "Cama/recuperarCama",
+        parametroRecuperar: "idcamita",
+        propiedadId: "iidhotel",
+        columnaimg: ["fotobase64"]
 
-        //}
-        ,
-        {
-            id: "frmHotel",
+    },
+       null
+        , {
             type: "popup",
+            id: "frmHotel",
             titulo: "Hotel",
-            tituloconfirmacionguardar: "Desea guardar el hotel?",
             urlGuardar: "Hotel/guardarHotel",
-            legend: "Datos del Hotel",
+            legend: "Datos de la Cama",
             formulario: [
                 [
                     {
-                        class: "mb-3 col-md-6",
+                        class: "mb-3 col-md-5",
                         label: "Id Hotel",
                         name: "iidhotel",
                         value: 0,
+
                         readonly: true
                     },
                     {
-                        class: "mb-3 col-md-6",
+                        class: "mb-3 col-md-7",
                         label: "Nombre Hotel",
                         name: "nombre",
                         classControl: "o max-50 min-3"
@@ -56,40 +47,40 @@ function listarHotel() {
                 ],
                 [
                     {
-                        class: "col-md-6",
+                        class: "col-md-5",
                         type: "textarea",
-                        label: "Descripción Hotel",
+                        label: "Descripcion Hotel",
                         name: "descripcion",
                         rows: "5",
                         cols: "20",
                         classControl: "o max-70 min-10"
+
                     },
                     {
-                        class: "col-md-6",
+                        class: "col-md-7",
                         type: "textarea",
-                        label: "Dirección Hotel",
+                        label: "Direccion Hotel",
                         name: "direccion",
                         rows: "5",
                         cols: "20",
                         classControl: "o max-70 min-10"
+
                     }
                 ],
                 [
                     {
-                        class: "col-md-6",
                         label: "Foto Hotel",
                         type: "file",
                         name: "fotodata",
                         preview: true,
                         imgwidth: 200,
                         imgheight: 200,
-                        namefoto: "fotobase64data",
-                        imgclass: "o"
-                        
+                        imgclass:"o",
+                        namefoto:"fotobase64data"
                     }
+                  
                 ]
             ]
 
-        }
-    )
+        })
 }
