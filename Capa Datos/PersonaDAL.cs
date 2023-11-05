@@ -144,7 +144,7 @@ namespace Capa_Datos
 
         }
         //Comienza como 0
-        public int guardarPersona(PersonaCLS oPersonaCLS)
+        public int guardarPersona(PersonaCLS oPersonaCLS, UsuarioCLS oUsuarioCLS)
         {
             int rpta = 0;
             //  string cadena = ConfigurationManager.ConnectionStrings["cn"].ConnectionString; 
@@ -206,7 +206,17 @@ namespace Capa_Datos
                             }
 
                         }
-                      
+
+                        using (SqlCommand cmd = new SqlCommand("uspGuardarUsuario", cn, transaccion))
+                        {
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@iidusuario", oUsuarioCLS.iidusuario);
+                            cmd.Parameters.AddWithValue("@nombreusuario", oUsuarioCLS.nombreusuario);
+                            cmd.Parameters.AddWithValue("@contra", oUsuarioCLS.contra);
+                            cmd.Parameters.AddWithValue("@iidpersona", oPersonaCLS.iidpersona);
+                            rpta=cmd.ExecuteNonQuery();
+                        }
+
                         transaccion.Commit();
                        
 

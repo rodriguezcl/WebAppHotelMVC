@@ -791,7 +791,7 @@ function recuperarGenericoEspecifico(url, idFormulario, excepciones = [], adicio
                 }
                 else {
                     if (elementos[i].type != undefined && elementos[i].type.toUpperCase() != "FILE")
-                        setN(nombreName, res[nombreName])
+                        setN(nombreName, res[nombreName] == undefined ? "" : res[nombreName]);
                     else if (elementos[i].tagName.toUpperCase() == "IMG") {
                         setSRC(nombreName, res[nombreName])
                     }

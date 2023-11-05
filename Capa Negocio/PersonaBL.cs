@@ -23,10 +23,10 @@ namespace Capa_Negocio
             return oPersonaDAL.filtrarPersona(iidtipousuario);
         }
 
-        public int guardarPersona(PersonaCLS oPersonaCLS)
+        public int guardarPersona(PersonaCLS oPersonaCLS, UsuarioCLS oUsuarioCLS)
         {
             PersonaDAL oPersonaDAL = new PersonaDAL();
-            return oPersonaDAL.guardarPersona(oPersonaCLS);
+            return oPersonaDAL.guardarPersona(oPersonaCLS, oUsuarioCLS);
         }
 
         public PersonaCLS recuperarPersona(int iidpersona)
