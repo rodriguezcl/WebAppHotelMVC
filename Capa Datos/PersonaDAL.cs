@@ -1,4 +1,5 @@
 ﻿using Capa_Entidad;
+using Capa_Usuario;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -45,6 +46,8 @@ namespace Capa_Datos
                             int posiidusuario = drd.GetOrdinal("IIDTIPOUSUARIO");
                             int posNombreFoto = drd.GetOrdinal("NOMBREFOTO");
                             int posFoto = drd.GetOrdinal("FOTO");
+                            int posIidusuario = drd.GetOrdinal("IIDUSUARIO");
+                            int posNombreUsuario = drd.GetOrdinal("NOMBREUSUARIO");
 
                             while (drd.Read())
                             {
@@ -79,9 +82,12 @@ namespace Capa_Datos
                                     string mime = "data:image/" + nombresinextension + ";base64,";
                                     string fotobase = Convert.ToBase64String(fotobyte);
                                     oPersonaCLS.fotobase64 = mime + fotobase;
+                                }
 
-                                } 
-
+                                oPersonaCLS.iidusuario = drd.IsDBNull(posIidusuario) ? 0 :
+                                 drd.GetInt32(posIidusuario);
+                                oPersonaCLS.nombreusuario = drd.IsDBNull(posNombreUsuario) ? "" :
+                           drd.GetString(posNombreUsuario);
 
                             }
                             //Viene el detalle (Para ver si hay otro select abajo)
@@ -212,7 +218,7 @@ namespace Capa_Datos
                             cmd.CommandType = CommandType.StoredProcedure;
                             cmd.Parameters.AddWithValue("@iidusuario", oUsuarioCLS.iidusuario);
                             cmd.Parameters.AddWithValue("@nombreusuario", oUsuarioCLS.nombreusuario);
-                            cmd.Parameters.AddWithValue("@contra", oUsuarioCLS.contra);
+                            cmd.Parameters.AddWithValue("@contra", GenericLH.cifrarCadena(oUsuarioCLS.contra));
                             cmd.Parameters.AddWithValue("@iidpersona", oPersonaCLS.iidpersona);
                             rpta=cmd.ExecuteNonQuery();
                         }

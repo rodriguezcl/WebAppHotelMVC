@@ -22,10 +22,11 @@ namespace Capa_Entidad
         //Propiedades foto
         public string nombrefoto { get; set; }
         public byte[] foto { get; set; }
-
         public string fotobase64 { get; set; }
-
         public List<int> valor { get; set; }
+
+        public int iidusuario { get; set; }
+        public string nombreusuario { get; set; }
 
     }
 }

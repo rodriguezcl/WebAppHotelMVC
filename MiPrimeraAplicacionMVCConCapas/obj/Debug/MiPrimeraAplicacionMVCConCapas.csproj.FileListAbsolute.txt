@@ -274,3 +274,5 @@ C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\MiPrimeraAplicacionMVCCo
 C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\MiPrimeraAplicacionMVCConCapas\obj\Debug\MiPrimeraAplicacionMVCConCapas.csproj.CopyComplete
 C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\MiPrimeraAplicacionMVCConCapas\obj\Debug\MiPrimeraAplicacionMVCConCapas.dll
 C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\MiPrimeraAplicacionMVCConCapas\obj\Debug\MiPrimeraAplicacionMVCConCapas.pdb
+C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\MiPrimeraAplicacionMVCConCapas\bin\Capa Usuario.dll
+C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\MiPrimeraAplicacionMVCConCapas\bin\Capa Usuario.pdb

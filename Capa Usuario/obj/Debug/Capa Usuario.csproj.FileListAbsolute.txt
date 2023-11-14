@@ -1,0 +1,6 @@
+C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Usuario\bin\Debug\Capa Usuario.dll
+C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Usuario\bin\Debug\Capa Usuario.pdb
+C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Usuario\obj\Debug\Capa Usuario.csproj.AssemblyReference.cache
+C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Usuario\obj\Debug\Capa Usuario.csproj.CoreCompileInputs.cache
+C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Usuario\obj\Debug\Capa Usuario.dll
+C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Usuario\obj\Debug\Capa Usuario.pdb

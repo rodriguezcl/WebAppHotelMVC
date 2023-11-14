@@ -172,6 +172,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\marca.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\pagina.js" />
     <Content Include="Scripts\persona.js" />
     <Content Include="Scripts\producto.js" />
     <Content Include="Scripts\sweetalert.js" />
@@ -203,11 +204,11 @@
     <Content Include="Views\Habitacion\Index.cshtml" />
     <Content Include="Views\TipoUsuario\Index.cshtml" />
     <Content Include="Views\login\Index.cshtml" />
+    <Content Include="Views\Pagina\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Pagina\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -86,3 +86,5 @@ C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Negocio\obj\Debug\C
 C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Negocio\obj\Debug\Capa Negocio.csproj.CopyComplete
 C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Negocio\obj\Debug\Capa Negocio.dll
 C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Negocio\obj\Debug\Capa Negocio.pdb
+C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Negocio\bin\Debug\Capa Usuario.dll
+C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Negocio\bin\Debug\Capa Usuario.pdb

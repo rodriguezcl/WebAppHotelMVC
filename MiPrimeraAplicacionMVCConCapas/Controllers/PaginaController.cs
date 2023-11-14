@@ -22,5 +22,24 @@ namespace MiPrimeraAplicacionMVCConCapas.Controllers
                 JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult recuperarPagina(int iidpagina)
+        {
+            PaginaBL oPaginaDAL = new PaginaBL();
+            return Json(oPaginaDAL.recuperarPagina(iidpagina),
+                JsonRequestBehavior.AllowGet);
+
+        }
+        public int eliminarPagina(int iidpagina)
+        {
+            PaginaBL oPaginaDAL = new PaginaBL();
+            return oPaginaDAL.eliminarPagina(iidpagina);
+        }
+
+        public int guardarPagina(PaginaCLS oPaginaCLS)
+        {
+            PaginaBL oPaginaDAL = new PaginaBL();
+            return oPaginaDAL.guardarPagina(oPaginaCLS);
+        }
+
     }
 }
