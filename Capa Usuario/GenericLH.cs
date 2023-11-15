@@ -9,6 +9,7 @@ namespace Capa_Usuario
 {
     public class GenericLH
     {
+
 		public static string cifrarCadena(string cadena)
 		{
 			SHA256Managed sha = new SHA256Managed();
@@ -17,5 +18,6 @@ namespace Capa_Usuario
 			byte[] bytecifrado = sha.ComputeHash(bytecadena);
 			return BitConverter.ToString(bytecifrado).Replace("-", "");
 		}
+
 	}
 }

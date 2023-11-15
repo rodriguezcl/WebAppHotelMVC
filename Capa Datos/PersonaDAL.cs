@@ -15,6 +15,67 @@ namespace Capa_Datos
     {
 
 
+        public PersonaCLS uspLogin(string usuario,string contra)
+		{
+            PersonaCLS oPersonaCLS = null;
+            using (SqlConnection cn = new SqlConnection(cadena))
+			{
+				try
+				{
+                    string contracifrado= GenericLH.cifrarCadena(contra);
+                    cn.Open();
+                    using (SqlCommand cmd = new SqlCommand("uspLogin",
+					   cn))
+					{
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@nombreusuario", usuario);
+                        cmd.Parameters.AddWithValue("@contra", contracifrado);
+                        SqlDataReader drd = cmd.ExecuteReader();
+						if (drd != null)
+						{
+                            oPersonaCLS = new PersonaCLS();
+                            int posNombreFoto = drd.GetOrdinal("NOMBREFOTO");
+                            int posFoto = drd.GetOrdinal("FOTO");
+                            while (drd.Read())
+							{
+                                oPersonaCLS.iidusuario= drd.IsDBNull(0) ? 0 :
+                                    drd.GetInt32(0);
+                                oPersonaCLS.nombreCompleto = drd.IsDBNull(1) ? "" :
+                                  drd.GetString(1);
+                                oPersonaCLS.iidtipousuario = drd.IsDBNull(2) ? 0 :
+                                   drd.GetInt32(2);
+                                oPersonaCLS.nombrefoto = drd.IsDBNull(posNombreFoto) ? "" :
+                                  drd.GetString(posNombreFoto);
+                                if (!drd.IsDBNull(posFoto))
+                                {
+                                    string nomfoto = oPersonaCLS.nombrefoto;
+                                    //.jpg .png
+                                    string extension = Path.GetExtension(nomfoto);
+                                    string nombresinextension = extension.Substring(1);
+                                    byte[] fotobyte = (byte[])drd.GetValue(posFoto);
+                                    //mime  data:image/formato;base64,
+                                    // data:image/jpg;base64,
+                                    // data:image/png;base64,
+                                    // data:image/jpeg;base64,
+                                    string mime = "data:image/" + nombresinextension + ";base64,";
+                                    string fotobase = Convert.ToBase64String(fotobyte);
+                                    oPersonaCLS.fotobase64 = mime + fotobase;
+
+                                }
+                            }
+
+                        }
+                    }
+                }
+                catch(Exception ex)
+				{
+                    oPersonaCLS = null;
+                }
+               
+            }
+            return oPersonaCLS;
+        }
+
         public PersonaCLS recuperarPersona(int iidpersona)
         {
             PersonaCLS oPersonaCLS=null;
@@ -49,6 +110,7 @@ namespace Capa_Datos
                             int posIidusuario = drd.GetOrdinal("IIDUSUARIO");
                             int posNombreUsuario = drd.GetOrdinal("NOMBREUSUARIO");
 
+
                             while (drd.Read())
                             {
                                 oPersonaCLS = new PersonaCLS();
@@ -82,12 +144,13 @@ namespace Capa_Datos
                                     string mime = "data:image/" + nombresinextension + ";base64,";
                                     string fotobase = Convert.ToBase64String(fotobyte);
                                     oPersonaCLS.fotobase64 = mime + fotobase;
-                                }
 
+                                }
                                 oPersonaCLS.iidusuario = drd.IsDBNull(posIidusuario) ? 0 :
                                  drd.GetInt32(posIidusuario);
                                 oPersonaCLS.nombreusuario = drd.IsDBNull(posNombreUsuario) ? "" :
-                           drd.GetString(posNombreUsuario);
+                                drd.GetString(posNombreUsuario);
+
 
                             }
                             //Viene el detalle (Para ver si hay otro select abajo)
@@ -150,7 +213,7 @@ namespace Capa_Datos
 
         }
         //Comienza como 0
-        public int guardarPersona(PersonaCLS oPersonaCLS, UsuarioCLS oUsuarioCLS)
+        public int guardarPersona(PersonaCLS oPersonaCLS,UsuarioCLS oUsuarioCLS)
         {
             int rpta = 0;
             //  string cadena = ConfigurationManager.ConnectionStrings["cn"].ConnectionString; 
@@ -220,6 +283,8 @@ namespace Capa_Datos
                             cmd.Parameters.AddWithValue("@nombreusuario", oUsuarioCLS.nombreusuario);
                             cmd.Parameters.AddWithValue("@contra", GenericLH.cifrarCadena(oUsuarioCLS.contra));
                             cmd.Parameters.AddWithValue("@iidpersona", oPersonaCLS.iidpersona);
+
+
                             rpta=cmd.ExecuteNonQuery();
                         }
 

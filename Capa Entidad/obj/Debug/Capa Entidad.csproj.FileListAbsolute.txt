@@ -27,15 +27,15 @@ C:\Users\elifi\Documents\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCCo
 C:\Users\elifi\Documents\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\Capa Entidad\obj\Debug\Capa Entidad.csproj.CoreCompileInputs.cache
 C:\Users\elifi\Documents\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\Capa Entidad\obj\Debug\Capa Entidad.dll
 C:\Users\elifi\Documents\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\MiPrimeraAplicacionMVCConCapas\Capa Entidad\obj\Debug\Capa Entidad.pdb
+C:\Users\elifi\Desktop\MiPrimeraAplicacionMVCConCapas\Capa Entidad\bin\Debug\Capa Entidad.dll
+C:\Users\elifi\Desktop\MiPrimeraAplicacionMVCConCapas\Capa Entidad\bin\Debug\Capa Entidad.pdb
+C:\Users\elifi\Desktop\MiPrimeraAplicacionMVCConCapas\Capa Entidad\obj\Debug\Capa Entidad.csprojAssemblyReference.cache
+C:\Users\elifi\Desktop\MiPrimeraAplicacionMVCConCapas\Capa Entidad\obj\Debug\Capa Entidad.csproj.CoreCompileInputs.cache
+C:\Users\elifi\Desktop\MiPrimeraAplicacionMVCConCapas\Capa Entidad\obj\Debug\Capa Entidad.dll
+C:\Users\elifi\Desktop\MiPrimeraAplicacionMVCConCapas\Capa Entidad\obj\Debug\Capa Entidad.pdb
 C:\Users\leoro\OneDrive\Escritorio\MiPrimeraAplicacionMVCConCapas\Capa Entidad\bin\Debug\Capa Entidad.dll
 C:\Users\leoro\OneDrive\Escritorio\MiPrimeraAplicacionMVCConCapas\Capa Entidad\bin\Debug\Capa Entidad.pdb
 C:\Users\leoro\OneDrive\Escritorio\MiPrimeraAplicacionMVCConCapas\Capa Entidad\obj\Debug\Capa Entidad.csproj.AssemblyReference.cache
 C:\Users\leoro\OneDrive\Escritorio\MiPrimeraAplicacionMVCConCapas\Capa Entidad\obj\Debug\Capa Entidad.csproj.CoreCompileInputs.cache
 C:\Users\leoro\OneDrive\Escritorio\MiPrimeraAplicacionMVCConCapas\Capa Entidad\obj\Debug\Capa Entidad.dll
 C:\Users\leoro\OneDrive\Escritorio\MiPrimeraAplicacionMVCConCapas\Capa Entidad\obj\Debug\Capa Entidad.pdb
-C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Entidad\bin\Debug\Capa Entidad.dll
-C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Entidad\bin\Debug\Capa Entidad.pdb
-C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Entidad\obj\Debug\Capa Entidad.csproj.AssemblyReference.cache
-C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Entidad\obj\Debug\Capa Entidad.csproj.CoreCompileInputs.cache
-C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Entidad\obj\Debug\Capa Entidad.dll
-C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Entidad\obj\Debug\Capa Entidad.pdb

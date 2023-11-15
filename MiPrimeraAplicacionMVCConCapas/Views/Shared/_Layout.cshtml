@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Capa_Entidad;
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -15,71 +16,79 @@ height:100%;background-image:url(../../img/cargando.gif);background-repeat:no-re
 background-position:center;z-index:100000" id="cargando">
 
     </div>
-
+	
+	@{ 
+		PersonaCLS  oPersonaCLS= (PersonaCLS)Session["persona"];
+	}
     
     <div class="nav-side-menu">
         <div class="tasi">
-            <div class="brand">@*<img src="//tecrubeliyim.com/wp-content/uploads/logoS.png" width="150">*@<!-- /Web-Doktoru --></div>
-            <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
 
+            <div class="brand"><img src="@oPersonaCLS.fotobase64" width="150"><!-- /Web-Doktoru --></div>
+            <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+			<p>Bienvenido : @oPersonaCLS.nombreCompleto</p>
             <div class="menu-list">
 
-                <ul id="menu-content" class="menu-content collapse out">
-                    <li>
-                        @Html.ActionLink("Tipo Habitacion", "Index", "TipoHabitacion",
-                       new { area = "" }, new { @class = "nav-link js-scroll-trigger" })
+				<ul id="menu-content" class="menu-content collapse out">
+					<li>
+						@Html.ActionLink("Tipo Habitacion", "Index", "TipoHabitacion",
+					   new { area = "" }, new { @class = "nav-link js-scroll-trigger" })
 
-                        @*<a href="#giris" class="nav-link js-scroll-trigger">
-                Giriş
-            </a>*@
-                    </li>
-                    <li>
-                        @Html.ActionLink("Cama", "Index", "Cama",
-                       new { area = "" }, new { @class = "nav-link js-scroll-trigger" })
-                    </li>
+						@*<a href="#giris" class="nav-link js-scroll-trigger">
+				Giriş
+			</a>*@
+					</li>
+					<li>
+						@Html.ActionLink("Cama", "Index", "Cama",
+					   new { area = "" }, new { @class = "nav-link js-scroll-trigger" })
+					</li>
 
-                    <li>
-                        @Html.ActionLink("Marca", "Index", "Marca",
-                      new { area = "" }, new { @class = "nav-link js-scroll-trigger" })
-                    </li>
+					<li>
+						@Html.ActionLink("Marca", "Index", "Marca",
+					  new { area = "" }, new { @class = "nav-link js-scroll-trigger" })
+					</li>
 
-                    <li>
-                        @Html.ActionLink("Producto", "Index", "Producto",
+					<li>
+						@Html.ActionLink("Producto", "Index", "Producto",
 new { area = "" }, new { @class = "nav-link js-scroll-trigger" })
-                    </li>
-                    <li>
-                        @Html.ActionLink("Persona", "Index", "Persona",
+					</li>
+					<li>
+						@Html.ActionLink("Persona", "Index", "Persona",
 new { area = "" }, new { @class = "nav-link js-scroll-trigger" })
-                    </li>
-                    <li>
-                        @Html.ActionLink("Categoria", "Index", "Categoria",
+					</li>
+					<li>
+						@Html.ActionLink("Categoria", "Index", "Categoria",
 new { area = "" }, new { @class = "nav-link js-scroll-trigger" })
-                    </li>
-                    <li>
-                        @Html.ActionLink("Hotel", "Index", "Hotel",
+					</li>
+					<li>
+						@Html.ActionLink("Hotel", "Index", "Hotel",
 new { area = "" }, new { @class = "nav-link js-scroll-trigger" })
-                    </li>
-                    <li>
-                        @Html.ActionLink("Habitacion", "Index", "Habitacion",
+					</li>
+					<li>
+						@Html.ActionLink("Habitacion", "Index", "Habitacion",
 new { area = "" }, new { @class = "nav-link js-scroll-trigger" })
-                    </li>
-                    <li>
-                        @Html.ActionLink("Tipo usuario", "Index", "TipoUsuario",
+					</li>
+					<li>
+						@Html.ActionLink("Tipo usuario", "Index", "TipoUsuario",
 new { area = "" }, new { @class = "nav-link js-scroll-trigger" })
-                    </li>
-                    <li>
-                        @Html.ActionLink("Pagina", "Index", "Pagina",
+					</li>
+					<li>
+						@Html.ActionLink("Pagina", "Index", "Pagina",
 new { area = "" }, new { @class = "nav-link js-scroll-trigger" })
-                    </li>
-                    <!--li data-toggle="collapse" data-target="#new" class="collapsed">
-      <a href="#"><i class="fa fa-car fa-lg"></i> New <span class="arrow"></span></a>
-    </li>
-    <ul class="sub-menu collapse" id="new">
-      <li>New New 1</li>
-      <li>New New 2</li>
-      <li>New New 3</li>
-    </ul-->
-                </ul>
+					</li>
+					<li>
+						@Html.ActionLink("Cerrar Sesion", "CerrarSesion", "Login",
+new { area = "" }, new { @class = "nav-link js-scroll-trigger" })
+					</li>
+					<!--li data-toggle="collapse" data-target="#new" class="collapsed">
+	  <a href="#"><i class="fa fa-car fa-lg"></i> New <span class="arrow"></span></a>
+	</li>
+	<ul class="sub-menu collapse" id="new">
+	  <li>New New 1</li>
+	  <li>New New 2</li>
+	  <li>New New 3</li>
+	</ul-->
+				</ul>
             </div>
         </div>
     </div></div>
@@ -114,7 +123,7 @@ new { area = "" }, new { @class = "nav-link js-scroll-trigger" })
             </footer>
         </div>*@
 
-    
+ 
     <script src="~/Scripts/bootstrap.min.js"></script>
 </body>
 </html>

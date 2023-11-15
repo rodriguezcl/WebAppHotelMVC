@@ -52,23 +52,16 @@ C:\Users\elifi\Desktop\MiPrimeraAplicacionMVCConCapas\Capa Datos\obj\Debug\Capa 
 C:\Users\elifi\Desktop\MiPrimeraAplicacionMVCConCapas\Capa Datos\obj\Debug\Capa Datos.csproj.CopyComplete
 C:\Users\elifi\Desktop\MiPrimeraAplicacionMVCConCapas\Capa Datos\obj\Debug\Capa Datos.dll
 C:\Users\elifi\Desktop\MiPrimeraAplicacionMVCConCapas\Capa Datos\obj\Debug\Capa Datos.pdb
+C:\Users\elifi\Desktop\MiPrimeraAplicacionMVCConCapas\Capa Datos\bin\Debug\Capa Usuario.dll
+C:\Users\elifi\Desktop\MiPrimeraAplicacionMVCConCapas\Capa Datos\bin\Debug\Capa Usuario.pdb
 C:\Users\leoro\OneDrive\Escritorio\MiPrimeraAplicacionMVCConCapas\Capa Datos\bin\Debug\Capa Datos.dll
 C:\Users\leoro\OneDrive\Escritorio\MiPrimeraAplicacionMVCConCapas\Capa Datos\bin\Debug\Capa Datos.pdb
 C:\Users\leoro\OneDrive\Escritorio\MiPrimeraAplicacionMVCConCapas\Capa Datos\bin\Debug\Capa Entidad.dll
+C:\Users\leoro\OneDrive\Escritorio\MiPrimeraAplicacionMVCConCapas\Capa Datos\bin\Debug\Capa Usuario.dll
 C:\Users\leoro\OneDrive\Escritorio\MiPrimeraAplicacionMVCConCapas\Capa Datos\bin\Debug\Capa Entidad.pdb
+C:\Users\leoro\OneDrive\Escritorio\MiPrimeraAplicacionMVCConCapas\Capa Datos\bin\Debug\Capa Usuario.pdb
 C:\Users\leoro\OneDrive\Escritorio\MiPrimeraAplicacionMVCConCapas\Capa Datos\obj\Debug\Capa Datos.csproj.AssemblyReference.cache
 C:\Users\leoro\OneDrive\Escritorio\MiPrimeraAplicacionMVCConCapas\Capa Datos\obj\Debug\Capa Datos.csproj.CoreCompileInputs.cache
 C:\Users\leoro\OneDrive\Escritorio\MiPrimeraAplicacionMVCConCapas\Capa Datos\obj\Debug\Capa Datos.csproj.CopyComplete
 C:\Users\leoro\OneDrive\Escritorio\MiPrimeraAplicacionMVCConCapas\Capa Datos\obj\Debug\Capa Datos.dll
 C:\Users\leoro\OneDrive\Escritorio\MiPrimeraAplicacionMVCConCapas\Capa Datos\obj\Debug\Capa Datos.pdb
-C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Datos\bin\Debug\Capa Datos.dll
-C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Datos\bin\Debug\Capa Datos.pdb
-C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Datos\bin\Debug\Capa Entidad.dll
-C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Datos\bin\Debug\Capa Entidad.pdb
-C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Datos\obj\Debug\Capa Datos.csproj.AssemblyReference.cache
-C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Datos\obj\Debug\Capa Datos.csproj.CoreCompileInputs.cache
-C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Datos\obj\Debug\Capa Datos.csproj.CopyComplete
-C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Datos\obj\Debug\Capa Datos.dll
-C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Datos\obj\Debug\Capa Datos.pdb
-C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Datos\bin\Debug\Capa Usuario.dll
-C:\Users\leoro\Mis Carpetas\Repositorios\WebAppHotelMVC\Capa Datos\bin\Debug\Capa Usuario.pdb

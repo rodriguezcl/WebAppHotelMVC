@@ -6,11 +6,11 @@ function listarPagina() {
     pintar({
         url: "Pagina/listarPaginas",
         id: "divTabla",
-        cabeceras: ["Id Pagina", "Nombre Pagina", "Controlador", "Accion"],
-        propiedades: ["iidpagina", "mensaje", "controlador", "accion"],
+        cabeceras: ["Id Pagina", "Nombre Pagina", "Controlador","Accion"],
+        propiedades: ["iidpagina", "mensaje", "controlador","accion"],
         editar: true,
-
-
+      
+    
         urlRecuperar: "Pagina/recuperarPagina",
         parametroRecuperar: "iidpagina",
         propiedadId: "iidpagina",
@@ -22,7 +22,7 @@ function listarPagina() {
     });
 }
 
-function agregarPagina(id = 0) {
+function agregarPagina(id=0) {
     pintar({
         id: "divTabla"
     }, null, {

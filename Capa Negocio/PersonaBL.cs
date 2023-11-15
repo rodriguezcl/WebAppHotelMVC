@@ -23,7 +23,7 @@ namespace Capa_Negocio
             return oPersonaDAL.filtrarPersona(iidtipousuario);
         }
 
-        public int guardarPersona(PersonaCLS oPersonaCLS, UsuarioCLS oUsuarioCLS)
+        public int guardarPersona(PersonaCLS oPersonaCLS,UsuarioCLS oUsuarioCLS)
         {
             PersonaDAL oPersonaDAL = new PersonaDAL();
             return oPersonaDAL.guardarPersona(oPersonaCLS, oUsuarioCLS);
@@ -39,6 +39,13 @@ namespace Capa_Negocio
         {
             PersonaDAL oPersonaDAL = new PersonaDAL();
             return oPersonaDAL.listarPersona(fotofinal);
+
+        }
+
+        public PersonaCLS uspLogin(string usuario, string contra)
+		{
+            PersonaDAL oPersonaDAL = new PersonaDAL();
+            return oPersonaDAL.uspLogin(usuario, contra);
 
         }
 

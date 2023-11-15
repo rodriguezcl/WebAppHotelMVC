@@ -62,7 +62,7 @@
       <Name>Capa Entidad</Name>
     </ProjectReference>
     <ProjectReference Include="..\Capa Usuario\Capa Usuario.csproj">
-      <Project>{46da0d8e-f33c-440b-ae6e-35b8a8b6d80b}</Project>
+      <Project>{b12b27b1-a518-4c6e-a19d-ddeacfbf0259}</Project>
       <Name>Capa Usuario</Name>
     </ProjectReference>
   </ItemGroup>

@@ -10,7 +10,7 @@ function listarTipoHabitacion() {
         editar: true,
         eliminar: true,
         propiedadId: "id",
-        paginar: true
+        paginar:true
     }
     pintar(objetoConf)
 

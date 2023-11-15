@@ -38,6 +38,8 @@ namespace MiPrimeraAplicacionMVCConCapas.Controllers
                 JsonRequestBehavior.AllowGet);
         }
 
+      
+
         public int eliminarPersona(int iidpersona)
         {
             PersonaBL oPersonaBL = new PersonaBL();

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Capa_Entidad
 {
-    public class PaginaCLS
+   public class PaginaCLS
     {
         public int iidpagina { get; set; }
         public string mensaje { get; set; }

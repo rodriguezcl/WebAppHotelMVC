@@ -60,15 +60,22 @@ function Editar(id) {
     //NUevo
     if (id == 0) {
         document.getElementById("staticBackdropLabel").innerHTML = "Nueva persona";
+        document.getElementById("divcontra").style.display = "block";
     }
     //editar
     else {
         document.getElementById("staticBackdropLabel").innerHTML = "Editar persona";
+        document.getElementById("divcontra").style.display = "none";
         recuperarGenericoEspecifico("Persona/recuperarPersona/?iidpersona=" + id,
-            "frmPersona", [], false);
+            "frmPersona", [], true);
     }
   
 }
+
+function recuperarEspecifico(res) {
+    if (res.nombreusuario == "") document.getElementById("divcontra").style.display = "block";
+}
+
 /*
 function recuperarEspecifico(res) {
     document.getElementById("imgFoto").src = res.fotobase64;

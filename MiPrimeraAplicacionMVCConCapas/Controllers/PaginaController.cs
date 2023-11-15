@@ -22,6 +22,13 @@ namespace MiPrimeraAplicacionMVCConCapas.Controllers
                 JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult listarMenus(int iidtipousuario)
+        {
+            PaginaBL oPaginaBL = new PaginaBL();
+            return Json(oPaginaBL.listarMenu(iidtipousuario),
+                JsonRequestBehavior.AllowGet);
+        }
+
         public JsonResult recuperarPagina(int iidpagina)
         {
             PaginaBL oPaginaDAL = new PaginaBL();
@@ -40,6 +47,10 @@ namespace MiPrimeraAplicacionMVCConCapas.Controllers
             PaginaBL oPaginaDAL = new PaginaBL();
             return oPaginaDAL.guardarPagina(oPaginaCLS);
         }
+
+
+
+
 
     }
 }

@@ -256,9 +256,9 @@ function ConfigurarDatos(res,objConfiguracion, objBusqueda,objFormulario) {
     }
 
     document.getElementById(objConfiguracion.id).innerHTML = contenido;
-    if (objConfiguracion.paginar==true) {
+    if (objConfiguracion.paginar == true) {
         $("#tablita").DataTable();
-    }
+	}
 
    
     if (objBusqueda != null) {
@@ -502,14 +502,17 @@ function ValidarObligatorios(idFormulario) {
     }
     for (var i = 0; i < elementos.length; i++) {
         //Si esta incluido no se hace nada (INPUT CONTROLES DE ENTRADA)
-        if (elementos[i].tagName.toUpperCase()=="INPUT" &&  elementos[i].value == "") {
-            error = "Debe ingresar el " + elementos[i].name;
-            return error;
-            //Imagenes
-        } else if (elementos[i].tagName.toUpperCase() == "IMG" && elementos[i].src == window.location.href) {
-            error = "Debe ingresar la " + elementos[i].name.replace("base64","").replace("data","");
-            return error;
-        }  
+        if (elementos[i].parentNode.style.display != "none") {
+            if (elementos[i].tagName.toUpperCase() == "INPUT" && elementos[i].value == "") {
+                error = "Debe ingresar el " + elementos[i].name;
+                return error;
+                //Imagenes
+            } else if (elementos[i].tagName.toUpperCase() == "IMG" && elementos[i].src == window.location.href) {
+                error = "Debe ingresar la " + elementos[i].name.replace("base64", "").replace("data", "");
+                return error;
+            }  
+		}
+     
         
             //elementos[i].value = "";
     }
@@ -524,8 +527,9 @@ function generarTabla(objConfiguracion, res , objFormulario,primeravez=false,tie
         var nombrePropiedad = objConfiguracion.name;
         listaPintar = res[nombrePropiedad];
     }
+
     var contenido = "";
-    contenido += "<table id='tablita' class='table'>";
+    contenido += "<table class='table' id='tablita'>";
     contenido += "<thead>";
     contenido += "<tr>";
     if (tienecheck==true) {
@@ -540,7 +544,6 @@ function generarTabla(objConfiguracion, res , objFormulario,primeravez=false,tie
     }
     contenido += "</tr>";
     contenido += "</thead>";
-
 
     var fila;
     var propiedadActual;
@@ -600,6 +603,14 @@ function generarTabla(objConfiguracion, res , objFormulario,primeravez=false,tie
     }
     contenido += "</table>"
     return contenido;
+}
+
+
+function setUrl(url) {
+    var raiz = document.getElementById("hdfOculto").value;
+    var urlAbsoluta = window.location.protocol + "//" +
+        window.location.host + raiz + url;
+    return urlAbsoluta; 
 }
 
 function fetchGet(url,callback) {
@@ -668,9 +679,8 @@ function Buscar() {
     fetchGet(`${objBus.url}/?${objBus.nombreparametro}=` + valor, function (res) {
         var rpta = generarTabla(objConf, res, objFormularioGlobal);
         document.getElementById("divContenedor").innerHTML = rpta;
-        if (objConf.paginar==true) {
+        if (objConf.paginar == true)
             $("#tablita").DataTable();
-        }
     })
     /*
     fetch(`${objBus.url}/?${objBus.nombreparametro}=` + valor)
@@ -791,7 +801,7 @@ function recuperarGenericoEspecifico(url, idFormulario, excepciones = [], adicio
                 }
                 else {
                     if (elementos[i].type != undefined && elementos[i].type.toUpperCase() != "FILE")
-                        setN(nombreName, res[nombreName] == undefined ? "" : res[nombreName]);
+                        setN(nombreName, res[nombreName] == undefined ? "" : res[nombreName])
                     else if (elementos[i].tagName.toUpperCase() == "IMG") {
                         setSRC(nombreName, res[nombreName])
                     }
